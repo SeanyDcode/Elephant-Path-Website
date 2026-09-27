@@ -1,0 +1,41 @@
+---
+// The opening of an inner page: its one h1, a short introduction and,
+// optionally, an illustration placeholder beside it.
+import IllustrationPlaceholder from './IllustrationPlaceholder.astro';
+
+interface Props {
+  title: string;
+  illustration?: { file: string; ratio: string; subject: string };
+}
+const { title, illustration } = Astro.props;
+---
+
+<section class="page-intro wash">
+  <div class:list={['container', 'page-intro__inner', { 'has-illus': illustration }]}>
+    <div class="prose">
+      <h1>{title}</h1>
+      <slot />
+    </div>
+    {illustration && <IllustrationPlaceholder {...illustration} />}
+  </div>
+</section>
+
+<style>
+  .page-intro {
+    padding-block: var(--space-xl);
+  }
+  .page-intro__inner {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  .page-intro__inner :global(.illus-ph) {
+    max-width: 26rem;
+  }
+  @media (min-width: 55em) {
+    .has-illus {
+      grid-template-columns: 3fr 2fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>

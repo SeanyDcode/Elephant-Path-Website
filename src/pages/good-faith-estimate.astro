@@ -1,9 +1,32 @@
 ---
-import PlaceholderPage from '../layouts/PlaceholderPage.astro';
+import LegalPage from '../layouts/LegalPage.astro';
+import GoodFaithNotice from '../components/GoodFaithNotice.astro';
+import ToConfirm from '../components/ToConfirm.astro';
+import { site } from '../config/site';
+import { url } from '../lib/url';
 ---
 
-<PlaceholderPage
+<LegalPage
   title="Good Faith Estimate"
-  description="Your right to receive a Good Faith Estimate of the expected cost of care under the No Surprises Act."
-  legal
-/>
+  description="Your right to receive a Good Faith Estimate of the expected cost of care under the No Surprises Act, and how The Elephant Path provides one."
+>
+  <p>
+    Because The Elephant Path is a private pay practice and does not bill insurance, you have the right
+    to know what your care is expected to cost before it begins. The following notice is required by
+    the federal No Surprises Act.
+  </p>
+
+  <h2>Your right to a Good Faith Estimate</h2>
+  <GoodFaithNotice />
+
+  <h2>How I provide your Good Faith Estimate</h2>
+  <p>
+    After your free consultation, and before your first session, I’ll give you a written Good Faith
+    Estimate based on the session length and how often we plan to meet. You can also ask for one at
+    any time. <ToConfirm note="TO CONFIRM: how and when the estimate is delivered" />
+  </p>
+  <p>
+    My current fees are listed on the <a href={url('/services/#fees')}>Services &amp; Fees</a> page. If
+    you have questions, please call <a href={site.phoneHref}>{site.phoneDisplay}</a>.
+  </p>
+</LegalPage>

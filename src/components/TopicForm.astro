@@ -1,0 +1,61 @@
+---
+// "Suggest a topic" form for the blog. Name and email are optional.
+import { site } from '../config/site';
+---
+
+<div class="form-wrap">
+  <form
+    data-form
+    data-status="topic-status"
+    data-endpoint={site.forms.topicEndpoint ?? undefined}
+    data-success="Thank you for the suggestion."
+    data-failure="Sorry, something went wrong and your suggestion wasn’t sent. Please try again later."
+    method="post"
+    action={site.forms.topicEndpoint ?? undefined}
+    aria-labelledby="topic-form-title"
+  >
+    <h2 id="topic-form-title" class="form-title">Suggest a topic</h2>
+    <p>Is there something you’d like me to write about? I’d love to hear your ideas.</p>
+
+    <div class="error-summary" data-error-summary tabindex="-1" hidden>
+      <h3 data-error-count>There is a problem with this form</h3>
+      <ul></ul>
+    </div>
+
+    <div class="field">
+      <label for="topic-text" data-name="topic">Topic <span class="req">(required)</span></label>
+      <p class="hint" id="topic-hint">Please don’t include personal health details.</p>
+      <textarea
+        id="topic-text"
+        name="topic"
+        rows="4"
+        required
+        data-check
+        data-required-message="Please enter a topic you’d like me to write about."
+        aria-describedby="topic-hint"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="topic-name">Name <span class="req">(optional)</span></label>
+      <input id="topic-name" name="name" type="text" autocomplete="name" />
+    </div>
+
+    <div class="field">
+      <label for="topic-email" data-name="email address">Email <span class="req">(optional)</span></label>
+      <input id="topic-email" name="email" type="email" autocomplete="email" data-check />
+    </div>
+
+    <div class="hp" aria-hidden="true">
+      <label for="topic-website">Leave this field empty</label>
+      <input id="topic-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Send suggestion</button>
+  </form>
+
+  <div id="topic-status" class="form-status" role="status" tabindex="-1" hidden></div>
+</div>
+
+<script>
+  import '../scripts/forms';
+</script>

@@ -5,6 +5,7 @@
 //   1. runs axe (WCAG 2.1 A and AA rules) on desktop and phone widths
 //   2. checks there is no sideways scrolling at 320px wide
 //   3. checks the mobile menu opens, closes and works with the keyboard
+//   4. checks form error handling and the blog/library topic filters
 //
 // It serves the built dist/ folder itself, the same way GitHub Pages will.
 // Set CHROMIUM_PATH to use an already-installed browser.
@@ -137,6 +138,61 @@ try {
     if (!(await page.getByRole('link', { name: 'Get started' }).isVisible()))
       report('[320px] "Get started" is not visible on mobile');
     await ctx.close();
+
+    // Forms: submitting empty shows an error summary that receives focus,
+    // fields are marked invalid, and the error state itself passes axe.
+    const formCtx = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+    const formPage = await formCtx.newPage();
+    await formPage.goto(url, { waitUntil: 'networkidle' });
+    const forms = await formPage.locator('form[data-form]').count();
+    for (let i = 0; i < forms; i++) {
+      const form = formPage.locator('form[data-form]').nth(i);
+      await form.locator('button[type="submit"]').click();
+      const summary = form.locator('[data-error-summary]');
+      if (!(await summary.isVisible())) report('[form] error summary not shown for an empty form');
+      const focused = await summary.evaluate((el) => el === document.activeElement);
+      if (!focused) report('[form] error summary did not receive focus');
+      const invalid = await form.locator('[aria-invalid="true"]').count();
+      const required = await form.locator('[data-check][required]').count();
+      if (invalid !== required) report(`[form] expected ${required} invalid fields, found ${invalid}`);
+      const results = await new AxeBuilder({ page: formPage })
+        .include('form[data-form]')
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+        .analyze();
+      for (const v of results.violations) report(`[form errors] ${v.id}: ${v.help}`);
+      // Fill in valid answers: errors clear and the status message appears.
+      for (const field of await form.locator('[data-check]').all()) {
+        const type = await field.getAttribute('type');
+        await field.fill(type === 'email' ? 'test@example.com' : type === 'tel' ? '(248) 555-0123' : 'Test');
+      }
+      await form.locator('button[type="submit"]').click();
+      if (await form.locator('[aria-invalid="true"]').count()) report('[form] errors did not clear once fixed');
+      const statusId = await form.getAttribute('data-status');
+      if (!(await formPage.locator(`#${statusId}`).isVisible())) report('[form] no status message after sending');
+    }
+    // Topic filters: choosing a topic hides items from other topics.
+    const filter = formPage.locator('[data-filter]');
+    if (await filter.count()) {
+      const listId = await filter.first().getAttribute('data-filter');
+      const items = formPage.locator(`#${listId} [data-categories]`);
+      const total = await items.count();
+      const first = await items.first().getAttribute('data-categories');
+      const topic = first?.split(' ')[0];
+      if (topic) {
+        await filter.locator(`button[data-value="${topic}"]`).click();
+        const pressed = await filter.locator(`button[data-value="${topic}"]`).getAttribute('aria-pressed');
+        if (pressed !== 'true') report('[filter] chosen topic button is not marked pressed');
+        const shown = await items.evaluateAll((els) => els.filter((e) => !e.hidden).length);
+        const expected = await items.evaluateAll(
+          (els, t) => els.filter((e) => e.dataset.categories.split(' ').includes(t)).length,
+          topic
+        );
+        if (shown !== expected) report(`[filter] showed ${shown} of ${total}, expected ${expected}`);
+        const status = await filter.locator('[data-count]').textContent();
+        if (!status?.startsWith('Showing')) report('[filter] result count was not announced');
+      }
+    }
+    await formCtx.close();
 
     if (problems === before) console.log('  ✓ no issues');
   }

@@ -1,0 +1,86 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import CrisisLines from '../../../components/CrisisLines.astro';
+import ClosingCta from '../../../components/ClosingCta.astro';
+import { getGuides } from '../../../lib/content';
+import { focusAreas } from '../../../config/site';
+import { url } from '../../../lib/url';
+
+export async function getStaticPaths() {
+  const guides = await getGuides();
+  return guides.map((guide) => ({ params: { slug: guide.id }, props: { guide, guides } }));
+}
+
+const { guide, guides } = Astro.props;
+const { Content } = await render(guide);
+const related = focusAreas.filter((a) => guide.data.categories.includes(a.id));
+const others = guides.filter((g) => g.id !== guide.id);
+---
+
+<BaseLayout title={`${guide.data.title}: a guide`} description={guide.data.description}>
+  <PageIntro title={guide.data.title} illustration={guide.data.illustration}>
+    <p class="lede">{guide.data.description}</p>
+    <p><a href={url('/resources/')}>Back to all resources</a></p>
+  </PageIntro>
+
+  <section class="section section--tight">
+    <div class="container split">
+      <div class="prose content">
+        <Content />
+        <p class="small muted disclaimer">
+          This guide is for general information and isn’t a substitute for professional care.
+        </p>
+      </div>
+      <aside class="stack" aria-label="More support">
+        <div class="panel">
+          <h2 class="panel-title">How I can help</h2>
+          <ul class="plain-list">
+            {
+              related.map((a) => (
+                <li>
+                  <a href={url(`/services/#${a.id}`)}>{a.title}</a>
+                </li>
+              ))
+            }
+          </ul>
+          <p><a class="btn btn-primary" href={url('/contact/')}>Request a free consultation</a></p>
+        </div>
+        <div class="panel">
+          <h2 class="panel-title">Other guides</h2>
+          <ul class="plain-list">
+            {
+              others.map((g) => (
+                <li>
+                  <a href={url(`/resources/guides/${g.id}/`)}>{g.data.title}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <CrisisLines headingLevel="h2" />
+      </aside>
+    </div>
+  </section>
+  <ClosingCta />
+</BaseLayout>
+
+<style>
+  .panel-title {
+    font-size: var(--step-1);
+  }
+  .plain-list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .disclaimer {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--stone-400);
+  }
+  aside :global(.crisis-list) {
+    grid-template-columns: 1fr;
+  }
+</style>

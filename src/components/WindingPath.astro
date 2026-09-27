@@ -1,0 +1,46 @@
+---
+// Decorative winding path that gently draws itself when the "Why elephants?"
+// section scrolls into view. Static (fully drawn) under reduced motion.
+---
+
+<svg class="winding" viewBox="0 0 120 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path
+    class="winding-line"
+    d="M60 5 C 10 60, 110 110, 60 170 S 10 280, 60 340 S 110 450, 60 510 S 30 580, 60 595"
+    pathLength="1"></path>
+  <g class="winding-fly" transform="translate(48 575)">
+    <path d="M12 10C2-2-4 4 0 12s10 6 12-2z" fill="var(--sage-100)" stroke="var(--logo-green)" stroke-width="1"></path>
+    <path d="M12 10C20-4 30 0 26 10s-10 8-14 0z" fill="var(--yellow-200)" stroke="var(--logo-green)" stroke-width="1"></path>
+  </g>
+</svg>
+
+<style>
+  .winding {
+    width: 100%;
+    height: 100%;
+  }
+  .winding-line {
+    fill: none;
+    stroke: var(--sage-100);
+    stroke-width: 10;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.js) .winding-line {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset 1.6s var(--ease);
+    }
+    :global(.js) .winding-fly {
+      opacity: 0;
+      transition: opacity 500ms var(--ease) 1.4s;
+    }
+    :global(.is-visible) .winding-line {
+      stroke-dashoffset: 0;
+    }
+    :global(.is-visible) .winding-fly {
+      opacity: 1;
+    }
+  }
+</style>
