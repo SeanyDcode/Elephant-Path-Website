@@ -4,12 +4,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PathDivider from '../components/PathDivider.astro';
 import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
 import ToConfirm from '../components/ToConfirm.astro';
+import Steps from '../components/Steps.astro';
+import PostCard from '../components/PostCard.astro';
+import ClosingCta from '../components/ClosingCta.astro';
 import logo from '../assets/brand/logo-full.png';
 import { site, focusAreas } from '../config/site';
 import { url } from '../lib/url';
+import { getPosts } from '../lib/content';
 
-// "From the blog" appears only once posts exist (blog is built in Phase 2/4).
-const latestPosts: { title: string; href: string; date: string }[] = [];
+// "From the blog" appears only once there are published posts.
+const latestPosts = (await getPosts()).slice(0, 3);
 ---
 
 <BaseLayout
@@ -96,7 +100,7 @@ const latestPosts: { title: string; href: string; date: string }[] = [];
             <li class="card reveal">
               <h3>
                 {area.title}
-                {area.toConfirm && <ToConfirm />}
+                {area.toConfirm && <>{' '}<ToConfirm /></>}
               </h3>
               <p>{area.blurb}</p>
               <ul class="card-links">
@@ -106,7 +110,7 @@ const latestPosts: { title: string; href: string; date: string }[] = [];
                   </a>
                 </li>
                 <li>
-                  <a href={url(`/resources/#${area.id}`)}>
+                  <a href={url(area.resource)}>
                     Resources<span class="visually-hidden"> on {area.title.toLowerCase()}</span>
                   </a>
                 </li>
@@ -125,23 +129,7 @@ const latestPosts: { title: string; href: string; date: string }[] = [];
         <h2 id="steps-title">Getting started is simple</h2>
         <p>Reaching out can be the hardest part. Here is what happens next.</p>
       </div>
-      <ol class="steps" role="list">
-        <li class="step reveal">
-          <span class="step-num" aria-hidden="true">1</span>
-          <h3>Request a consultation</h3>
-          <p>Share your name, email and phone number through a short form.</p>
-        </li>
-        <li class="step reveal">
-          <span class="step-num" aria-hidden="true">2</span>
-          <h3>I’ll call you</h3>
-          <p>I’ll reach out within one business day to find a time that works for you.</p>
-        </li>
-        <li class="step reveal">
-          <span class="step-num" aria-hidden="true">3</span>
-          <h3>Your free 15-minute consultation</h3>
-          <p>We’ll talk about what you’re looking for and whether we’re a good fit.</p>
-        </li>
-      </ol>
+      <Steps />
       <p class="center steps-cta">
         <a class="btn btn-primary" href={url('/contact/')}>Request a free consultation</a>
       </p>
@@ -232,38 +220,24 @@ const latestPosts: { title: string; href: string; date: string }[] = [];
     latestPosts.length > 0 && (
       <section class="section band-white" aria-labelledby="blog-title">
         <div class="container">
-          <h2 id="blog-title">From the blog</h2>
+          <div class="section-head reveal">
+            <h2 id="blog-title">From the blog</h2>
+          </div>
           <ul class="grid" role="list">
-            {latestPosts.slice(0, 3).map((post) => (
-              <li class="card">
-                <h3>
-                  <a href={post.href}>{post.title}</a>
-                </h3>
-                <p class="small muted">{post.date}</p>
-              </li>
+            {latestPosts.map((post) => (
+              <PostCard post={post} />
             ))}
           </ul>
+          <p class="more-link">
+            <a href={url('/resources/blog/')}>Read more on the blog</a>
+          </p>
         </div>
       </section>
     )
   }
 
-  <PathDivider />
-
   <!-- 9. Closing call to action -->
-  <section class="section closing wash" aria-labelledby="closing-title">
-    <div class="container center prose reveal">
-      <h2 id="closing-title">When you’re ready, I’m here</h2>
-      <p>
-        A free 15-minute phone consultation is a simple way to see if we’re a good fit. There’s no
-        cost and no commitment.
-      </p>
-      <div class="cluster closing-actions">
-        <a class="btn btn-primary" href={url('/contact/')}>Request a free consultation</a>
-        <a class="btn btn-secondary" href={site.phoneHref}>Call {site.phoneDisplay}</a>
-      </div>
-    </div>
-  </section>
+  <ClosingCta />
 </BaseLayout>
 
 <style>
@@ -333,41 +307,6 @@ const latestPosts: { title: string; href: string; date: string }[] = [];
     }
   }
 
-  /* Lists styled as grids */
-  .steps {
-    list-style: none;
-    padding: 0;
-  }
-
-  /* Steps */
-  .steps {
-    display: grid;
-    gap: var(--space-m);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-    counter-reset: none;
-  }
-  .step {
-    background: var(--bg);
-    border-radius: var(--radius-m);
-    padding: var(--space-l) var(--space-m);
-    color: var(--ink);
-  }
-  .step h3 {
-    color: var(--ink);
-    font-size: var(--step-1);
-    margin-block: var(--space-s) var(--space-xs);
-  }
-  .step-num {
-    display: grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: var(--olive);
-    color: #fff;
-    font-family: var(--font-heading);
-    font-weight: 600;
-  }
   .steps-cta {
     margin-top: var(--space-l);
   }
@@ -404,11 +343,5 @@ const latestPosts: { title: string; href: string; date: string }[] = [];
       grid-template-columns: auto 1fr;
       gap: var(--space-xl);
     }
-  }
-
-  /* Closing */
-  .closing-actions {
-    justify-content: center;
-    margin-top: var(--space-l);
   }
 </style>
