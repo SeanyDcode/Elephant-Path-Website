@@ -36,3 +36,15 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
   temporary `/Elephant-Path-Website` base path.
 - Launch switch (custom domain, removes base path): `CUSTOM_DOMAIN_LIVE` in `astro.config.mjs`.
 - Illustration slots: `docs/image-manifest.md`.
+- Blog, library and guides: Markdown content collections in `src/content/`
+  (schema in `src/content.config.ts`). Categories are the focus-area ids.
+- Forms: `ConsultForm` and `TopicForm` share `src/scripts/forms.ts`. Endpoints
+  are `site.forms.*` in `src/config/site.ts`; while null, forms don't send.
+
+## Gotchas
+
+- Astro 7 drops the space where a line of text ends and the next line starts
+  with an inline element (`<a>`, `<strong>`, a component). Add `{' '}` in those
+  spots, then check the built HTML for words run together.
+- Markdown uses Astro's Sätteri processor; plugins go in `astro.config.mjs`
+  (`satteri({ hastPlugins })`), not `rehypePlugins`.

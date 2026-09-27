@@ -36,7 +36,10 @@ The plan for the whole site is in [`build-brief.md`](build-brief.md).
 | What | Where |
 |---|---|
 | Pages (Home, About, and so on) | `src/pages/` (each file is one page) |
-| Phone, email, hours, links, the seven focus areas | `src/config/site.ts`, one place for all of them |
+| Blog posts | `src/content/blog/` (one Markdown file per post) |
+| Library books | `src/content/library/` (one file per book) |
+| Resource guides | `src/content/guides/` (one file per guide) |
+| Phone, email, hours, links, fees, focus areas, crisis lines | `src/config/site.ts`, one place for all of them |
 | Colours, fonts, spacing | `src/styles/tokens.css` |
 | General look (buttons, cards, forms) | `src/styles/global.css` |
 | Header, footer and other building blocks | `src/components/` |
@@ -47,8 +50,9 @@ The plan for the whole site is in [`build-brief.md`](build-brief.md).
 | Automatic publishing and checks | `.github/workflows/` |
 | Helper scripts (logo cropping, checks) | `scripts/` |
 
-Blog posts, the library and resource guides will be added in later phases,
-along with a simple browser-based editor for writing posts.
+A simple browser-based editor for writing blog posts and adding library books
+will be set up in Phase 4. Until then, posts and books are plain text files in
+`src/content/`.
 
 ### Notes marked [TO CONFIRM]
 
