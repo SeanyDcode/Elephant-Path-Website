@@ -1,0 +1,9 @@
+---
+// A visible note for the owner, e.g. [TO CONFIRM]. Remove before launch.
+interface Props {
+  note?: string;
+}
+const { note = 'TO CONFIRM' } = Astro.props;
+---
+
+<span class="tbc">[{note}]</span>

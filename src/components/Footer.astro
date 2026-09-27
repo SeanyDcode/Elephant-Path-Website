@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/logo-full.png';
+import ExternalLink from './ExternalLink.astro';
+import ToConfirm from './ToConfirm.astro';
+import { site } from '../config/site';
+import { url } from '../lib/url';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="crisis footer-crisis">
+      <p>
+        This site is not for emergencies. If you are in crisis, call or text <strong
+          ><a href="tel:988">988</a></strong
+        > (Suicide &amp; Crisis Lifeline) or call <strong><a href="tel:911">911</a></strong>.
+      </p>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <Image src={logo} alt="The Elephant Path" width={180} densities={[1, 2]} />
+        <p class="small">{site.area}.</p>
+      </div>
+
+      <div>
+        <h2 class="footer-heading">Contact</h2>
+        <ul class="footer-list">
+          <li>Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a></li>
+          <li>
+            Email: {
+              site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <ToConfirm note="TO CONFIRM: practice email" />
+            }
+          </li>
+          <li>Hours: {site.hours}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer-heading">Find me online</h2>
+        <ul class="footer-list">
+          <li>
+            <ExternalLink href={site.links.psychologyToday}>Psychology Today profile</ExternalLink>
+          </li>
+          <li>
+            {
+              site.links.googleBusinessProfile ? (
+                <ExternalLink href={site.links.googleBusinessProfile}>Google Business Profile</ExternalLink>
+              ) : (
+                <>
+                  Google Business Profile <ToConfirm note="TO CONFIRM: link" />
+                </>
+              )
+            }
+          </li>
+          <li>
+            <ExternalLink href={site.links.clientPortal} newTab>Client Portal</ExternalLink>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer-heading">Policies</h2>
+        <ul class="footer-list">
+          <li><a href={url('/good-faith-estimate/')}>Good Faith Estimate</a></li>
+          <li><a href={url('/privacy/')}>Privacy Policy</a></li>
+          <li><a href={url('/accessibility/')}>Accessibility Statement</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="copyright small">&copy; {year} {site.legalName}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--stone-100);
+    padding-block: var(--space-xl) var(--space-l);
+    margin-top: auto;
+  }
+  .footer-crisis {
+    margin-bottom: var(--space-l);
+  }
+  .footer-grid {
+    display: grid;
+    gap: var(--space-l);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  }
+  .footer-brand :global(img) {
+    width: 160px;
+    height: auto;
+    margin-bottom: var(--space-s);
+  }
+  .footer-heading {
+    font-size: var(--step-1);
+    margin-bottom: var(--space-xs);
+  }
+  .footer-list {
+    list-style: none;
+    padding: 0;
+  }
+  .footer-list li {
+    min-height: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.3em;
+  }
+  .copyright {
+    margin-top: var(--space-l);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--stone-400);
+    color: var(--charcoal);
+  }
+</style>

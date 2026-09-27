@@ -1,0 +1,51 @@
+---
+// A labelled frame that holds the place of a future watercolour
+// illustration. The filename and subject are listed in docs/image-manifest.md.
+interface Props {
+  file: string;
+  ratio: string; // e.g. "4/3"
+  subject: string;
+}
+const { file, ratio, subject } = Astro.props;
+---
+
+<figure class="illus-ph" style={`aspect-ratio: ${ratio}`}>
+  <figcaption>
+    <span class="illus-ph__label">Illustration placeholder</span>
+    <span class="illus-ph__subject">{subject}</span>
+    <code>{file}</code>
+  </figcaption>
+</figure>
+
+<style>
+  .illus-ph {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    border-radius: var(--radius-l);
+    border: 2px dashed var(--stone-400);
+    background:
+      radial-gradient(60% 55% at 30% 40%, rgb(221 227 207 / 0.9), transparent 70%),
+      radial-gradient(50% 50% at 72% 65%, rgb(240 228 160 / 0.45), transparent 70%),
+      var(--surface);
+    padding: var(--space-m);
+    text-align: center;
+  }
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    color: var(--charcoal);
+    font-size: var(--step--1);
+    max-width: 22rem;
+  }
+  .illus-ph__label {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  code {
+    font-size: 0.85em;
+    overflow-wrap: anywhere;
+  }
+</style>
