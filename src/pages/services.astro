@@ -1,8 +1,290 @@
 ---
-import PlaceholderPage from '../layouts/PlaceholderPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import FeeTable from '../components/FeeTable.astro';
+import GoodFaithNotice from '../components/GoodFaithNotice.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+import ToConfirm from '../components/ToConfirm.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { site, focusAreas, alsoSupport, paymentCards } from '../config/site';
+import { url } from '../lib/url';
 ---
 
-<PlaceholderPage
+<BaseLayout
   title="Services & Fees"
-  description="Focus areas, who I work with, session fees and the Good Faith Estimate for telehealth counseling in Michigan."
-/>
+  description="Telehealth counseling across Michigan for grief and loss, chronic and terminal illness, end of life, caregiver support, parenting and life transitions. Clear, private pay fees and a free 15-minute consultation."
+>
+  <PageIntro
+    title="Services & Fees"
+    illustration={{
+      file: 'illus-services-3x2.webp',
+      ratio: '3/2',
+      subject: 'A baby elephant walking beneath its mother along a soft path',
+    }}
+  >
+    <p class="lede">
+      I offer compassionate and evidence-based care for people facing loss, illness and change, with
+      clear fees and no surprises.
+    </p>
+    <p><a href="#fees">Skip to fees</a> · <a href="#faq">Skip to common questions</a></p>
+  </PageIntro>
+
+  <!-- Who I work with -->
+  <section class="section section--tight band-white" aria-labelledby="who">
+    <div class="container prose reveal">
+      <h2 id="who">Who I work with</h2>
+      <ul class="check-list">
+        <li>Teens and adults of all ages <ToConfirm note="TO CONFIRM: preteens?" /></li>
+        <li>Individuals and families</li>
+        <li>Telehealth only, for people located in Michigan</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Focus areas -->
+  <section class="section" aria-labelledby="focus">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="focus">How I can help</h2>
+        <p>These are the areas I focus on most.</p>
+      </div>
+      <ul class="grid focus-grid" role="list">
+        {
+          focusAreas.map((area) => (
+            <li class="card reveal" id={area.id}>
+              <h3>
+                {area.title}
+                {area.toConfirm && <>{' '}<ToConfirm /></>}
+              </h3>
+              <p>{area.description}</p>
+              <ul class="card-links">
+                <li>
+                  <a href={url(area.resource)}>
+                    Resources<span class="visually-hidden"> on {area.title.toLowerCase()}</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="also reveal">
+        <h3>I also support people with</h3>
+        <ul class="also-list" role="list">
+          {alsoSupport.map((item) => <li class="tag">{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fees -->
+  <section class="section band-stone" id="fees" aria-labelledby="fees-title">
+    <div class="container split">
+      <div class="reveal">
+        <h2 id="fees-title">Fees</h2>
+        <p class="fees-intro">Clear prices, known before care begins.</p>
+        <FeeTable />
+      </div>
+      <div class="stack reveal">
+        <div class="panel">
+          <h3>Paying for sessions</h3>
+          <p>
+            Payment is due at the time of service and is securely processed through the client portal.
+          </p>
+          <p>I accept {paymentCards.slice(0, -1).join(', ')} and {paymentCards.at(-1)}.</p>
+        </div>
+        <div class="panel">
+          <h3>Sliding scale</h3>
+          <p>
+            A limited number of reduced-fee appointments are available for people experiencing financial
+            hardship. If cost is a concern, we can discuss options during your free consultation.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Insurance</h3>
+          <p>
+            The Elephant Path does not bill insurance or provide superbills. I know this is a change for
+            some people. I chose this model because it keeps your care personal, private and transparent.{' '}
+            <a href={url('/about/#why-private-pay')}>Read why I chose private pay</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Working with teens -->
+  <section class="section section--tight" aria-labelledby="teens">
+    <div class="container prose reveal">
+      <h2 id="teens">Working with teens</h2>
+      <p>
+        I’m glad to work with teens, and I believe parents and caregivers can be an important part of
+        a teen’s support.
+      </p>
+      <p class="slot">
+        <ToConfirm note="OWNER TO PROVIDE POLICY WORDING" /> How consent works for teens, how and when parents
+        or guardians are involved, and what stays confidential.
+      </p>
+    </div>
+  </section>
+
+  <!-- Good Faith Estimate -->
+  <section class="section section--tight band-white" aria-labelledby="gfe">
+    <div class="container reveal">
+      <h2 id="gfe">Good Faith Estimate</h2>
+      <p class="gfe-intro">
+        Because I don’t bill insurance, you have the right to a Good Faith Estimate of your expected costs.{' '}
+        <a href={url('/good-faith-estimate/')}>Read the full Good Faith Estimate notice</a>.
+      </p>
+      <GoodFaithNotice />
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <h2 id="faq-title" class="faq-heading">Common questions</h2>
+      <div class="faq">
+        <details>
+          <summary><h3>Do you take insurance?</h3></summary>
+          <div class="faq-body">
+            <p>
+              No. The Elephant Path is a private pay practice, so I don’t bill insurance or provide
+              superbills. Payment is made at the time of service through the secure client portal. You can
+              also pay with an HSA card.
+            </p>
+            <p>
+              If cost is a concern, please ask about the sliding scale during your free consultation.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>What do I need for a telehealth session?</h3></summary>
+          <div class="faq-body">
+            <p>Sessions take place on Doxy.me, a secure, HIPAA-compliant video platform. You’ll need:</p>
+            <ul>
+              <li>a phone, tablet or computer with a camera and microphone</li>
+              <li>an internet connection</li>
+              <li>an up-to-date web browser, such as Chrome, Safari, Firefox or Edge</li>
+              <li>a private, quiet space where you feel comfortable talking</li>
+            </ul>
+            <p>To join, you:</p>
+            <ol>
+              <li>click the secure link I send you</li>
+              <li>type your name and check in</li>
+              <li>allow your browser to use your camera and microphone</li>
+              <li>wait in the virtual waiting room until I join you</li>
+            </ol>
+            <p>
+              There’s no app to download and no account to create. <ExternalLink
+                href="https://doxy.me/site/patients">Learn more about Doxy.me for patients</ExternalLink
+              >.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>Do I need to be in Michigan?</h3></summary>
+          <div class="faq-body">
+            <p>
+              Yes. I’m licensed in Michigan, so you need to be physically located in Michigan during each
+              session. If you’ll be traveling, please let me know ahead of time so we can plan around it.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>What happens in the free consultation?</h3></summary>
+          <div class="faq-body">
+            <p>
+              The free consultation is a relaxed, 15-minute phone call. You can share a little about what
+              brings you here and ask any questions you have. I’ll explain how I work, and we can talk
+              about fees and the sliding scale. Together we’ll decide if we’re a good fit.
+            </p>
+            <p>
+              If we decide to work together, I’ll invite you to the client portal to complete your
+              paperwork, and we’ll schedule your first session.
+            </p>
+            <p><a href={url('/contact/')}>Request a free consultation</a></p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>What if I need to cancel?</h3></summary>
+          <div class="faq-body">
+            <p>
+              Life happens. If you need to cancel or reschedule, please let me know as soon as you can.
+            </p>
+            <p class="slot">
+              <ToConfirm note="TO CONFIRM policy" /> How much notice is needed, and whether a late cancellation
+              or missed appointment fee applies.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>What if I’m in crisis?</h3></summary>
+          <div class="faq-body">
+            <p>
+              I’m not able to offer crisis or emergency support. If you are in crisis, please call or text
+              {' '}<a href="tel:988"><strong>988</strong></a> (Suicide &amp; Crisis Lifeline), or call <a
+                href="tel:911"><strong>911</strong></a
+              >. You can also text HOME to 741741 to reach the Crisis Text Line.
+            </p>
+            <p>
+              <a href={url('/resources/#crisis-lines')}>See more crisis and support lines</a>
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <ClosingCta />
+</BaseLayout>
+
+<style>
+  .focus-grid {
+    list-style: none;
+    padding: 0;
+  }
+  .focus-grid > li {
+    scroll-margin-top: var(--space-l);
+  }
+  .also {
+    margin-top: var(--space-xl);
+  }
+  .also h3 {
+    font-size: var(--step-1);
+    margin-bottom: var(--space-s);
+  }
+  .also-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+  .also-list .tag {
+    font-size: var(--step-0);
+    padding: 0.25em 0.9em;
+  }
+  .fees-intro {
+    margin-block: var(--space-xs) var(--space-m);
+  }
+  .panel h3 {
+    font-size: var(--step-1);
+  }
+  .slot {
+    border-left: 4px solid var(--yellow-200);
+    padding-left: var(--space-s);
+  }
+  .gfe-intro {
+    max-width: var(--measure);
+    margin-block: var(--space-s) var(--space-m);
+  }
+  .faq-heading {
+    margin-bottom: var(--space-m);
+  }
+</style>
