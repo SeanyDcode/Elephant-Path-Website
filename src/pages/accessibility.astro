@@ -1,9 +1,50 @@
 ---
-import PlaceholderPage from '../layouts/PlaceholderPage.astro';
+import LegalPage from '../layouts/LegalPage.astro';
+import { site } from '../config/site';
 ---
 
-<PlaceholderPage
+<LegalPage
   title="Accessibility Statement"
-  description="The Elephant Path's commitment to an accessible website, and how to report a problem."
-  legal
-/>
+  description="The Elephant Path is committed to a website everyone can use. We aim to meet WCAG 2.1 AA. Here's how to tell us about a problem."
+>
+  <p>
+    I want everyone to be able to use this website, including people who use screen readers, keyboard
+    navigation, magnification or other assistive technology.
+  </p>
+
+  <h2>Our goal</h2>
+  <p>
+    This website aims to meet the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA. These are
+    internationally recognized standards for making websites accessible.
+  </p>
+
+  <h2>What we do</h2>
+  <ul>
+    <li>Use clear headings, labels and plain language.</li>
+    <li>Make sure every feature works with a keyboard, with a visible focus outline.</li>
+    <li>Choose text and background colors with strong contrast.</li>
+    <li>Describe meaningful images with alternative text.</li>
+    <li>Let pages enlarge and reflow on small screens without scrolling sideways.</li>
+    <li>Turn off motion for visitors who have asked their device to reduce motion.</li>
+    <li>Test every change with automated accessibility checks before it is published.</li>
+  </ul>
+
+  <h2>Other services</h2>
+  <p>
+    Some parts of your care use services I don’t control, such as the TherapyNotes client portal and
+    Doxy.me for video sessions. If you have trouble using either one, please let me know and I’ll help
+    find a way that works for you.
+  </p>
+
+  <h2>Tell me about a problem</h2>
+  <p>
+    If something on this site is hard to use, or you need information in a different format, please
+    call <a href={site.phoneHref}>{site.phoneDisplay}</a>{
+      site.email && (
+        <>
+          {' '}or email <a href={`mailto:${site.email}`}>{site.email}</a>
+        </>
+      )
+    }. Please describe the page and the problem. I’ll get back to you as soon as I can.
+  </p>
+</LegalPage>
