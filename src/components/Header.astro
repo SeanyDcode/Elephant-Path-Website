@@ -1,0 +1,261 @@
+---
+import { Image } from 'astro:assets';
+import mark from '../assets/brand/logo-mark.png';
+import ExternalLink from './ExternalLink.astro';
+import { nav, site } from '../config/site';
+import { url, isCurrent } from '../lib/url';
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={url('/')}>
+      <Image src={mark} alt="" width={72} densities={[1, 2]} class="brand-mark" loading="eager" />
+      <span class="brand-name">{site.name}</span>
+    </a>
+
+    <a class="btn btn-primary btn-small get-started" href={url('/contact/')}>Get started</a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-menu"
+      data-menu-toggle
+    >
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="22" height="22">
+        <path class="bar bar-1" d="M4 7h16" />
+        <path class="bar bar-2" d="M4 12h16" />
+        <path class="bar bar-3" d="M4 17h16" />
+      </svg>
+      <span class="menu-label">Menu</span>
+    </button>
+
+    <nav id="site-menu" class="site-menu" aria-label="Main">
+      <ul class="nav-list">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={url(item.href)} aria-current={isCurrent(item.href, pathname) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="portal">
+          <ExternalLink href={site.links.clientPortal} newTab>Client Portal</ExternalLink>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu: a disclosure button that shows and hides the navigation.
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('site-menu');
+
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      menu.dataset.open = String(open);
+    };
+    setOpen(false);
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Escape closes the menu and returns focus to the button.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Close the menu if the window grows to desktop width.
+    matchMedia('(min-width: 70em)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--stone-100);
+  }
+  .header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs) var(--space-m);
+    padding-block: var(--space-xs);
+  }
+
+  /* Logo lockup: the elephant mark plus the name in the heading serif */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    text-decoration: none;
+    color: var(--ink);
+    margin-right: auto;
+    min-height: 44px;
+  }
+  .brand-mark {
+    width: 64px;
+    height: auto;
+  }
+  .brand-name {
+    font-family: var(--font-heading);
+    font-size: var(--step-1);
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  .brand:hover .brand-name {
+    color: var(--olive-dark);
+  }
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 var(--space-s);
+    background: transparent;
+    border: 2px solid var(--charcoal);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: var(--step--1);
+    cursor: pointer;
+  }
+  .menu-toggle svg path {
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    transition: transform 300ms var(--ease), opacity 300ms var(--ease);
+    transform-origin: center;
+  }
+  .menu-toggle[aria-expanded='true'] .bar-1 {
+    transform: translateY(5px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded='true'] .bar-2 {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded='true'] .bar-3 {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--space-2xs);
+  }
+  .nav-list a,
+  .nav-list :global(.ext) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: var(--space-xs);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: var(--radius-s);
+  }
+  .nav-list a:hover {
+    color: var(--olive-dark);
+    text-decoration: underline;
+  }
+  .nav-list a[aria-current='page'] {
+    color: var(--olive-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+    font-weight: 700;
+  }
+  .nav-list .portal :global(a) {
+    color: var(--olive);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    font-weight: 700;
+  }
+
+  /* Small screens: menu button, "Get started" stays visible */
+  @media (max-width: 69.99em) {
+    :global(.js) .menu-toggle {
+      display: inline-flex;
+    }
+    .site-menu {
+      flex-basis: 100%;
+    }
+    :global(.js) .site-menu[data-open='false'] {
+      display: none;
+    }
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      padding-block: var(--space-xs) var(--space-s);
+      border-top: 1px solid var(--stone-100);
+    }
+    .nav-list a,
+    .nav-list :global(.ext) {
+      width: 100%;
+      padding-inline: var(--space-xs);
+    }
+  }
+  /* Phones: icon-only menu button so the header fits on one row.
+     The word "Menu" stays available to screen readers. */
+  @media (max-width: 30em) {
+    .header-inner {
+      column-gap: var(--space-xs);
+    }
+    .brand-name {
+      font-size: 0.95rem;
+      max-width: 6.6em;
+    }
+    .brand-mark {
+      width: 40px;
+    }
+    .menu-toggle {
+      padding: 0;
+      justify-content: center;
+    }
+    .menu-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+    .get-started {
+      padding-inline: 0.75em;
+    }
+  }
+
+  /* Very narrow phones: logo on its own row, both buttons together below */
+  @media (max-width: 23em) {
+    .brand {
+      flex-basis: 100%;
+    }
+  }
+
+  /* Wide screens: everything in one row */
+  @media (min-width: 70em) {
+    .header-inner {
+      flex-wrap: nowrap;
+    }
+    .site-menu {
+      order: 2;
+    }
+    .get-started {
+      order: 3;
+    }
+  }
+</style>

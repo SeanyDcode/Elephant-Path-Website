@@ -1,0 +1,414 @@
+---
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PathDivider from '../components/PathDivider.astro';
+import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
+import ToConfirm from '../components/ToConfirm.astro';
+import logo from '../assets/brand/logo-full.png';
+import { site, focusAreas } from '../config/site';
+import { url } from '../lib/url';
+
+// "From the blog" appears only once posts exist (blog is built in Phase 2/4).
+const latestPosts: { title: string; href: string; date: string }[] = [];
+---
+
+<BaseLayout
+  isHome
+  title="The Elephant Path | Telehealth counseling in Michigan"
+  description="Compassionate, private pay telehealth counseling for teens and adults anywhere in Michigan. Grief and loss, illness, end of life, caregiver support, parenting and life transitions."
+>
+  <!-- 1. Hero -->
+  <section class="hero wash" aria-labelledby="hero-title">
+    <div class="container hero-inner">
+      <Picture
+        src={logo}
+        alt="The Elephant Path"
+        formats={['avif', 'webp']}
+        width={440}
+        widths={[320, 480, 640, 880]}
+        sizes="(min-width: 60em) 440px, min(80vw, 420px)"
+        class="hero-logo"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero-text">
+        <h1 id="hero-title">{site.tagline}</h1>
+        <p class="hero-support">{site.supportingLine}</p>
+        <p class="lede">
+          I offer warm, compassionate counseling by telehealth for teens and adults anywhere in
+          Michigan, so you can get support from a place where you already feel at home.
+        </p>
+        <div class="cluster hero-actions">
+          <a class="btn btn-primary" href={url('/contact/')}>Request a free consultation</a>
+          <a class="btn btn-secondary" href={url('/about/#why-private-pay')}>Why private pay?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Welcome -->
+  <section class="section" aria-labelledby="welcome-title">
+    <div class="container welcome">
+      <div class="prose reveal">
+        <h2 id="welcome-title">Welcome. I’m glad you’re here.</h2>
+        <p>
+          The Elephant Path was created with one goal: to offer care that is <strong
+            >individualized, accessible, and affordable</strong
+          >.
+        </p>
+        <p>
+          As an independent private pay practice, I can focus fully on <strong
+            >client centered care</strong
+          >, without many of the limits that can come with managed care. My hope is that this
+          creates a more personal and transparent experience for every client.
+        </p>
+        <p>
+          Whatever brought you here, it would be an honor to walk alongside you as you work toward
+          what matters to you.
+        </p>
+        <p class="signature">Sandra Dougherty, LMSW</p>
+      </div>
+      <div class="reveal">
+        <IllustrationPlaceholder
+          file="illus-home-welcome-4x3.webp"
+          ratio="4/3"
+          subject="Mother elephant and her baby walking together on a soft path"
+        />
+      </div>
+    </div>
+  </section>
+
+  <PathDivider />
+
+  <!-- 3. How I can help -->
+  <section class="section" aria-labelledby="help-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="help-title">How I can help</h2>
+        <p>
+          I offer <strong>compassionate and evidence-based care</strong> for individuals and families.
+          These are the areas I focus on most.
+        </p>
+      </div>
+      <ul class="grid focus-grid" role="list">
+        {
+          focusAreas.map((area) => (
+            <li class="card reveal">
+              <h3>
+                {area.title}
+                {area.toConfirm && <ToConfirm />}
+              </h3>
+              <p>{area.blurb}</p>
+              <ul class="card-links">
+                <li>
+                  <a href={url(`/services/#${area.id}`)}>
+                    How I help<span class="visually-hidden"> with {area.title.toLowerCase()}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={url(`/resources/#${area.id}`)}>
+                    Resources<span class="visually-hidden"> on {area.title.toLowerCase()}</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Getting started is simple -->
+  <section class="section band-sage" aria-labelledby="steps-title">
+    <div class="container">
+      <div class="section-head center reveal">
+        <h2 id="steps-title">Getting started is simple</h2>
+        <p>Reaching out can be the hardest part. Here is what happens next.</p>
+      </div>
+      <ol class="steps" role="list">
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Request a consultation</h3>
+          <p>Share your name, email and phone number through a short form.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>I’ll call you</h3>
+          <p>I’ll reach out within one business day to find a time that works for you.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Your free 15-minute consultation</h3>
+          <p>We’ll talk about what you’re looking for and whether we’re a good fit.</p>
+        </li>
+      </ol>
+      <p class="center steps-cta">
+        <a class="btn btn-primary" href={url('/contact/')}>Request a free consultation</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. Why private pay -->
+  <section class="section" aria-labelledby="private-pay-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="private-pay-title">Why private pay?</h2>
+        <p>
+          Private pay care offers some benefits and protections that aren’t available through
+          insurance-based practices. It’s about transparency, and about the trust we build together.
+        </p>
+      </div>
+      <ul class="grid pay-grid" role="list">
+        <li class="card reveal">
+          <h3>Direct care</h3>
+          <p>
+            Your care is shaped by you and me. Together we explore your needs, set goals and plan a
+            schedule, with no billers, insurance companies or employers involved.
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3>Protected information</h3>
+          <p>
+            No insurance company or third party sees your information in order to pay for your
+            care. The people involved in your care are you and me.
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3>Transparent cost</h3>
+          <p>
+            You know the cost before care begins. No waiting on insurance claims, and no large,
+            unexpected bills.
+          </p>
+        </li>
+      </ul>
+      <p class="more-link reveal">
+        <a href={url('/about/#why-private-pay')}>Read more about why I chose private pay</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. An affirming space -->
+  <section class="section section--tight band-stone" aria-labelledby="affirming-title">
+    <div class="container affirming reveal">
+      <svg class="affirming-mark" aria-hidden="true" focusable="false" viewBox="0 0 48 40" width="48" height="40">
+        <path d="M24 22C12 2 2 8 6 20s14 10 18 2z" fill="var(--sage-100)" stroke="var(--logo-green)" stroke-width="1.5"></path>
+        <path d="M24 22C36 2 46 8 42 20s-14 10-18 2z" fill="var(--yellow-200)" stroke="var(--logo-green)" stroke-width="1.5"></path>
+        <path d="M24 22c-6 4-8 12-4 16M24 22c6 4 8 12 4 16" fill="none" stroke="var(--logo-green)" stroke-width="1.5"></path>
+      </svg>
+      <div class="prose">
+        <h2 id="affirming-title">An affirming space</h2>
+        <p>
+          The Elephant Path is an affirming space for everyone. I am an ally to the LGBTQ+
+          community, and you are welcome here exactly as you are.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Meet Sandra -->
+  <section class="section" aria-labelledby="meet-title">
+    <div class="container meet">
+      <div class="headshot reveal">
+        <IllustrationPlaceholder
+          file="headshot-sandra-1x1.webp"
+          ratio="1/1"
+          subject="Headshot of Sandra Dougherty (owner to provide)"
+        />
+      </div>
+      <div class="prose reveal">
+        <h2 id="meet-title">Meet Sandra</h2>
+        <p>
+          I’m Sandra Dougherty, a Licensed Master Social Worker with about 18 years of experience.
+          I began my career as a medical social worker in oncology and hospice, and that work still
+          shapes how I walk alongside my clients today.
+        </p>
+        <p><a href={url('/about/')}>More about me and my approach</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. From the blog (hidden until there are posts) -->
+  {
+    latestPosts.length > 0 && (
+      <section class="section band-white" aria-labelledby="blog-title">
+        <div class="container">
+          <h2 id="blog-title">From the blog</h2>
+          <ul class="grid" role="list">
+            {latestPosts.slice(0, 3).map((post) => (
+              <li class="card">
+                <h3>
+                  <a href={post.href}>{post.title}</a>
+                </h3>
+                <p class="small muted">{post.date}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <PathDivider />
+
+  <!-- 9. Closing call to action -->
+  <section class="section closing wash" aria-labelledby="closing-title">
+    <div class="container center prose reveal">
+      <h2 id="closing-title">When you’re ready, I’m here</h2>
+      <p>
+        A free 15-minute phone consultation is a simple way to see if we’re a good fit. There’s no
+        cost and no commitment.
+      </p>
+      <div class="cluster closing-actions">
+        <a class="btn btn-primary" href={url('/contact/')}>Request a free consultation</a>
+        <a class="btn btn-secondary" href={site.phoneHref}>Call {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+  .hero-inner {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+  }
+  .hero :global(.hero-logo),
+  .hero :global(.hero-logo img) {
+    width: min(80vw, 420px);
+    height: auto;
+  }
+  .hero-text {
+    max-width: 36rem;
+  }
+  .hero-text > * + * {
+    margin-top: var(--space-s);
+  }
+  .hero-support {
+    font-family: var(--font-heading);
+    font-size: var(--step-2);
+    color: var(--charcoal);
+  }
+  .hero-actions {
+    justify-content: center;
+    margin-top: var(--space-l);
+  }
+  @media (min-width: 60em) {
+    .hero-inner {
+      grid-template-columns: 1fr 1fr;
+      justify-items: start;
+      text-align: left;
+    }
+    .hero :global(.hero-logo),
+    .hero :global(.hero-logo img) {
+      width: 100%;
+      max-width: 440px;
+      justify-self: center;
+    }
+    .hero-actions {
+      justify-content: flex-start;
+    }
+  }
+
+  /* Welcome */
+  .welcome {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  .signature {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--charcoal);
+  }
+  @media (min-width: 55em) {
+    .welcome {
+      grid-template-columns: 3fr 2fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  /* Lists styled as grids */
+  .steps {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Steps */
+  .steps {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    counter-reset: none;
+  }
+  .step {
+    background: var(--bg);
+    border-radius: var(--radius-m);
+    padding: var(--space-l) var(--space-m);
+    color: var(--ink);
+  }
+  .step h3 {
+    color: var(--ink);
+    font-size: var(--step-1);
+    margin-block: var(--space-s) var(--space-xs);
+  }
+  .step-num {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--olive);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+  .steps-cta {
+    margin-top: var(--space-l);
+  }
+
+  .more-link {
+    margin-top: var(--space-l);
+  }
+
+  /* Affirming */
+  .affirming {
+    display: flex;
+    gap: var(--space-m);
+    align-items: flex-start;
+  }
+  .affirming-mark {
+    flex: none;
+    margin-top: 0.4rem;
+  }
+
+  /* Meet Sandra */
+  .meet {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  .headshot {
+    width: min(100%, 18rem);
+  }
+  .headshot :global(.illus-ph) {
+    border-radius: 50%;
+  }
+  @media (min-width: 45em) {
+    .meet {
+      grid-template-columns: auto 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  /* Closing */
+  .closing-actions {
+    justify-content: center;
+    margin-top: var(--space-l);
+  }
+</style>

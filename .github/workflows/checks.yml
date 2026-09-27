@@ -1,0 +1,34 @@
+# Runs on every pull request: builds the site, then checks colour contrast
+# and runs automated accessibility tests (axe, WCAG 2.1 AA) on every page.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v6
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check colour contrast
+        run: npm run check:contrast
+      - name: Build the site
+        run: npm run build
+      - name: Install the test browser
+        run: npx playwright install --with-deps chromium
+      - name: Accessibility check (axe)
+        run: npm run check:a11y
