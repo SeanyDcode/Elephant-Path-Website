@@ -1,8 +1,110 @@
 ---
-import PlaceholderPage from '../layouts/PlaceholderPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Steps from '../components/Steps.astro';
+import ConsultForm from '../components/ConsultForm.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+import ToConfirm from '../components/ToConfirm.astro';
+import { site } from '../config/site';
 ---
 
-<PlaceholderPage
+<BaseLayout
   title="Contact"
-  description="Request a free 15-minute phone consultation with The Elephant Path. I'll reach out within one business day."
-/>
+  description="Request a free 15-minute phone consultation with Sandra Dougherty, LMSW. Telehealth counseling for teens and adults anywhere in Michigan. I’ll reach out within one business day."
+>
+  <PageIntro
+    title="Get started"
+    illustration={{
+      file: 'illus-contact-4x3.webp',
+      ratio: '4/3',
+      subject: 'An elephant calf reaching its trunk toward its mother’s trunk',
+    }}
+  >
+    <p class="lede">
+      Reaching out takes courage. I’m glad you’re here. The first step is a free, 15-minute phone
+      consultation, with no cost and no commitment.
+    </p>
+  </PageIntro>
+
+  <section class="section section--tight band-sage" aria-labelledby="next">
+    <div class="container">
+      <h2 id="next" class="center steps-heading">What happens next</h2>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="section" aria-label="Request form and contact details">
+    <div class="container split">
+      <div class="reveal">
+        <ConsultForm />
+      </div>
+
+      <aside class="stack" aria-label="Other ways to reach me">
+        <div class="crisis">
+          <p>
+            <strong>This form is not for emergencies.</strong> If you are in crisis, call or text <a
+              href="tel:988"><strong>988</strong></a
+            > (Suicide &amp; Crisis Lifeline) or call <a href="tel:911"><strong>911</strong></a>.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel-title">Prefer to call or email?</h2>
+          <ul class="plain-list contact-list">
+            <li>Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a></li>
+            <li>
+              Email: {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <ToConfirm note="TO CONFIRM: practice email" />}
+            </li>
+            <li>Hours: {site.hours}</li>
+          </ul>
+          <p class="small muted">
+            Please keep health details out of email. We’ll talk about what brings you here by phone.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel-title">Find me online</h2>
+          <ul class="plain-list contact-list">
+            <li>
+              <ExternalLink href={site.links.psychologyToday}>Verified Psychology Today profile</ExternalLink>
+            </li>
+            <li>
+              {
+                site.links.googleBusinessProfile ? (
+                  <ExternalLink href={site.links.googleBusinessProfile}>Google Business Profile</ExternalLink>
+                ) : (
+                  <>
+                    Google Business Profile <ToConfirm note="TO CONFIRM: link" />
+                  </>
+                )
+              }
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel-title">Already a client?</h2>
+          <p>
+            <ExternalLink href={site.links.clientPortal} newTab>Go to the Client Portal</ExternalLink>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .steps-heading {
+    margin-bottom: var(--space-l);
+  }
+  .panel-title {
+    font-size: var(--step-1);
+  }
+  .contact-list li {
+    min-height: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.3em;
+  }
+</style>
