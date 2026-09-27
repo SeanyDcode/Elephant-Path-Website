@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import CategoryFilter from '../../components/CategoryFilter.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+import ToConfirm from '../../components/ToConfirm.astro';
+import { focusAreaTitle } from '../../config/site';
+import { getBooks } from '../../lib/content';
+import { url } from '../../lib/url';
+
+const books = await getBooks();
+---
+
+<BaseLayout
+  title="Library"
+  description="Recommended reading on grief and loss, serious illness, end of life, caregiving, parenting and life transitions, chosen by Sandra Dougherty, LMSW."
+>
+  <PageIntro title="Library">
+    <p class="lede">
+      Books I recommend, sorted by topic. Reading can be a gentle companion alongside care.
+    </p>
+    <p><a href={url('/resources/')}>Back to all resources</a></p>
+  </PageIntro>
+
+  <section class="section section--tight" aria-labelledby="books">
+    <div class="container">
+      <h2 id="books" class="visually-hidden">Books</h2>
+      <CategoryFilter list="book-list" noun={['book', 'books']} />
+      <ul class="book-list" id="book-list" role="list">
+        {
+          books.map((book) => (
+            <li class="book" data-categories={book.data.category}>
+              <h3 class="book-title">
+                {book.data.link ? <ExternalLink href={book.data.link}>{book.data.title}</ExternalLink> : book.data.title}
+                {book.data.sample && <>{' '}<ToConfirm note="SAMPLE" /></>}
+              </h3>
+              <p class="muted">by {book.data.author}</p>
+              <p>{book.data.note}</p>
+              <p>
+                <span class="tag">{focusAreaTitle(book.data.category)}</span>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+      <p id="book-list-empty" class="empty" hidden={books.length > 0}>
+        I’m still adding books on this topic. Please check back soon, or ask me for suggestions during
+        your consultation.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .book-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-m);
+    max-width: 48rem;
+  }
+  .book {
+    background: var(--surface);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-soft);
+    padding: var(--space-m);
+    border-left: 6px solid var(--sage-100);
+  }
+  .book > * + * {
+    margin-top: var(--space-2xs);
+  }
+  .book-title {
+    font-size: var(--step-1);
+  }
+  .empty {
+    margin-top: var(--space-m);
+  }
+</style>

@@ -1,0 +1,104 @@
+---
+// Filter buttons for a list of items marked with data-categories.
+// Hidden until JavaScript runs; without it, every item simply shows.
+import { focusAreas } from '../config/site';
+
+interface Props {
+  list: string; // id of the list element to filter
+  noun: [string, string]; // e.g. ['post', 'posts']
+  categories?: string[]; // which focus areas to offer (default: all)
+}
+const { list, noun, categories } = Astro.props;
+const options = focusAreas.filter((a) => !categories || categories.includes(a.id));
+---
+
+<div class="filter" data-filter={list} data-noun={noun.join('|')} hidden>
+  <p class="filter-label" id={`${list}-filter-label`}>Show topics:</p>
+  <div class="filter-buttons" role="group" aria-labelledby={`${list}-filter-label`}>
+    <button type="button" class="chip-btn" data-value="" aria-pressed="true">All</button>
+    {
+      options.map((o) => (
+        <button type="button" class="chip-btn" data-value={o.id} aria-pressed="false">
+          {o.title}
+        </button>
+      ))
+    }
+  </div>
+  <p class="filter-count" role="status" data-count></p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-filter]').forEach((filter) => {
+    const list = document.getElementById(filter.dataset.filter!);
+    if (!list) return;
+    const [one, many] = (filter.dataset.noun ?? 'item|items').split('|');
+    const buttons = [...filter.querySelectorAll<HTMLButtonElement>('button[data-value]')];
+    const items = [...list.querySelectorAll<HTMLElement>('[data-categories]')];
+    const count = filter.querySelector<HTMLElement>('[data-count]')!;
+    const empty = document.getElementById(`${filter.dataset.filter}-empty`);
+
+    const apply = (value: string, announce: boolean) => {
+      let shown = 0;
+      for (const item of items) {
+        const match = !value || item.dataset.categories!.split(' ').includes(value);
+        item.hidden = !match;
+        if (match) shown++;
+      }
+      for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.value === value));
+      if (empty) empty.hidden = shown > 0;
+      const topic = buttons.find((b) => b.dataset.value === value)?.textContent?.trim();
+      const text = `Showing ${shown} ${shown === 1 ? one : many}${value ? ` about ${topic?.toLowerCase()}` : ''}.`;
+      // Only announce after a button press, not on page load.
+      if (announce) count.textContent = text;
+      const u = new URL(location.href);
+      if (value) u.searchParams.set('category', value);
+      else u.searchParams.delete('category');
+      history.replaceState(null, '', u);
+    };
+
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.value ?? '', true)));
+    filter.hidden = false;
+    const start = new URL(location.href).searchParams.get('category') ?? '';
+    apply(buttons.some((b) => b.dataset.value === start) ? start : '', false);
+  });
+</script>
+
+<style>
+  .filter {
+    margin-bottom: var(--space-l);
+  }
+  .filter-label {
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+  }
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+  .chip-btn {
+    min-height: 44px;
+    padding: 0.4em 1em;
+    border-radius: 999px;
+    border: 2px solid var(--charcoal);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: var(--step--1);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .chip-btn:hover {
+    border-color: var(--olive);
+  }
+  .chip-btn[aria-pressed='true'] {
+    background: var(--olive);
+    border-color: var(--olive);
+    color: #fff;
+  }
+  .filter-count {
+    margin-top: var(--space-xs);
+    font-size: var(--step--1);
+    color: var(--charcoal);
+    min-height: 1.6em;
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ToConfirm from './ToConfirm.astro';
+import { focusAreaTitle } from '../config/site';
+import { formatDate } from '../lib/content';
+import { url } from '../lib/url';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  headingLevel?: 'h2' | 'h3';
+}
+const { post, headingLevel = 'h3' } = Astro.props;
+const H = headingLevel;
+---
+
+<li class="card post-card" data-categories={post.data.categories.join(' ')}>
+  <p class="small muted"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time></p>
+  <H class="post-title">
+    <a href={url(`/resources/blog/${post.id}/`)}>{post.data.title}</a>
+    {post.data.sample && <>{' '}<ToConfirm note="SAMPLE" /></>}
+  </H>
+  <p>{post.data.description}</p>
+  {
+    post.data.categories.length > 0 && (
+      <p class="post-tags">
+        {post.data.categories.map((c) => (
+          <span class="tag">{focusAreaTitle(c)}</span>
+        ))}
+      </p>
+    )
+  }
+</li>
+
+<style>
+  .post-title {
+    font-size: var(--step-1);
+  }
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: auto;
+  }
+</style>

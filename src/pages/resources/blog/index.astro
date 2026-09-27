@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import PostCard from '../../../components/PostCard.astro';
+import CategoryFilter from '../../../components/CategoryFilter.astro';
+import TopicForm from '../../../components/TopicForm.astro';
+import { getPosts } from '../../../lib/content';
+import { url } from '../../../lib/url';
+
+const posts = await getPosts();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Monthly posts from Sandra Dougherty, LMSW, on grief and loss, living with illness, end of life, caregiving, parenting and life transitions."
+>
+  <PageIntro title="Blog">
+    <p class="lede">
+      Monthly reflections and practical ideas on grief, illness, caregiving, parenting and change.
+    </p>
+    <p><a href={url('/resources/')}>Back to all resources</a></p>
+  </PageIntro>
+
+  <section class="section section--tight" aria-labelledby="posts">
+    <div class="container">
+      <h2 id="posts" class="visually-hidden">Posts</h2>
+      <CategoryFilter list="post-list" noun={['post', 'posts']} />
+      <ul class="grid list-reset" id="post-list" role="list">
+        {posts.map((post) => <PostCard post={post} headingLevel="h3" />)}
+      </ul>
+      <p id="post-list-empty" class="empty" hidden={posts.length > 0}>
+        There are no posts on this topic yet. Please check back soon, or suggest a topic below.
+      </p>
+    </div>
+  </section>
+
+  <section class="section band-white" id="suggest" aria-label="Suggest a topic">
+    <div class="container narrow">
+      <TopicForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .list-reset {
+    list-style: none;
+    padding: 0;
+  }
+  .empty {
+    margin-top: var(--space-m);
+  }
+  .narrow {
+    max-width: 44rem;
+  }
+</style>

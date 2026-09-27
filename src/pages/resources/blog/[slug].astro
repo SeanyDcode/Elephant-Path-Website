@@ -1,0 +1,68 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ToConfirm from '../../../components/ToConfirm.astro';
+import ClosingCta from '../../../components/ClosingCta.astro';
+import { getPosts, formatDate } from '../../../lib/content';
+import { focusAreaTitle } from '../../../config/site';
+import { url } from '../../../lib/url';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="section">
+    <div class="container prose">
+      <p><a href={url('/resources/blog/')}>Back to the blog</a></p>
+      <h1>{post.data.title}</h1>
+      {post.data.sample && <p><ToConfirm note="SAMPLE post: replace or delete before launch" /></p>}
+      <p class="muted">
+        By Sandra Dougherty, LMSW · <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+      </p>
+      {
+        post.data.categories.length > 0 && (
+          <p class="post-tags">
+            {post.data.categories.map((c) => (
+              <a class="tag" href={url(`/resources/blog/?category=${c}`)}>
+                {focusAreaTitle(c)}
+              </a>
+            ))}
+          </p>
+        )
+      }
+      <div class="content">
+        <Content />
+      </div>
+      <p class="small muted disclaimer">
+        This post is for general information and isn’t a substitute for professional care. If you are
+        in crisis, call or text 988, or call 911.
+      </p>
+    </div>
+  </article>
+  <ClosingCta />
+</BaseLayout>
+
+<style>
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+  .post-tags .tag {
+    text-decoration: none;
+  }
+  .content {
+    margin-top: var(--space-l);
+  }
+  .disclaimer {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--stone-400);
+  }
+</style>
