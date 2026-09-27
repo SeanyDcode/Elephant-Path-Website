@@ -1,8 +1,400 @@
 ---
-import PlaceholderPage from '../layouts/PlaceholderPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+import ToConfirm from '../components/ToConfirm.astro';
+import PathDivider from '../components/PathDivider.astro';
+import WindingPath from '../components/WindingPath.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { site } from '../config/site';
+import { url } from '../lib/url';
 ---
 
-<PlaceholderPage
+<BaseLayout
   title="About"
-  description="Meet Sandra Dougherty, LMSW, and learn how The Elephant Path works, why it is private pay, and why elephants."
-/>
+  description="Meet Sandra Dougherty, LMSW, a Michigan telehealth therapist with about 18 years of experience in grief, illness, end of life and caregiver support. Learn how the practice works and why it is private pay."
+>
+  <PageIntro title="About The Elephant Path">
+    <p class="lede">
+      The Elephant Path is a private pay telehealth practice for teens and adults across Michigan. It
+      was created to offer care that is individualized, accessible, and affordable.
+    </p>
+  </PageIntro>
+
+  <!-- Meet Sandra -->
+  <section class="section" aria-labelledby="meet-sandra">
+    <div class="container bio">
+      <div class="bio-photo reveal">
+        <IllustrationPlaceholder
+          file="headshot-sandra-1x1.webp"
+          ratio="1/1"
+          subject="Headshot of Sandra Dougherty (owner to provide)"
+        />
+      </div>
+      <div class="prose reveal">
+        <h2 id="meet-sandra">Meet Sandra Dougherty, LMSW</h2>
+        <p>
+          I’m Sandra, a Licensed Master Social Worker with about 18 years of experience walking alongside
+          people through some of life’s hardest seasons.
+        </p>
+        <p>
+          My path began in medicine. For several years I worked as a medical social worker in oncology
+          and hospice, supporting people living with cancer and serious illness, and the families who
+          loved and cared for them. That work taught me how much grief can live inside illness,
+          caregiving and change, and how much it helps to have someone beside you.
+        </p>
+        <p>
+          From there I moved into outpatient mental health, serving my community. Today I support
+          individuals and families experiencing grief and loss, chronic and terminal illness, death and
+          dying, caregiving and life transitions. I founded The Elephant Path to offer this care in a more
+          personal and transparent way. <ToConfirm note="TO CONFIRM: year founded, if you’d like it shown" />
+        </p>
+        <p>
+          I work with teens and adults of all ages, as individuals and as families. <ToConfirm
+            note="TO CONFIRM: preteens?"
+          />
+        </p>
+        <p class="slot">
+          <ToConfirm note="OWNER TO PROVIDE: a few personal lines, such as what you love outside of work" />
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight band-white" aria-labelledby="approach">
+    <div class="container split">
+      <div class="prose reveal">
+        <h2 id="approach">My approach</h2>
+        <p>
+          Every person’s path is different, so I shape our work around you. I offer <strong
+            >compassionate and evidence-based care</strong
+          > that meets you where you are.
+        </p>
+        <p>
+          I draw on cognitive behavioral therapy, which looks at how our thoughts, feelings and actions
+          affect one another. I also use mindfulness-based approaches that help you notice the present
+          moment with kindness, and narrative therapy, which helps you tell and reshape your own story.
+          When it helps to focus on what’s next, I use solution-focused therapy to build on what’s already
+          working.
+        </p>
+        <p>
+          Underneath it all is a belief in your strengths. Along the way, I can share information about
+          what you’re going through and connect you with helpful resources in your community.
+        </p>
+      </div>
+      <div class="panel reveal">
+        <h3>Education and credentials</h3>
+        <ul class="plain-list">
+          <li>Master of Social Work (MSW), University of Michigan, 2007</li>
+          <li>
+            Bachelor of Science in Clinical Psychology, with a dual focus in Cultural Anthropology,
+            University of Michigan–Flint, 2005
+          </li>
+          <li>
+            Certified Grief Informed Professional <ToConfirm
+              note="TO CONFIRM: found on another public profile; keep?"
+            />
+          </li>
+        </ul>
+        <p>
+          <ExternalLink href={site.links.psychologyToday}>View my verified Psychology Today profile</ExternalLink>
+        </p>
+        <p class="small muted">
+          Licensed Master Social Worker, State of Michigan, license #{site.licenseNumber}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="section section--tight band-sage" aria-labelledby="mission">
+    <div class="container center prose reveal">
+      <h2 id="mission">My mission</h2>
+      <p class="lede">
+        To offer compassionate, client centered care that is individualized, accessible, and affordable,
+        and to walk alongside each person with honesty, warmth and respect.
+      </p>
+    </div>
+  </section>
+
+  <!-- How the practice works -->
+  <section class="section" aria-labelledby="how-it-works">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="how-it-works">How the practice works</h2>
+        <p>I’ve kept things simple, so you can focus on what matters.</p>
+      </div>
+      <ul class="grid how-grid" role="list">
+        <li class="card reveal">
+          <h3>Telehealth across Michigan</h3>
+          <p>
+            All sessions are held by secure video, so you can meet with me from home, work or wherever
+            you feel comfortable. I can see clients anywhere in Michigan. You need to be physically in
+            Michigan during each session.
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3>Sessions on Doxy.me</h3>
+          <p>
+            We meet on Doxy.me, a secure, HIPAA-compliant video platform. I’ll send you a link. You click
+            it, type your name and check in. It works in your web browser on a phone, tablet or computer,
+            with no app to download and no account to create.
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3>Your client portal</h3>
+          <p>
+            Once we begin, you’ll have a secure, HIPAA-compliant client portal through TherapyNotes. In
+            the portal you can:
+          </p>
+          <ul class="check-list">
+            <li>complete your paperwork</li>
+            <li>send me secure messages</li>
+            <li>view statements and make payments</li>
+          </ul>
+          <p>
+            <ExternalLink href={site.links.clientPortal} newTab>Go to the Client Portal</ExternalLink>
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3>Payment at the time of service</h3>
+          <p>
+            Payment is due at the time of service and is securely processed through the client portal.
+            I accept Visa, Mastercard, American Express, Discover and HSA cards. <a
+              href={url('/services/#fees')}>See session fees</a
+            >.
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3>A sliding scale</h3>
+          <p>
+            To help make care as accessible as possible, a limited number of reduced-fee appointments are
+            available for people experiencing financial hardship. If cost is a concern, we can talk about
+            options during your free consultation.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Why private pay? -->
+  <section class="section band-stone" id="why-private-pay" aria-labelledby="why-private-pay-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="why-private-pay-title">Why private pay?</h2>
+        <p>
+          The Elephant Path offers numerous benefits and protections not available through typical
+          insurance-participating practices. I know that paying out of pocket is a change for many people,
+          so I want to explain why I chose this model and how it can serve you.
+        </p>
+      </div>
+      <ol class="grid pay-grid" role="list">
+        <li class="card reveal">
+          <h3><span class="num" aria-hidden="true">1</span> A direct care contract</h3>
+          <p>
+            Your care is an agreement between you and me. Together we explore your needs, set your goals
+            and create a care schedule that fits your life. There are no billers, office managers, front
+            desk staff, insurance companies or employers involved in your care.
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3><span class="num" aria-hidden="true">2</span> Protected information</h3>
+          <p>
+            No insurance company or third party sees your information in order to pay for your care. There
+            is no diagnosis to submit and no claim to process. The people involved in your care are you and
+            me.
+          </p>
+        </li>
+        <li class="card reveal">
+          <h3><span class="num" aria-hidden="true">3</span> Transparent cost</h3>
+          <p>
+            You know the cost before care begins. There’s no waiting weeks for an insurance company to
+            process a claim, and no large, unexpected bills. You’ll receive a <a
+              href={url('/good-faith-estimate/')}>Good Faith Estimate</a
+            >, and payment is simply made at the time of service.
+          </p>
+        </li>
+      </ol>
+      <div class="prose reveal pay-close">
+        <p>
+          Most of all, this model makes room for <strong>transparency and rapport</strong>: an honest,
+          trusting relationship that is built between the two of us and focused entirely on you.
+        </p>
+        <p class="small muted">
+          Like all licensed clinicians, I still keep secure records and follow the laws that protect your
+          privacy and safety.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why elephants? -->
+  <section class="section elephants" id="why-elephants" aria-labelledby="why-elephants-title">
+    <div class="container elephants-inner">
+      <div class="elephants-path reveal">
+        <WindingPath />
+      </div>
+      <div class="prose">
+        <h2 id="why-elephants-title" class="reveal">Why elephants?</h2>
+        <p class="reveal">
+          The elephant is at the heart of this practice, and it connects closely to my own path.
+        </p>
+
+        <h3 class="reveal">A herd that stays close</h3>
+        <p class="reveal">
+          Elephants live in close-knit family groups and form deep, lasting bonds. They care for one
+          another’s young and move through the world together.
+        </p>
+
+        <h3 class="reveal">Witnessing grief together</h3>
+        <p class="reveal">
+          Researchers have observed elephants approaching, touching and staying near elephants who have
+          died, sometimes returning to them again and again.<sup><a href="#source-1" id="ref-1">1</a></sup>
+          To me, it looks a lot like witnessing and supporting one another through grief. That is the
+          heart of my work: no one should have to walk through loss alone.
+        </p>
+
+        <h3 class="reveal">Elephants and cancer research</h3>
+        <p class="reveal">
+          Elephants get cancer far less often than you might expect for such large, long-lived animals. In 2015,
+          researchers found that elephants carry at least 20 copies of TP53, a gene that helps stop
+          tumors from forming. Humans have just one.<sup><a href="#source-2" id="ref-2">2</a></sup>
+          Scientists, including a pediatric cancer doctor, are now studying how the elephant version of
+          this gene might one day help treat cancer, especially in children.<sup
+            ><a href="#source-3" id="ref-3">3</a></sup
+          >
+          After my years in oncology and hospice, this connection means a great deal to me.
+        </p>
+
+        <div class="slot reveal">
+          <h3>My story</h3>
+          <p>
+            <ToConfirm note="OWNER TO PROVIDE: Sandra’s personal “why elephants” story" />
+          </p>
+        </div>
+
+        <IllustrationPlaceholder
+          file="illus-about-elephants-16x9.webp"
+          ratio="16/9"
+          subject="An elephant family walking together along a winding path"
+        />
+
+        <div class="sources">
+          <h3 class="small">Sources</h3>
+          <ol>
+            <li id="source-1">
+              Goldenberg, S. Z., &amp; Wittemyer, G. (2020). Elephant behavior toward the dead: A review
+              and insights from field observations. <cite>Primates</cite>, 61, 119–128. <ExternalLink
+                href="https://link.springer.com/article/10.1007/s10329-019-00766-5">Read the study</ExternalLink
+              >
+              <a href="#ref-1" class="back">Back to text<span class="visually-hidden"> (source 1)</span></a>
+            </li>
+            <li id="source-2">
+              Abegglen, L. M., et al. (2015). Potential mechanisms for cancer resistance in elephants and
+              comparative cellular response to DNA damage in humans. <cite>JAMA</cite>, 314(17),
+              1850–1860. <ExternalLink href="https://doi.org/10.1001/jama.2015.13134">Read the study</ExternalLink
+              >
+              <a href="#ref-2" class="back">Back to text<span class="visually-hidden"> (source 2)</span></a>
+            </li>
+            <li id="source-3">
+              Schiffman Lab, Huntsman Cancer Institute, University of Utah Health. <ExternalLink
+                href="https://uofuhealth.utah.edu/huntsman/labs/schiffman/research">p53 studies</ExternalLink
+              >
+              <a href="#ref-3" class="back">Back to text<span class="visually-hidden"> (source 3)</span></a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ClosingCta />
+</BaseLayout>
+
+<style>
+  .bio {
+    display: grid;
+    gap: var(--space-l);
+    align-items: start;
+  }
+  .bio-photo {
+    width: min(100%, 18rem);
+  }
+  .bio-photo :global(.illus-ph) {
+    border-radius: 50%;
+  }
+  @media (min-width: 50em) {
+    .bio {
+      grid-template-columns: auto 1fr;
+      gap: var(--space-xl);
+    }
+  }
+  .slot {
+    border-left: 4px solid var(--yellow-200);
+    padding-left: var(--space-s);
+  }
+  .panel h3 {
+    font-size: var(--step-1);
+  }
+  .how-grid,
+  .pay-grid {
+    list-style: none;
+    padding: 0;
+  }
+  .num {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--olive);
+    color: #fff;
+    font-size: var(--step--1);
+    margin-right: var(--space-2xs);
+    vertical-align: 0.15em;
+  }
+  .pay-close {
+    margin-top: var(--space-l);
+  }
+  .elephants-inner {
+    display: grid;
+    gap: var(--space-l);
+  }
+  .elephants-path {
+    display: none;
+  }
+  @media (min-width: 55em) {
+    .elephants-inner {
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: var(--space-xl);
+    }
+    .elephants-path {
+      display: block;
+    }
+  }
+  .elephants .prose > :global(.illus-ph) {
+    margin-top: var(--space-l);
+  }
+  .sources {
+    margin-top: var(--space-l);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--stone-400);
+  }
+  .sources h3 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+  }
+  .sources a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .back {
+    margin-left: var(--space-xs);
+  }
+  sup a {
+    padding: 0 0.15em;
+  }
+</style>
