@@ -1,0 +1,65 @@
+---
+// "Getting started is simple": the three steps from request to consultation.
+interface Props {
+  headingLevel?: 'h2' | 'h3';
+}
+const { headingLevel = 'h3' } = Astro.props;
+const H = headingLevel;
+const steps = [
+  {
+    title: 'Request a consultation',
+    text: 'Share your name, email and phone number through a short form.',
+  },
+  { title: 'I’ll call you', text: 'I’ll reach out within one business day to find a time that works for you.' },
+  {
+    title: 'Your free 15-minute consultation',
+    text: 'We’ll talk about what you’re looking for and whether we’re a good fit.',
+  },
+];
+---
+
+<ol class="steps" role="list">
+  {
+    steps.map((s, i) => (
+      <li class="step reveal">
+        <span class="step-num" aria-hidden="true">
+          {i + 1}
+        </span>
+        <H class="step-title">{s.title}</H>
+        <p>{s.text}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .steps {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+  .step {
+    background: var(--bg);
+    border-radius: var(--radius-m);
+    padding: var(--space-l) var(--space-m);
+    color: var(--ink);
+  }
+  .step-title {
+    color: var(--ink);
+    font-size: var(--step-1);
+    margin-block: var(--space-s) var(--space-xs);
+  }
+  .step-num {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--olive);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+// Crisis and support lines box. Details live in src/config/site.ts.
+import ExternalLink from './ExternalLink.astro';
+import { crisisLines } from '../config/site';
+
+interface Props {
+  headingLevel?: 'h2' | 'h3';
+}
+const { headingLevel = 'h2' } = Astro.props;
+const H = headingLevel;
+---
+
+<div class="crisis-box">
+  <H class="crisis-title" id="crisis-lines">If you need help right now</H>
+  <p>
+    I’m not able to offer emergency support. If you are in danger or need immediate medical help,
+    call <a href="tel:911"><strong>911</strong></a>. These free, confidential lines are open 24 hours a
+    day:
+  </p>
+  <ul class="crisis-list" role="list">
+    {
+      crisisLines.map((line) => (
+        <li>
+          <p class="line-name">
+            <ExternalLink href={line.href}>{line.name}</ExternalLink>
+          </p>
+          <p>{line.how}</p>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .crisis-box {
+    background: var(--surface);
+    border: 2px solid var(--olive);
+    border-radius: var(--radius-m);
+    padding: var(--space-l) var(--space-m);
+  }
+  .crisis-title {
+    font-size: var(--step-2);
+    margin-bottom: var(--space-s);
+  }
+  .crisis-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-m);
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+  .line-name {
+    font-weight: 700;
+  }
+</style>
