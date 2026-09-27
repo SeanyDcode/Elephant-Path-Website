@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { satteri } from '@astrojs/markdown-satteri';
+import { externalLinks } from './src/lib/markdown-external-links.mjs';
 
 // While the site is a prototype it lives at
 // https://seanydcode.github.io/Elephant-Path-Website/
@@ -11,4 +13,7 @@ export default defineConfig({
   site: CUSTOM_DOMAIN_LIVE ? 'https://walktheelephantpath.com' : 'https://seanydcode.github.io',
   base: CUSTOM_DOMAIN_LIVE ? '/' : '/Elephant-Path-Website',
   trailingSlash: 'ignore',
+  markdown: {
+    processor: satteri({ hastPlugins: [externalLinks] }),
+  },
 });

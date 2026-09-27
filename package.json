@@ -12,6 +12,7 @@
     "brand:derive": "node scripts/derive-logos.mjs"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.2",
     "@fontsource-variable/lora": "^5.3.0",
     "@fontsource-variable/nunito-sans": "^5.3.0",
     "astro": "^7.3.5"
