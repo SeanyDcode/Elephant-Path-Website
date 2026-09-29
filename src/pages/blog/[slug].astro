@@ -1,11 +1,10 @@
 ---
 import { render } from 'astro:content';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import ToConfirm from '../../../components/ToConfirm.astro';
-import ClosingCta from '../../../components/ClosingCta.astro';
-import { getPosts, formatDate } from '../../../lib/content';
-import { focusAreaTitle } from '../../../config/site';
-import { url } from '../../../lib/url';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToConfirm from '../../components/ToConfirm.astro';
+import { getPosts, formatDate } from '../../lib/content';
+import { focusAreaTitle } from '../../config/site';
+import { url } from '../../lib/url';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -19,7 +18,7 @@ const { Content } = await render(post);
 <BaseLayout title={post.data.title} description={post.data.description}>
   <article class="section">
     <div class="container prose">
-      <p><a href={url('/resources/blog/')}>Back to the blog</a></p>
+      <p><a href={url('/blog/')}>Back to the blog</a></p>
       <h1>{post.data.title}</h1>
       {post.data.sample && <p><ToConfirm note="SAMPLE post: replace or delete before launch" /></p>}
       <p class="muted">
@@ -29,7 +28,7 @@ const { Content } = await render(post);
         post.data.categories.length > 0 && (
           <p class="post-tags">
             {post.data.categories.map((c) => (
-              <a class="tag" href={url(`/resources/blog/?category=${c}`)}>
+              <a class="tag" href={url(`/blog/?category=${c}`)}>
                 {focusAreaTitle(c)}
               </a>
             ))}
@@ -45,7 +44,6 @@ const { Content } = await render(post);
       </p>
     </div>
   </article>
-  <ClosingCta />
 </BaseLayout>
 
 <style>

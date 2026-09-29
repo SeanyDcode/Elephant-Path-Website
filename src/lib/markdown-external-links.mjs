@@ -1,5 +1,4 @@
-// Marks links to other websites inside Markdown content (blog posts,
-// guides) the same way the ExternalLink component does: a small icon and
+// Marks links to other websites inside Markdown content (blog posts) the same way the ExternalLink component does: a small icon and
 // "(external site)" for screen readers.
 
 const icon = {

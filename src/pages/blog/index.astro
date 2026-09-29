@@ -1,11 +1,10 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import PageIntro from '../../../components/PageIntro.astro';
-import PostCard from '../../../components/PostCard.astro';
-import CategoryFilter from '../../../components/CategoryFilter.astro';
-import TopicForm from '../../../components/TopicForm.astro';
-import { getPosts } from '../../../lib/content';
-import { url } from '../../../lib/url';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PostCard from '../../components/PostCard.astro';
+import CategoryFilter from '../../components/CategoryFilter.astro';
+import TopicForm from '../../components/TopicForm.astro';
+import { getPosts } from '../../lib/content';
 
 const posts = await getPosts();
 ---
@@ -18,7 +17,6 @@ const posts = await getPosts();
     <p class="lede">
       Monthly reflections and practical ideas on grief, illness, caregiving, parenting and change.
     </p>
-    <p><a href={url('/resources/')}>Back to all resources</a></p>
   </PageIntro>
 
   <section class="section section--tight" aria-labelledby="posts">

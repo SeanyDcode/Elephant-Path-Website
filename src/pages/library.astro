@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/PageIntro.astro';
-import CategoryFilter from '../../components/CategoryFilter.astro';
-import ExternalLink from '../../components/ExternalLink.astro';
-import ToConfirm from '../../components/ToConfirm.astro';
-import { focusAreaTitle } from '../../config/site';
-import { getBooks } from '../../lib/content';
-import { url } from '../../lib/url';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import CategoryFilter from '../components/CategoryFilter.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+import ToConfirm from '../components/ToConfirm.astro';
+import CrisisLines from '../components/CrisisLines.astro';
+import { focusAreaTitle } from '../config/site';
+import { getBooks } from '../lib/content';
 
 const books = await getBooks();
 ---
@@ -19,7 +19,6 @@ const books = await getBooks();
     <p class="lede">
       Books I recommend, sorted by topic. Reading can be a gentle companion alongside care.
     </p>
-    <p><a href={url('/resources/')}>Back to all resources</a></p>
   </PageIntro>
 
   <section class="section section--tight" aria-labelledby="books">
@@ -47,6 +46,12 @@ const books = await getBooks();
         I’m still adding books on this topic. Please check back soon, or ask me for suggestions during
         your consultation.
       </p>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="crisis-lines">
+    <div class="container">
+      <CrisisLines />
     </div>
   </section>
 </BaseLayout>
