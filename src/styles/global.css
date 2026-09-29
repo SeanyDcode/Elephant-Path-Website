@@ -30,6 +30,7 @@ textarea {
 /* ---------- Page ---------- */
 html {
   font-size: 112.5%; /* 18px base, still respects the visitor's browser setting */
+  scroll-padding-top: 6rem; /* so the sticky header never covers a linked section */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -552,7 +553,7 @@ textarea[aria-invalid='true'] {
   padding-left: 1.2em;
 }
 
-/* ---------- Content from Markdown (guides, blog posts) ---------- */
+/* ---------- Content from Markdown (blog posts) ---------- */
 .content > * + * {
   margin-top: var(--space-m);
 }
