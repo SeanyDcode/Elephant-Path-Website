@@ -6,11 +6,6 @@ export async function getPosts() {
   return posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
 
-export async function getGuides() {
-  const guides = await getCollection('guides');
-  return guides.sort((a, b) => a.data.order - b.data.order);
-}
-
 export async function getBooks() {
   const books = await getCollection('library');
   return books.sort((a, b) => a.data.title.localeCompare(b.data.title));

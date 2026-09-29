@@ -38,8 +38,7 @@ The plan for the whole site is in [`build-brief.md`](build-brief.md).
 | Pages (Home, About, and so on) | `src/pages/` (each file is one page) |
 | Blog posts | `src/content/blog/` (one Markdown file per post) |
 | Library books | `src/content/library/` (one file per book) |
-| Resource guides | `src/content/guides/` (one file per guide) |
-| Phone, email, hours, links, fees, focus areas, crisis lines | `src/config/site.ts`, one place for all of them |
+| Phone, email, links, fees, focus areas, crisis lines, menu | `src/config/site.ts`, one place for all of them |
 | Colours, fonts, spacing | `src/styles/tokens.css` |
 | General look (buttons, cards, forms) | `src/styles/global.css` |
 | Header, footer and other building blocks | `src/components/` |

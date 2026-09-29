@@ -1,4 +1,4 @@
-// Content collections: the blog, the library and the resource guides.
+// Content collections: the blog and the library.
 // Each entry is a Markdown file in src/content/<collection>/.
 // The browser-based editor (Phase 4) will read and write these same files.
 import { defineCollection } from 'astro:content';
@@ -33,17 +33,4 @@ const library = defineCollection({
   }),
 });
 
-const guides = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/guides' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    order: z.number(),
-    categories: z.array(category).default([]),
-    illustration: z
-      .object({ file: z.string(), ratio: z.string(), subject: z.string() })
-      .optional(),
-  }),
-});
-
-export const collections = { blog, library, guides };
+export const collections = { blog, library };

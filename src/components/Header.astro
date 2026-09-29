@@ -83,9 +83,14 @@ const pathname = Astro.url.pathname;
 </script>
 
 <style>
+  /* Stays at the top of the screen while scrolling */
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
     background: var(--bg);
     border-bottom: 1px solid var(--stone-100);
+    box-shadow: 0 2px 10px rgb(53 56 58 / 0.05);
   }
   .header-inner {
     display: flex;
@@ -193,6 +198,9 @@ const pathname = Astro.url.pathname;
     }
     .site-menu {
       flex-basis: 100%;
+      /* Keep the open menu scrollable on short screens */
+      max-height: calc(100vh - 8rem);
+      overflow-y: auto;
     }
     :global(.js) .site-menu[data-open='false'] {
       display: none;

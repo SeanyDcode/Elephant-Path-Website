@@ -3,25 +3,18 @@ import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PathDivider from '../components/PathDivider.astro';
 import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
-import ToConfirm from '../components/ToConfirm.astro';
 import Steps from '../components/Steps.astro';
-import PostCard from '../components/PostCard.astro';
-import ClosingCta from '../components/ClosingCta.astro';
 import logo from '../assets/brand/logo-full.png';
-import { site, focusAreas } from '../config/site';
+import { site } from '../config/site';
 import { url } from '../lib/url';
-import { getPosts } from '../lib/content';
-
-// "From the blog" appears only once there are published posts.
-const latestPosts = (await getPosts()).slice(0, 3);
 ---
 
 <BaseLayout
   isHome
-  title="The Elephant Path | Telehealth counseling in Michigan"
-  description="Compassionate, private pay telehealth counseling for teens and adults anywhere in Michigan. Grief and loss, illness, end of life, caregiver support, parenting and life transitions."
+  title="The Elephant Path | Telehealth therapy in Michigan"
+  description="Compassionate, private pay telehealth therapy for teens and adults anywhere in Michigan. Grief and loss, illness, end of life, caregiver support, parenting and life transitions."
 >
-  <!-- 1. Hero -->
+  <!-- Hero -->
   <section class="hero wash" aria-labelledby="hero-title">
     <div class="container hero-inner">
       <Picture
@@ -36,11 +29,10 @@ const latestPosts = (await getPosts()).slice(0, 3);
         fetchpriority="high"
       />
       <div class="hero-text">
-        <h1 id="hero-title">{site.tagline}</h1>
-        <p class="hero-support">{site.supportingLine}</p>
+        <h1 id="hero-title">{site.headline}</h1>
         <p class="lede">
-          I offer warm, compassionate counseling by telehealth for teens and adults anywhere in
-          Michigan, so you can get support from a place where you already feel at home.
+          I offer compassionate therapy by telehealth for teens and adults anywhere in Michigan, so
+          you can get support from a place where you already feel at home.
         </p>
         <div class="cluster hero-actions">
           <a class="btn btn-primary" href={url('/contact/')}>Request a free consultation</a>
@@ -50,7 +42,7 @@ const latestPosts = (await getPosts()).slice(0, 3);
     </div>
   </section>
 
-  <!-- 2. Welcome -->
+  <!-- Welcome -->
   <section class="section" aria-labelledby="welcome-title">
     <div class="container welcome">
       <div class="prose reveal">
@@ -84,45 +76,7 @@ const latestPosts = (await getPosts()).slice(0, 3);
 
   <PathDivider />
 
-  <!-- 3. How I can help -->
-  <section class="section" aria-labelledby="help-title">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 id="help-title">How I can help</h2>
-        <p>
-          I offer <strong>compassionate and evidence-based care</strong> for individuals and families.
-          These are the areas I focus on most.
-        </p>
-      </div>
-      <ul class="grid focus-grid" role="list">
-        {
-          focusAreas.map((area) => (
-            <li class="card reveal">
-              <h3>
-                {area.title}
-                {area.toConfirm && <>{' '}<ToConfirm /></>}
-              </h3>
-              <p>{area.blurb}</p>
-              <ul class="card-links">
-                <li>
-                  <a href={url(`/services/#${area.id}`)}>
-                    How I help<span class="visually-hidden"> with {area.title.toLowerCase()}</span>
-                  </a>
-                </li>
-                <li>
-                  <a href={url(area.resource)}>
-                    Resources<span class="visually-hidden"> on {area.title.toLowerCase()}</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- 4. Getting started is simple -->
+  <!-- Getting started is simple -->
   <section class="section band-sage" aria-labelledby="steps-title">
     <div class="container">
       <div class="section-head center reveal">
@@ -136,46 +90,7 @@ const latestPosts = (await getPosts()).slice(0, 3);
     </div>
   </section>
 
-  <!-- 5. Why private pay -->
-  <section class="section" aria-labelledby="private-pay-title">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 id="private-pay-title">Why private pay?</h2>
-        <p>
-          Private pay care offers some benefits and protections that aren’t available through
-          insurance-based practices. It’s about transparency, and about the trust we build together.
-        </p>
-      </div>
-      <ul class="grid pay-grid" role="list">
-        <li class="card reveal">
-          <h3>Direct care</h3>
-          <p>
-            Your care is shaped by you and me. Together we explore your needs, set goals and plan a
-            schedule, with no billers, insurance companies or employers involved.
-          </p>
-        </li>
-        <li class="card reveal">
-          <h3>Protected information</h3>
-          <p>
-            No insurance company or third party sees your information in order to pay for your
-            care. The people involved in your care are you and me.
-          </p>
-        </li>
-        <li class="card reveal">
-          <h3>Transparent cost</h3>
-          <p>
-            You know the cost before care begins. No waiting on insurance claims, and no large,
-            unexpected bills.
-          </p>
-        </li>
-      </ul>
-      <p class="more-link reveal">
-        <a href={url('/about/#why-private-pay')}>Read more about why I chose private pay</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- 6. An affirming space -->
+  <!-- An affirming space -->
   <section class="section section--tight band-stone" aria-labelledby="affirming-title">
     <div class="container affirming reveal">
       <svg class="affirming-mark" aria-hidden="true" focusable="false" viewBox="0 0 48 40" width="48" height="40">
@@ -186,14 +101,14 @@ const latestPosts = (await getPosts()).slice(0, 3);
       <div class="prose">
         <h2 id="affirming-title">An affirming space</h2>
         <p>
-          The Elephant Path is an affirming space for everyone. I am an ally to the LGBTQ+
-          community, and you are welcome here exactly as you are.
+          The Elephant Path is an affirming space for everyone. You are welcome here exactly as you
+          are.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 7. Meet Sandra -->
+  <!-- Meet Sandra -->
   <section class="section" aria-labelledby="meet-title">
     <div class="container meet">
       <div class="headshot reveal">
@@ -206,38 +121,14 @@ const latestPosts = (await getPosts()).slice(0, 3);
       <div class="prose reveal">
         <h2 id="meet-title">Meet Sandra</h2>
         <p>
-          I’m Sandra Dougherty, a Licensed Master Social Worker with about 18 years of experience.
-          I began my career as a medical social worker in oncology and hospice, and that work still
-          shapes how I walk alongside my clients today.
+          I’m Sandra Dougherty, a Licensed Master Social Worker with 18 years of experience. I began
+          my career as a medical social worker in oncology and hospice, and that work still shapes
+          how I walk alongside my clients today.
         </p>
         <p><a href={url('/about/')}>More about me and my approach</a></p>
       </div>
     </div>
   </section>
-
-  <!-- 8. From the blog (hidden until there are posts) -->
-  {
-    latestPosts.length > 0 && (
-      <section class="section band-white" aria-labelledby="blog-title">
-        <div class="container">
-          <div class="section-head reveal">
-            <h2 id="blog-title">From the blog</h2>
-          </div>
-          <ul class="grid" role="list">
-            {latestPosts.map((post) => (
-              <PostCard post={post} />
-            ))}
-          </ul>
-          <p class="more-link">
-            <a href={url('/resources/blog/')}>Read more on the blog</a>
-          </p>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- 9. Closing call to action -->
-  <ClosingCta />
 </BaseLayout>
 
 <style>
@@ -261,12 +152,7 @@ const latestPosts = (await getPosts()).slice(0, 3);
     max-width: 36rem;
   }
   .hero-text > * + * {
-    margin-top: var(--space-s);
-  }
-  .hero-support {
-    font-family: var(--font-heading);
-    font-size: var(--step-2);
-    color: var(--charcoal);
+    margin-top: var(--space-m);
   }
   .hero-actions {
     justify-content: center;
@@ -308,10 +194,6 @@ const latestPosts = (await getPosts()).slice(0, 3);
   }
 
   .steps-cta {
-    margin-top: var(--space-l);
-  }
-
-  .more-link {
     margin-top: var(--space-l);
   }
 

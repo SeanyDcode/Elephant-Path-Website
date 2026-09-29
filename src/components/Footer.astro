@@ -34,7 +34,6 @@ const year = new Date().getFullYear();
               site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <ToConfirm note="TO CONFIRM: practice email" />
             }
           </li>
-          <li>Hours: {site.hours}</li>
         </ul>
       </div>
 
@@ -43,17 +42,6 @@ const year = new Date().getFullYear();
         <ul class="footer-list">
           <li>
             <ExternalLink href={site.links.psychologyToday}>Psychology Today profile</ExternalLink>
-          </li>
-          <li>
-            {
-              site.links.googleBusinessProfile ? (
-                <ExternalLink href={site.links.googleBusinessProfile}>Google Business Profile</ExternalLink>
-              ) : (
-                <>
-                  Google Business Profile <ToConfirm note="TO CONFIRM: link" />
-                </>
-              )
-            }
           </li>
           <li>
             <ExternalLink href={site.links.clientPortal} newTab>Client Portal</ExternalLink>

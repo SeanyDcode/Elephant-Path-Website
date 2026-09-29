@@ -36,10 +36,13 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
   temporary `/Elephant-Path-Website` base path.
 - Launch switch (custom domain, removes base path): `CUSTOM_DOMAIN_LIVE` in `astro.config.mjs`.
 - Illustration slots: `docs/image-manifest.md`.
-- Blog, library and guides: Markdown content collections in `src/content/`
+- Blog and library: Markdown content collections in `src/content/`
   (schema in `src/content.config.ts`). Categories are the focus-area ids.
-- Forms: `ConsultForm` and `TopicForm` share `src/scripts/forms.ts`. Endpoints
-  are `site.forms.*` in `src/config/site.ts`; while null, forms don't send.
+- Forms: the blog's `TopicForm` uses `src/scripts/forms.ts`. Its endpoint is
+  `site.forms.topicEndpoint` in `src/config/site.ts`; while null, it doesn't send.
+  (There is no consultation form: clients call, text or email.)
+- Page structure is owner-approved: keep repeated info to the header and footer.
+  No closing call-to-action bands, guides or Resources hub unless asked.
 
 ## Gotchas
 
