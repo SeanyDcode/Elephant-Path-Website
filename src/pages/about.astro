@@ -4,9 +4,7 @@ import PageIntro from '../components/PageIntro.astro';
 import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import ToConfirm from '../components/ToConfirm.astro';
-import PathDivider from '../components/PathDivider.astro';
 import WindingPath from '../components/WindingPath.astro';
-import ClosingCta from '../components/ClosingCta.astro';
 import { site } from '../config/site';
 import { url } from '../lib/url';
 ---
@@ -35,24 +33,23 @@ import { url } from '../lib/url';
       <div class="prose reveal">
         <h2 id="meet-sandra">Meet Sandra Dougherty, LMSW</h2>
         <p>
-          I’m Sandra, a Licensed Master Social Worker with about 18 years of experience walking alongside
+          I’m Sandra, a Licensed Master Social Worker with 18 years of experience walking alongside
           people through some of life’s hardest seasons.
         </p>
         <p>
-          My path began in medicine. For several years I worked as a medical social worker in oncology
-          and hospice, supporting people living with cancer and serious illness, and the families who
+          My path began as a medical social worker in oncology and hospice, supporting people living with cancer and serious illness, and the families who
           loved and cared for them. That work taught me how much grief can live inside illness,
           caregiving and change, and how much it helps to have someone beside you.
         </p>
         <p>
-          From there I moved into outpatient mental health, serving my community. Today I support
-          individuals and families experiencing grief and loss, chronic and terminal illness, death and
-          dying, caregiving and life transitions. I founded The Elephant Path to offer this care in a more
+          From there I moved to serving my community in outpatient mental health. Today I support
+          individuals and families experiencing grief and loss, chronic and terminal illness,
+          life-limiting illness, death and dying, caregiving, parenting, anxiety and life transitions. I founded The Elephant Path to offer this care in a more
           personal and transparent way. <ToConfirm note="TO CONFIRM: year founded, if you’d like it shown" />
         </p>
         <p>
-          I work with teens and adults of all ages, as individuals and as families. <ToConfirm
-            note="TO CONFIRM: preteens?"
+          I work with teens and adults of all ages, individually and with their families. <ToConfirm
+            note="TO CONFIRM: wording, and preteens?"
           />
         </p>
         <p class="slot">
@@ -73,8 +70,7 @@ import { url } from '../lib/url';
         </p>
         <p>
           I draw on cognitive behavioral therapy, which looks at how our thoughts, feelings and actions
-          affect one another. I also use mindfulness-based approaches that help you notice the present
-          moment with kindness, and narrative therapy, which helps you tell and reshape your own story.
+          affect one another. I also use mindfulness-based approaches and narrative therapy, which helps you tell and reshape your own story.
           When it helps to focus on what’s next, I use solution-focused therapy to build on what’s already
           working.
         </p>
@@ -90,11 +86,6 @@ import { url } from '../lib/url';
           <li>
             Bachelor of Science in Clinical Psychology, with a dual focus in Cultural Anthropology,
             University of Michigan–Flint, 2005
-          </li>
-          <li>
-            Certified Grief Informed Professional <ToConfirm
-              note="TO CONFIRM: found on another public profile; keep?"
-            />
           </li>
         </ul>
         <p>
@@ -112,8 +103,8 @@ import { url } from '../lib/url';
     <div class="container center prose reveal">
       <h2 id="mission">My mission</h2>
       <p class="lede">
-        To offer compassionate, client centered care that is individualized, accessible, and affordable,
-        and to walk alongside each person with honesty, warmth and respect.
+        To offer compassionate, client centered care that is individualized, accessible, and
+        affordable. To walk alongside each person with authenticity, warmth and respect.
       </p>
     </div>
   </section>
@@ -151,7 +142,7 @@ import { url } from '../lib/url';
           <ul class="check-list">
             <li>complete your paperwork</li>
             <li>send me secure messages</li>
-            <li>view statements and make payments</li>
+            <li>view statements</li>
           </ul>
           <p>
             <ExternalLink href={site.links.clientPortal} newTab>Go to the Client Portal</ExternalLink>
@@ -160,8 +151,8 @@ import { url } from '../lib/url';
         <li class="card reveal">
           <h3>Payment at the time of service</h3>
           <p>
-            Payment is due at the time of service and is securely processed through the client portal.
-            I accept Visa, Mastercard, American Express, Discover and HSA cards. <a
+            Payment is due at the time of service and is securely processed through my electronic
+            medical record (EMR) system. I accept Visa, Mastercard, American Express, Discover and HSA cards. <a
               href={url('/services/#fees')}>See session fees</a
             >.
           </p>
@@ -170,7 +161,7 @@ import { url } from '../lib/url';
           <h3>A sliding scale</h3>
           <p>
             To help make care as accessible as possible, a limited number of reduced-fee appointments are
-            available for people experiencing financial hardship. If cost is a concern, we can talk about
+            available for people with differing financial needs. If cost is a concern, we can talk about
             options during your free consultation.
           </p>
         </li>
@@ -250,9 +241,9 @@ import { url } from '../lib/url';
         <h3 class="reveal">Witnessing grief together</h3>
         <p class="reveal">
           Researchers have observed elephants approaching, touching and staying near elephants who have
-          died, sometimes returning to them again and again.<sup><a href="#source-1" id="ref-1">1</a></sup>
-          To me, it looks a lot like witnessing and supporting one another through grief. That is the
-          heart of my work: no one should have to walk through loss alone.
+          died, witnessing and supporting one another through grief.<sup
+            ><a href="#source-1" id="ref-1">1</a></sup
+          > That is the heart of my work: no one should have to walk through loss alone.
         </p>
 
         <h3 class="reveal">Elephants and cancer research</h3>
@@ -264,7 +255,6 @@ import { url } from '../lib/url';
           this gene might one day help treat cancer, especially in children.<sup
             ><a href="#source-3" id="ref-3">3</a></sup
           >
-          After my years in oncology and hospice, this connection means a great deal to me.
         </p>
 
         <div class="slot reveal">
@@ -309,7 +299,6 @@ import { url } from '../lib/url';
     </div>
   </section>
 
-  <ClosingCta />
 </BaseLayout>
 
 <style>
