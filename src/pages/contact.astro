@@ -2,15 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Steps from '../components/Steps.astro';
-import ConsultForm from '../components/ConsultForm.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import ToConfirm from '../components/ToConfirm.astro';
 import { site } from '../config/site';
 ---
 
 <BaseLayout
-  title="Contact"
-  description="Request a free 15-minute phone consultation with Sandra Dougherty, LMSW. Telehealth counseling for teens and adults anywhere in Michigan. I’ll reach out within one business day."
+  title="Get started"
+  description="Request a free 15-minute phone consultation with Sandra Dougherty, LMSW. Telehealth therapy for teens and adults anywhere in Michigan. Call, text or email, and I’ll reach out within one business day."
 >
   <PageIntro
     title="Get started"
@@ -33,53 +32,50 @@ import { site } from '../config/site';
     </div>
   </section>
 
-  <section class="section" aria-label="Request form and contact details">
+  <section class="section" aria-labelledby="reach">
     <div class="container split">
-      <div class="reveal">
-        <ConsultForm />
+      <div class="panel reach reveal">
+        <h2 id="reach">Call, text or email</h2>
+        <p>Reach out whichever way is easiest for you, and I’ll get back to you within one business day.</p>
+        <ul class="plain-list contact-list">
+          <li>
+            Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a>
+          </li>
+          <li>
+            Email: {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <ToConfirm note="TO CONFIRM: practice email" />}
+          </li>
+        </ul>
+        <div class="cluster reach-actions">
+          <a class="btn btn-primary" href={site.phoneHref}>Call<span class="visually-hidden"> {site.phoneDisplay}</span></a>
+          <a class="btn btn-secondary" href={site.smsHref}>Text<span class="visually-hidden"> {site.phoneDisplay}</span></a>
+          {
+            site.email && (
+              <a class="btn btn-secondary" href={`mailto:${site.email}`}>
+                Email<span class="visually-hidden"> {site.email}</span>
+              </a>
+            )
+          }
+        </div>
+        <p class="small muted">
+          Please keep health details out of texts and email. We’ll talk about what brings you here by
+          phone.
+        </p>
       </div>
 
-      <aside class="stack" aria-label="Other ways to reach me">
+      <aside class="stack" aria-label="More information">
         <div class="crisis">
           <p>
-            <strong>This form is not for emergencies.</strong> If you are in crisis, call or text <a
-              href="tel:988"><strong>988</strong></a
-            > (Suicide &amp; Crisis Lifeline) or call <a href="tel:911"><strong>911</strong></a>.
-          </p>
-        </div>
-
-        <div class="panel">
-          <h2 class="panel-title">Prefer to call or email?</h2>
-          <ul class="plain-list contact-list">
-            <li>Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a></li>
-            <li>
-              Email: {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <ToConfirm note="TO CONFIRM: practice email" />}
-            </li>
-            <li>Hours: {site.hours}</li>
-          </ul>
-          <p class="small muted">
-            Please keep health details out of email. We’ll talk about what brings you here by phone.
+            <strong>This is not an emergency line.</strong> If you are in crisis, call or text{' '}
+            <a href="tel:988"><strong>988</strong></a> (Suicide &amp; Crisis Lifeline) or call{' '}
+            <a href="tel:911"><strong>911</strong></a>.
           </p>
         </div>
 
         <div class="panel">
           <h2 class="panel-title">Find me online</h2>
-          <ul class="plain-list contact-list">
-            <li>
-              <ExternalLink href={site.links.psychologyToday}>Verified Psychology Today profile</ExternalLink>
-            </li>
-            <li>
-              {
-                site.links.googleBusinessProfile ? (
-                  <ExternalLink href={site.links.googleBusinessProfile}>Google Business Profile</ExternalLink>
-                ) : (
-                  <>
-                    Google Business Profile <ToConfirm note="TO CONFIRM: link" />
-                  </>
-                )
-              }
-            </li>
-          </ul>
+          <p>
+            <ExternalLink href={site.links.psychologyToday}>Verified Psychology Today profile</ExternalLink>
+          </p>
         </div>
 
         <div class="panel">
@@ -100,11 +96,20 @@ import { site } from '../config/site';
   .panel-title {
     font-size: var(--step-1);
   }
+  .reach h2 {
+    font-size: var(--step-2);
+  }
+  .reach > * + * {
+    margin-top: var(--space-m);
+  }
   .contact-list li {
     min-height: 44px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0 0.3em;
+  }
+  .reach-actions {
+    gap: var(--space-s);
   }
 </style>
