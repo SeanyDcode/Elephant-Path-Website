@@ -18,15 +18,10 @@ automatically makes the small, fast web versions (AVIF/WebP).
 | `headshot-sandra-1x1.webp` | Home, Meet Sandra; About, Meet Sandra | 1:1 square, shown as a circle | 320 × 320 px | Headshot of Sandra: a warm, natural photo with a plain or soft background (owner to provide) |
 | `illus-about-elephants-16x9.webp` | About, Why elephants? | 16:9 wide | 720 × 405 px | An elephant family walking together along a winding path |
 | `illus-services-3x2.webp` | Services & Fees, top of page | 3:2 landscape | 480 × 320 px | A baby elephant walking beneath its mother along a soft path |
-| `illus-resources-3x2.webp` | Resources, top of page | 3:2 landscape | 480 × 320 px | Elephants resting by a quiet watering hole, a butterfly nearby |
-| `illus-contact-4x3.webp` | Contact, top of page | 4:3 landscape | 480 × 360 px | An elephant calf reaching its trunk toward its mother’s trunk |
-| `illus-guide-grief-3x2.webp` | Guide: Grief and loss | 3:2 landscape | 480 × 320 px | Elephants gathered close together at dusk, one resting its trunk on another |
-| `illus-guide-illness-3x2.webp` | Guide: Illness and the end of life | 3:2 landscape | 480 × 320 px | A mother elephant sheltering her calf beneath her under a soft sky |
-| `illus-guide-caregivers-3x2.webp` | Guide: Primary caregivers | 3:2 landscape | 480 × 320 px | An adult elephant walking slowly beside an older elephant along a winding path |
-| `illus-guide-parenting-3x2.webp` | Guide: Parenting | 3:2 landscape | 480 × 320 px | A young elephant calf playing near its mother in tall grass |
+| `illus-contact-4x3.webp` | Get started (contact), top of page | 4:3 landscape | 480 × 360 px | An elephant calf reaching its trunk toward its mother’s trunk |
 | `og-image-1200x630.png` | Link previews when the site is shared (Phase 5) | 1.91:1 | 1200 × 630 px | Built from the logo; no new artwork needed unless preferred |
 
-**Total:** 9 illustrations, 1 headshot.
+**Total:** 4 illustrations, 1 headshot.
 
 ## Logo files
 
