@@ -8,7 +8,6 @@ import { fees } from '../config/site';
     <thead>
       <tr>
         <th scope="col">Session</th>
-        <th scope="col">Length</th>
         <th scope="col">Fee</th>
       </tr>
     </thead>
@@ -16,11 +15,7 @@ import { fees } from '../config/site';
       {
         fees.map((f) => (
           <tr class:list={{ highlight: f.highlight }}>
-            <th scope="row">
-              {f.session}
-              {f.highlight && <>{' '}<span class="tag">Free</span></>}
-            </th>
-            <td>{f.length}</td>
+            <th scope="row">{f.session}</th>
             <td>{f.fee}</td>
           </tr>
         ))
@@ -31,7 +26,7 @@ import { fees } from '../config/site';
 
 <style>
   .table-wrap {
-    max-width: 36rem;
+    max-width: 30rem;
   }
   .fee-table {
     width: 100%;
@@ -63,13 +58,14 @@ import { fees } from '../config/site';
   td:last-child {
     font-weight: 700;
     white-space: nowrap;
+    text-align: right;
+  }
+  thead th:last-child {
+    text-align: right;
   }
   .highlight > * {
     background: var(--sage-100);
     color: var(--on-sage);
-  }
-  .tag {
-    margin-left: var(--space-xs);
   }
   @media (max-width: 30em) {
     th,
