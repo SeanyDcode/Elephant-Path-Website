@@ -2,25 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import FeeTable from '../components/FeeTable.astro';
-import ToConfirm from '../components/ToConfirm.astro';
-import { site, focusAreas, alsoSupport, paymentCards } from '../config/site';
+import { focusAreas, alsoSupport, paymentCards } from '../config/site';
+import headToHead from '../assets/illustrations/head-to-head-elephants.png';
 import { url } from '../lib/url';
 ---
 
 <BaseLayout
   title="Services & Fees"
-  description="Telehealth counseling across Michigan for grief and loss, chronic and terminal illness, end of life, caregiver support, parenting and life transitions. Clear, private pay fees and a free 15-minute consultation."
+  description="Telehealth counseling across Michigan for grief and loss, chronic and terminal illness, end of life, caregiver support, parenting, and life transitions. Clear, private pay fees and a free 15-minute consultation."
 >
   <PageIntro
     title="Services & Fees"
     illustration={{
-      file: 'illus-services-3x2.webp',
-      ratio: '3/2',
-      subject: 'A baby elephant walking beneath its mother along a soft path',
+      src: headToHead,
+      alt: 'Watercolour of a mother elephant and her calf resting their heads together',
     }}
   >
     <p class="lede">
-      I offer compassionate and evidence-based care for people facing loss, illness and change, with
+      I offer compassionate and evidence-based care for people facing loss, illness, and change, with
       clear fees and no surprises.
     </p>
     <p><a href="#fees">Skip to fees</a></p>
@@ -31,7 +30,7 @@ import { url } from '../lib/url';
     <div class="container prose reveal">
       <h2 id="who">Who I work with</h2>
       <ul class="check-list">
-        <li>Teens and adults of all ages <ToConfirm note="TO CONFIRM: preteens?" /></li>
+        <li>Teens and adults of all ages</li>
         <li>Individuals and families</li>
         <li>Telehealth only, for people located in Michigan</li>
       </ul>
@@ -51,7 +50,6 @@ import { url } from '../lib/url';
             <li class="card reveal" id={area.id}>
               <h3>
                 {area.title}
-                {area.toConfirm && <>{' '}<ToConfirm /></>}
               </h3>
               <p>{area.description}</p>
             </li>
@@ -81,9 +79,9 @@ import { url } from '../lib/url';
           <h3>Paying for sessions</h3>
           <p>
             Payment is due at the time of service and is securely processed through my electronic
-            medical record (EMR) system.
+            health record (EHR) system.
           </p>
-          <p>I accept {paymentCards.slice(0, -1).join(', ')} and {paymentCards.at(-1)}.</p>
+          <p>I accept {paymentCards.slice(0, -1).join(', ')}, and {paymentCards.at(-1)}.</p>
         </div>
         <div class="panel">
           <h3>Sliding scale</h3>
@@ -96,24 +94,20 @@ import { url } from '../lib/url';
           <h3>Insurance</h3>
           <p>
             The Elephant Path does not bill insurance or provide superbills. I know this is a change for
-            some people. I chose this model because it keeps your care personal, private and transparent.
+            some people. I chose this model because it keeps your care personal, private, and transparent.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Working with teens -->
-  <section class="section section--tight" aria-labelledby="teens">
+  <!-- Working with minors -->
+  <section class="section section--tight" aria-labelledby="minors">
     <div class="container prose reveal">
-      <h2 id="teens">Working with teens</h2>
+      <h2 id="minors">Working with minors</h2>
       <p>
         I’m glad to work with teens, and I believe parents and caregivers can be an important part of
-        a teen’s support.
-      </p>
-      <p class="slot">
-        <ToConfirm note="OWNER TO PROVIDE POLICY WORDING" /> How consent works for teens, how and when parents
-        or guardians are involved, and what stays confidential.
+        their support.
       </p>
     </div>
   </section>
@@ -162,10 +156,6 @@ import { url } from '../lib/url';
   }
   .panel h3 {
     font-size: var(--step-1);
-  }
-  .slot {
-    border-left: 4px solid var(--yellow-200);
-    padding-left: var(--space-s);
   }
   .gfe-intro {
     max-width: var(--measure);

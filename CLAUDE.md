@@ -26,6 +26,7 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
   `ToConfirm` component). Legal pages carry `[DRAFT – owner to review; not legal advice]`.
 - **Voice:** first person, warm, plain language (about 8th-grade level), "clients"
   not "patients", "care/support" not "treatment/services", no exclamation points.
+  Always use the Oxford comma. Say "electronic health record (EHR)", never EMR.
 - **Privacy:** self-hosted fonts only, no trackers or ad pixels; Cloudflare Web
   Analytics (cookieless) is the only permitted analytics.
 
@@ -38,9 +39,9 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
 - Illustration slots: `docs/image-manifest.md`.
 - Blog and library: Markdown content collections in `src/content/`
   (schema in `src/content.config.ts`). Categories are the focus-area ids.
-- Forms: the blog's `TopicForm` uses `src/scripts/forms.ts`. Its endpoint is
-  `site.forms.topicEndpoint` in `src/config/site.ts`; while null, it doesn't send.
-  (There is no consultation form: clients call, text or email.)
+- There are no forms. Clients call, text, or email; blog topics are suggested
+  by a mailto link with the subject "Suggested Blog Topic".
+- Illustrations: `src/assets/illustrations/`, shown with the `Illustration` component.
 - Page structure is owner-approved: keep repeated info to the header and footer.
   No closing call-to-action bands, guides or Resources hub unless asked.
 

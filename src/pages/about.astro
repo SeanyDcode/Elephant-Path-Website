@@ -3,15 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
 import ExternalLink from '../components/ExternalLink.astro';
-import ToConfirm from '../components/ToConfirm.astro';
+import Illustration from '../components/Illustration.astro';
 import WindingPath from '../components/WindingPath.astro';
 import { site } from '../config/site';
+import walkingFamily from '../assets/illustrations/walking-family-elephants.png';
 import { url } from '../lib/url';
 ---
 
 <BaseLayout
   title="About"
-  description="Meet Sandra Dougherty, LMSW, a Michigan telehealth therapist with about 18 years of experience in grief, illness, end of life and caregiver support. Learn how the practice works and why it is private pay."
+  description="Meet Sandra Dougherty, LMSW, a Michigan telehealth therapist with 18 years of experience in grief, illness, end of life, and caregiver support. Learn how the practice works and why it is private pay."
 >
   <PageIntro title="About The Elephant Path">
     <p class="lede">
@@ -39,21 +40,16 @@ import { url } from '../lib/url';
         <p>
           My path began as a medical social worker in oncology and hospice, supporting people living with cancer and serious illness, and the families who
           loved and cared for them. That work taught me how much grief can live inside illness,
-          caregiving and change, and how much it helps to have someone beside you.
+          caregiving, and change, and how much it helps to have someone beside you.
         </p>
         <p>
           From there I moved to serving my community in outpatient mental health. Today I support
           individuals and families experiencing grief and loss, chronic and terminal illness,
-          life-limiting illness, death and dying, caregiving, parenting, anxiety and life transitions. I founded The Elephant Path to offer this care in a more
-          personal and transparent way. <ToConfirm note="TO CONFIRM: year founded, if you’d like it shown" />
+          life-limiting illness, death and dying, caregiving, parenting, anxiety, and life transitions. I founded The Elephant Path to offer this care in a more
+          personal and transparent way.
         </p>
         <p>
-          I work with teens and adults of all ages, individually and with their families. <ToConfirm
-            note="TO CONFIRM: wording, and preteens?"
-          />
-        </p>
-        <p class="slot">
-          <ToConfirm note="OWNER TO PROVIDE: a few personal lines, such as what you love outside of work" />
+          I work with teens and adults of all ages, individually and with their families.
         </p>
       </div>
     </div>
@@ -69,7 +65,7 @@ import { url } from '../lib/url';
           > that meets you where you are.
         </p>
         <p>
-          I draw on cognitive behavioral therapy, which looks at how our thoughts, feelings and actions
+          I draw on cognitive behavioral therapy, which looks at how our thoughts, feelings, and actions
           affect one another. I also use mindfulness-based approaches and narrative therapy, which helps you tell and reshape your own story.
           When it helps to focus on what’s next, I use solution-focused therapy to build on what’s already
           working.
@@ -104,7 +100,7 @@ import { url } from '../lib/url';
       <h2 id="mission">My mission</h2>
       <p class="lede">
         To offer compassionate, client centered care that is individualized, accessible, and
-        affordable. To walk alongside each person with authenticity, warmth and respect.
+        affordable. To walk alongside each person with authenticity, warmth, and respect.
       </p>
     </div>
   </section>
@@ -120,7 +116,7 @@ import { url } from '../lib/url';
         <li class="card reveal">
           <h3>Telehealth across Michigan</h3>
           <p>
-            All sessions are held by secure video, so you can meet with me from home, work or wherever
+            All sessions are held by secure video, so you can meet with me from home, work, or wherever
             you feel comfortable. I can see clients anywhere in Michigan. You need to be physically in
             Michigan during each session.
           </p>
@@ -129,7 +125,7 @@ import { url } from '../lib/url';
           <h3>Sessions on Doxy.me</h3>
           <p>
             We meet on Doxy.me, a secure, HIPAA-compliant video platform. I’ll send you a link. You click
-            it, type your name and check in. It works in your web browser on a phone, tablet or computer,
+            it, type your name, and check in. It works in your web browser on a phone, tablet, or computer,
             with no app to download and no account to create.
           </p>
         </li>
@@ -152,7 +148,8 @@ import { url } from '../lib/url';
           <h3>Payment at the time of service</h3>
           <p>
             Payment is due at the time of service and is securely processed through my electronic
-            medical record (EMR) system. I accept Visa, Mastercard, American Express, Discover and HSA cards. <a
+            health record (EHR) system. I accept Visa, Mastercard, American Express, Discover, and HSA
+            cards. <a
               href={url('/services/#fees')}>See session fees</a
             >.
           </p>
@@ -184,9 +181,9 @@ import { url } from '../lib/url';
         <li class="card reveal">
           <h3><span class="num" aria-hidden="true">1</span> A direct care contract</h3>
           <p>
-            Your care is an agreement between you and me. Together we explore your needs, set your goals
+            Your care is an agreement between you and me. Together we explore your needs, set your goals,
             and create a care schedule that fits your life. There are no billers, office managers, front
-            desk staff, insurance companies or employers involved in your care.
+            desk staff, insurance companies, or employers involved in your care.
           </p>
         </li>
         <li class="card reveal">
@@ -240,7 +237,7 @@ import { url } from '../lib/url';
 
         <h3 class="reveal">Witnessing grief together</h3>
         <p class="reveal">
-          Researchers have observed elephants approaching, touching and staying near elephants who have
+          Researchers have observed elephants approaching, touching, and staying near elephants who have
           died, witnessing and supporting one another through grief.<sup
             ><a href="#source-1" id="ref-1">1</a></sup
           > That is the heart of my work: no one should have to walk through loss alone.
@@ -251,24 +248,20 @@ import { url } from '../lib/url';
           Elephants get cancer far less often than you might expect for such large, long-lived animals. In 2015,
           researchers found that elephants carry at least 20 copies of TP53, a gene that helps stop
           tumors from forming. Humans have just one.<sup><a href="#source-2" id="ref-2">2</a></sup>
-          Scientists, including a pediatric cancer doctor, are now studying how the elephant version of
+          Scientists, including pediatric doctors, are now studying how the elephant version of
           this gene might one day help treat cancer, especially in children.<sup
             ><a href="#source-3" id="ref-3">3</a></sup
           >
         </p>
 
-        <div class="slot reveal">
-          <h3>My story</h3>
-          <p>
-            <ToConfirm note="OWNER TO PROVIDE: Sandra’s personal “why elephants” story" />
-          </p>
-        </div>
 
-        <IllustrationPlaceholder
-          file="illus-about-elephants-16x9.webp"
-          ratio="16/9"
-          subject="An elephant family walking together along a winding path"
-        />
+        <div class="elephants-illus">
+          <Illustration
+            src={walkingFamily}
+            alt="Watercolour of an elephant family, with a calf between two adults, walking along a path"
+            sizes="(min-width: 55em) 44rem, 92vw"
+          />
+        </div>
 
         <div class="sources">
           <h3 class="small">Sources</h3>
@@ -319,10 +312,6 @@ import { url } from '../lib/url';
       gap: var(--space-xl);
     }
   }
-  .slot {
-    border-left: 4px solid var(--yellow-200);
-    padding-left: var(--space-s);
-  }
   .panel h3 {
     font-size: var(--step-1);
   }
@@ -362,7 +351,7 @@ import { url } from '../lib/url';
       display: block;
     }
   }
-  .elephants .prose > :global(.illus-ph) {
+  .elephants-illus {
     margin-top: var(--space-l);
   }
   .sources {

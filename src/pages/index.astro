@@ -2,9 +2,10 @@
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PathDivider from '../components/PathDivider.astro';
-import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
+import Illustration from '../components/Illustration.astro';
 import Steps from '../components/Steps.astro';
 import logo from '../assets/brand/logo-full.png';
+import sideBySide from '../assets/illustrations/side-by-side-elephants.png';
 import { site } from '../config/site';
 import { url } from '../lib/url';
 ---
@@ -12,7 +13,7 @@ import { url } from '../lib/url';
 <BaseLayout
   isHome
   title="The Elephant Path | Telehealth therapy in Michigan"
-  description="Compassionate, private pay telehealth therapy for teens and adults anywhere in Michigan. Grief and loss, illness, end of life, caregiver support, parenting and life transitions."
+  description="Compassionate, private pay telehealth therapy for teens and adults anywhere in Michigan. Grief and loss, illness, end of life, caregiver support, parenting, and life transitions."
 >
   <!-- Hero -->
   <section class="hero wash" aria-labelledby="hero-title">
@@ -59,16 +60,15 @@ import { url } from '../lib/url';
           creates a more personal and transparent experience for every client.
         </p>
         <p>
-          Whatever brought you here, it would be an honor to walk alongside you as you work toward
-          what matters to you.
+          Whatever brought you here, it would be an honor to be part of your journey toward what
+          matters most.
         </p>
         <p class="signature">Sandra Dougherty, LMSW</p>
       </div>
       <div class="reveal">
-        <IllustrationPlaceholder
-          file="illus-home-welcome-4x3.webp"
-          ratio="4/3"
-          subject="Mother elephant and her baby walking together on a soft path"
+        <Illustration
+          src={sideBySide}
+          alt="Watercolour of a mother elephant and her calf walking side by side through wildflowers"
         />
       </div>
     </div>
@@ -108,27 +108,6 @@ import { url } from '../lib/url';
     </div>
   </section>
 
-  <!-- Meet Sandra -->
-  <section class="section" aria-labelledby="meet-title">
-    <div class="container meet">
-      <div class="headshot reveal">
-        <IllustrationPlaceholder
-          file="headshot-sandra-1x1.webp"
-          ratio="1/1"
-          subject="Headshot of Sandra Dougherty (owner to provide)"
-        />
-      </div>
-      <div class="prose reveal">
-        <h2 id="meet-title">Meet Sandra</h2>
-        <p>
-          I’m Sandra Dougherty, a Licensed Master Social Worker with 18 years of experience. I began
-          my career as a medical social worker in oncology and hospice, and that work still shapes
-          how I walk alongside my clients today.
-        </p>
-        <p><a href={url('/about/')}>More about me and my approach</a></p>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
 
 <style>
@@ -206,24 +185,5 @@ import { url } from '../lib/url';
   .affirming-mark {
     flex: none;
     margin-top: 0.4rem;
-  }
-
-  /* Meet Sandra */
-  .meet {
-    display: grid;
-    gap: var(--space-l);
-    align-items: center;
-  }
-  .headshot {
-    width: min(100%, 18rem);
-  }
-  .headshot :global(.illus-ph) {
-    border-radius: 50%;
-  }
-  @media (min-width: 45em) {
-    .meet {
-      grid-template-columns: auto 1fr;
-      gap: var(--space-xl);
-    }
   }
 </style>

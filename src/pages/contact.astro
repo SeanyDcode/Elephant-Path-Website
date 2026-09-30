@@ -5,18 +5,18 @@ import Steps from '../components/Steps.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import ToConfirm from '../components/ToConfirm.astro';
 import { site } from '../config/site';
+import hugging from '../assets/illustrations/hugging-elephants.png';
 ---
 
 <BaseLayout
   title="Get started"
-  description="Request a free 15-minute phone consultation with Sandra Dougherty, LMSW. Telehealth therapy for teens and adults anywhere in Michigan. Call, text or email, and I’ll reach out within one business day."
+  description="Request a free 15-minute phone consultation with Sandra Dougherty, LMSW. Telehealth therapy for teens and adults anywhere in Michigan. Call, text, or email, and I’ll reach out by the end of the next business day."
 >
   <PageIntro
     title="Get started"
     illustration={{
-      file: 'illus-contact-4x3.webp',
-      ratio: '4/3',
-      subject: 'An elephant calf reaching its trunk toward its mother’s trunk',
+      src: hugging,
+      alt: 'Watercolour of a mother elephant wrapping her trunk around her calf',
     }}
   >
     <p class="lede">
@@ -35,8 +35,8 @@ import { site } from '../config/site';
   <section class="section" aria-labelledby="reach">
     <div class="container split">
       <div class="panel reach reveal">
-        <h2 id="reach">Call, text or email</h2>
-        <p>Reach out whichever way is easiest for you, and I’ll get back to you within one business day.</p>
+        <h2 id="reach">Call, text, or email</h2>
+        <p>Reach out whichever way is easiest for you, and I’ll get back to you by the end of the next business day.</p>
         <ul class="plain-list contact-list">
           <li>
             Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a>
