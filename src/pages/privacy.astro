@@ -1,27 +1,26 @@
 ---
 import LegalPage from '../layouts/LegalPage.astro';
 import ExternalLink from '../components/ExternalLink.astro';
-import ToConfirm from '../components/ToConfirm.astro';
 import { site } from '../config/site';
 ---
 
 <LegalPage
+  draft={false}
+  updated="September 30, 2026"
   title="Privacy Policy"
   description="How The Elephant Path website handles your information: cookieless analytics, no trackers, and where clinical records are kept."
 >
   <p>
     Your privacy matters to me. This policy explains what information this website collects, how it is
     used, and how it is protected. It covers this website only. Your clinical care is covered by a
-    separate Notice of Privacy Practices, which you’ll receive when we begin working together. <ToConfirm
-      note="TO CONFIRM: Notice of Privacy Practices provided via the portal"
-    />
+    separate Notice of Privacy Practices, which you’ll receive when we begin working together.
   </p>
 
   <h2>Analytics</h2>
   <p>
     To understand how many people visit and which pages are useful, this site uses Cloudflare Web
-    Analytics. It does not use cookies, does not track you across other websites and does not collect
-    personal information such as your name or email address. <ToConfirm note="TO CONFIRM: analytics added before launch" />
+    Analytics. It does not use cookies, does not track you across other websites, and does not collect
+    personal information such as your name or email address.
   </p>
 
   <h2>No cookies, ads, or trackers</h2>
@@ -35,7 +34,7 @@ import { site } from '../config/site';
   <p>
     If you become a client, your clinical records are kept in TherapyNotes, a secure, HIPAA-compliant
     electronic health record system, not on this website. Paperwork, secure messages, and statements are
-    handled through the <ExternalLink href={site.links.clientPortal} newTab
+    handled through the <ExternalLink href={site.links.clientPortal}
       >TherapyNotes client portal</ExternalLink
     >. Telehealth sessions take place on Doxy.me, a secure, HIPAA-compliant video platform.
   </p>
