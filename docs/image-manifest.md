@@ -1,7 +1,7 @@
 # Image manifest
 
-A list of every illustration and photo slot on the site. Each slot shows a
-labelled placeholder until the real image arrives.
+A list of every illustration and photo slot on the site. A slot shows a
+labelled placeholder until its image arrives.
 
 **Style for all illustrations (brief, section 7.4):** watercolour; elephants and
 their babies, soft paths and grasses; soft edges and low saturation. The colours
@@ -12,16 +12,17 @@ olive, soft yellow). No stock photos of people in therapy.
 size listed below (for example 1600 px wide for an 800 px slot). The site
 automatically makes the small, fast web versions (AVIF/WebP).
 
-| File name | Page, section | Shape (aspect ratio) | Shown at up to | Subject |
+| File | Page, section | Shape | Subject | Status |
 |---|---|---|---|---|
-| `illus-home-welcome-4x3.webp` | Home, Welcome | 4:3 landscape | 480 × 360 px | Mother elephant and her baby walking together on a soft path |
-| `headshot-sandra-1x1.webp` | Home, Meet Sandra; About, Meet Sandra | 1:1 square, shown as a circle | 320 × 320 px | Headshot of Sandra: a warm, natural photo with a plain or soft background (owner to provide) |
-| `illus-about-elephants-16x9.webp` | About, Why elephants? | 16:9 wide | 720 × 405 px | An elephant family walking together along a winding path |
-| `illus-services-3x2.webp` | Services & Fees, top of page | 3:2 landscape | 480 × 320 px | A baby elephant walking beneath its mother along a soft path |
-| `illus-contact-4x3.webp` | Get started (contact), top of page | 4:3 landscape | 480 × 360 px | An elephant calf reaching its trunk toward its mother’s trunk |
-| `og-image-1200x630.png` | Link previews when the site is shared (Phase 5) | 1.91:1 | 1200 × 630 px | Built from the logo; no new artwork needed unless preferred |
+| `src/assets/illustrations/side-by-side-elephants.png` | Home, Welcome | 4:3 landscape | Mother elephant and calf walking side by side | Received, in place |
+| `src/assets/illustrations/walking-family-elephants.png` | About, Why elephants? | 16:9 wide | Elephant family walking along a path | Received, in place |
+| `src/assets/illustrations/head-to-head-elephants.png` | Services & Fees, top of page | 3:2 landscape | Mother elephant and calf resting their heads together | Received, in place |
+| `src/assets/illustrations/hugging-elephants.png` | Get started, top of page | 4:3 landscape | Mother elephant wrapping her trunk around her calf | Received, in place |
+| `headshot-sandra-1x1` | About, Meet Sandra | 1:1 square, shown as a circle (320 × 320 px) | Headshot of Sandra: a warm, natural photo with a plain or soft background | **Still needed** |
+| `og-image-1200x630.png` | Link previews when the site is shared (Phase 5) | 1.91:1 (1200 × 630 px) | Built from the logo; no new artwork needed unless preferred | Later |
 
-**Total:** 4 illustrations, 1 headshot.
+To add or swap an illustration, put the image in `src/assets/illustrations/` and
+point the page at it. The site makes the small, fast web versions automatically.
 
 ## Logo files
 

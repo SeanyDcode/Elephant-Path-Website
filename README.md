@@ -44,6 +44,7 @@ The plan for the whole site is in [`build-brief.md`](build-brief.md).
 | Header, footer and other building blocks | `src/components/` |
 | Page frame shared by every page | `src/layouts/BaseLayout.astro` |
 | Logo files | `src/assets/brand/` |
+| Watercolour illustrations | `src/assets/illustrations/` |
 | Browser tab icon, phone icons | `public/` |
 | List of illustrations needed | `docs/image-manifest.md` |
 | Automatic publishing and checks | `.github/workflows/` |
