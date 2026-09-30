@@ -11,14 +11,6 @@ const year = new Date().getFullYear();
 
 <footer class="site-footer">
   <div class="container">
-    <div class="crisis footer-crisis">
-      <p>
-        This site is not for emergencies. If you are in crisis, call or text <strong
-          ><a href="tel:988">988</a></strong
-        > (Suicide &amp; Crisis Lifeline) or call <strong><a href="tel:911">911</a></strong>.
-      </p>
-    </div>
-
     <div class="footer-grid">
       <div class="footer-brand">
         <Image src={logo} alt="The Elephant Path" width={180} densities={[1, 2]} />
@@ -28,6 +20,7 @@ const year = new Date().getFullYear();
       <div>
         <h2 class="footer-heading">Contact</h2>
         <ul class="footer-list">
+          <li>{site.clinician}</li>
           <li>Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a></li>
           <li>
             Email: {
@@ -44,7 +37,7 @@ const year = new Date().getFullYear();
             <ExternalLink href={site.links.psychologyToday}>Psychology Today profile</ExternalLink>
           </li>
           <li>
-            <ExternalLink href={site.links.clientPortal} newTab>Client Portal</ExternalLink>
+            <ExternalLink href={site.links.clientPortal}>Client Portal</ExternalLink>
           </li>
         </ul>
       </div>
@@ -59,6 +52,14 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
+    <div class="crisis footer-crisis">
+      <p>
+        This site is not for emergencies. If you are in crisis, call or text <strong
+          ><a href="tel:988">988</a></strong
+        > (Suicide &amp; Crisis Lifeline) or call <strong><a href="tel:911">911</a></strong>.
+      </p>
+    </div>
+
     <p class="copyright small">&copy; {year} {site.legalName}</p>
   </div>
 </footer>
@@ -70,7 +71,7 @@ const year = new Date().getFullYear();
     margin-top: auto;
   }
   .footer-crisis {
-    margin-bottom: var(--space-l);
+    margin-top: var(--space-l);
   }
   .footer-grid {
     display: grid;

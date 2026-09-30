@@ -20,14 +20,13 @@ const { title, description, updated, draft = true } = Astro.props;
       <h1>{title}</h1>
       {
         draft && (
-          <>
-            <p>
-              <ToConfirm note="DRAFT – owner to review; not legal advice" />
-            </p>
-            <p class="muted small">Last updated: {updated ?? <ToConfirm note="TO CONFIRM: date" />}</p>
-          </>
+          <p>
+            <ToConfirm note="DRAFT – owner to review; not legal advice" />
+          </p>
         )
       }
+      {updated && <p class="muted small">Last updated: {updated}</p>}
+      {draft && !updated && <p class="muted small">Last updated: <ToConfirm note="TO CONFIRM: date" /></p>}
       <slot />
     </div>
   </article>

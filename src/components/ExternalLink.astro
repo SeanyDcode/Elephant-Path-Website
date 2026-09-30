@@ -1,20 +1,15 @@
 ---
-// A link to another website. It's labelled for screen readers as going to
-// an external site, and as opening in a new tab when `newTab` is set.
+// A link to another website. It always opens in a new tab, and is labelled
+// for screen readers as doing so.
 interface Props {
   href: string;
-  newTab?: boolean;
   class?: string;
 }
-const { href, newTab = false, class: className } = Astro.props;
+const { href, class: className } = Astro.props;
 ---
 
-<a
-  href={href}
-  class:list={['ext', className]}
-  target={newTab ? '_blank' : undefined}
-  rel={newTab ? 'noopener' : undefined}
-><slot /><svg
+<a href={href} class:list={['ext', className]} target="_blank" rel="noopener"
+  ><slot /><svg
     class="ext-icon"
     aria-hidden="true"
     focusable="false"
@@ -28,6 +23,5 @@ const { href, newTab = false, class: className } = Astro.props;
       stroke-width="1.6"
       stroke-linecap="round"
       stroke-linejoin="round"></path></svg
-  ><span class="visually-hidden">{newTab ? ' (opens in a new tab)' : ' (external site)'}</span></a
+  ><span class="visually-hidden"> (opens in a new tab)</span></a
 >
-

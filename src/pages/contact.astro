@@ -20,7 +20,7 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
     }}
   >
     <p class="lede">
-      Reaching out takes courage. I’m glad you’re here. The first step is a free, 15-minute phone
+      Reaching out takes courage. I’m glad you’re here! The first step is a free, 15-minute phone
       consultation, with no cost and no commitment.
     </p>
   </PageIntro>
@@ -38,6 +38,7 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
         <h2 id="reach">Call, text, or email</h2>
         <p>Reach out whichever way is easiest for you, and I’ll get back to you by the end of the next business day.</p>
         <ul class="plain-list contact-list">
+          <li>{site.clinician}</li>
           <li>
             Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a>
           </li>
@@ -45,17 +46,6 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
             Email: {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <ToConfirm note="TO CONFIRM: practice email" />}
           </li>
         </ul>
-        <div class="cluster reach-actions">
-          <a class="btn btn-primary" href={site.phoneHref}>Call<span class="visually-hidden"> {site.phoneDisplay}</span></a>
-          <a class="btn btn-secondary" href={site.smsHref}>Text<span class="visually-hidden"> {site.phoneDisplay}</span></a>
-          {
-            site.email && (
-              <a class="btn btn-secondary" href={`mailto:${site.email}`}>
-                Email<span class="visually-hidden"> {site.email}</span>
-              </a>
-            )
-          }
-        </div>
         <p class="small muted">
           Please keep health details out of texts and email. We’ll talk about what brings you here by
           phone.
@@ -63,25 +53,17 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
       </div>
 
       <aside class="stack" aria-label="More information">
-        <div class="crisis">
-          <p>
-            <strong>This is not an emergency line.</strong> If you are in crisis, call or text{' '}
-            <a href="tel:988"><strong>988</strong></a> (Suicide &amp; Crisis Lifeline) or call{' '}
-            <a href="tel:911"><strong>911</strong></a>.
-          </p>
-        </div>
-
         <div class="panel">
           <h2 class="panel-title">Find me online</h2>
           <p>
-            <ExternalLink href={site.links.psychologyToday}>Verified Psychology Today profile</ExternalLink>
+            <ExternalLink href={site.links.psychologyToday}>Psychology Today profile</ExternalLink>
           </p>
         </div>
 
         <div class="panel">
           <h2 class="panel-title">Already a client?</h2>
           <p>
-            <ExternalLink href={site.links.clientPortal} newTab>Go to the Client Portal</ExternalLink>
+            <ExternalLink href={site.links.clientPortal}>Go to the Client Portal</ExternalLink>
           </p>
         </div>
       </aside>
@@ -108,8 +90,5 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
     flex-wrap: wrap;
     align-items: center;
     gap: 0 0.3em;
-  }
-  .reach-actions {
-    gap: var(--space-s);
   }
 </style>
