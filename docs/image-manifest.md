@@ -18,7 +18,7 @@ automatically makes the small, fast web versions (AVIF/WebP).
 | `src/assets/illustrations/walking-family-elephants.png` | About, Why elephants? | 16:9 wide | Elephant family walking along a path | Received, in place |
 | `src/assets/illustrations/head-to-head-elephants.png` | Services & Fees, top of page | 3:2 landscape | Mother elephant and calf resting their heads together | Received, in place |
 | `src/assets/illustrations/hugging-elephants.png` | Get started, top of page | 4:3 landscape | Mother elephant wrapping her trunk around her calf | Received, in place |
-| `headshot-sandra-1x1` | About, Meet Sandra | 1:1 square, shown as a circle (320 × 320 px) | Headshot of Sandra: a warm, natural photo with a plain or soft background | **Still needed** |
+| `src/assets/photos/sandra-headshot.png` | About, Meet Sandra | 1:1, already cropped to a circle | Headshot of Sandra | Received, in place |
 | `og-image-1200x630.png` | Link previews when the site is shared (Phase 5) | 1.91:1 (1200 × 630 px) | Built from the logo; no new artwork needed unless preferred | Later |
 
 To add or swap an illustration, put the image in `src/assets/illustrations/` and

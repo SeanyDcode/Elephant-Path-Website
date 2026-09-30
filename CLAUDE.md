@@ -23,10 +23,15 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
   owner's handwritten notes or photos of them, or unpublished personal drafts.
 - **Accuracy:** don't invent credentials, modalities, education, experience or
   policies. Mark anything not in the sources with `[TO CONFIRM]` (use the
-  `ToConfirm` component). Legal pages carry `[DRAFT – owner to review; not legal advice]`.
+  `ToConfirm` component). The owner has approved the three legal pages; new
+  legal pages start as drafts (`LegalPage` with `draft`).
 - **Voice:** first person, warm, plain language (about 8th-grade level), "clients"
-  not "patients", "care/support" not "treatment/services", no exclamation points.
-  Always use the Oxford comma. Say "electronic health record (EHR)", never EMR.
+  not "patients", "care/support" not "treatment/services", no exclamation points
+  (except the owner's "I'm glad you're here!" on Get started). Always use the
+  Oxford comma. Say "electronic health record (EHR)", never EMR. Don't bold
+  words inside paragraphs (988/911 in crisis notices are the exception).
+- **Links:** every link to another website uses the `ExternalLink` component,
+  which opens it in a new tab (Markdown links get the same via the Sätteri plugin).
 - **Privacy:** self-hosted fonts only, no trackers or ad pixels; Cloudflare Web
   Analytics (cookieless) is the only permitted analytics.
 
