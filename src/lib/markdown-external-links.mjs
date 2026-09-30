@@ -1,5 +1,6 @@
-// Marks links to other websites inside Markdown content (blog posts) the same way the ExternalLink component does: a small icon and
-// "(external site)" for screen readers.
+// Marks links to other websites inside Markdown content (blog posts) the
+// same way the ExternalLink component does: opens in a new tab, with a small
+// icon and "(opens in a new tab)" for screen readers.
 
 const icon = {
   type: 'element',
@@ -33,7 +34,7 @@ const label = {
   type: 'element',
   tagName: 'span',
   properties: { className: ['visually-hidden'] },
-  children: [{ type: 'text', value: ' (external site)' }],
+  children: [{ type: 'text', value: ' (opens in a new tab)' }],
 };
 
 // A hast plugin for Astro's default Markdown processor (Sätteri).
@@ -45,6 +46,8 @@ export const externalLinks = {
       const href = String(node.properties?.href ?? '');
       if (!/^https?:\/\//.test(href)) return;
       ctx.setProperty(node, 'className', ['ext']);
+      ctx.setProperty(node, 'target', '_blank');
+      ctx.setProperty(node, 'rel', 'noopener');
       ctx.appendChild(node, [structuredClone(icon), structuredClone(label)]);
     },
   },
