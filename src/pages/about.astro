@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
-import IllustrationPlaceholder from '../components/IllustrationPlaceholder.astro';
+import { Picture } from 'astro:assets';
 import ExternalLink from '../components/ExternalLink.astro';
 import Illustration from '../components/Illustration.astro';
 import WindingPath from '../components/WindingPath.astro';
 import { site } from '../config/site';
 import walkingFamily from '../assets/illustrations/walking-family-elephants.png';
+import headshot from '../assets/photos/sandra-headshot.png';
 import { url } from '../lib/url';
 ---
 
@@ -25,10 +26,14 @@ import { url } from '../lib/url';
   <section class="section" aria-labelledby="meet-sandra">
     <div class="container bio">
       <div class="bio-photo reveal">
-        <IllustrationPlaceholder
-          file="headshot-sandra-1x1.webp"
-          ratio="1/1"
-          subject="Headshot of Sandra Dougherty (owner to provide)"
+        <Picture
+          src={headshot}
+          alt="Sandra Dougherty, LMSW, smiling"
+          formats={['avif', 'webp']}
+          width={320}
+          widths={[320, 640]}
+          sizes="(min-width: 50em) 18rem, min(100vw, 18rem)"
+          class="headshot"
         />
       </div>
       <div class="prose reveal">
@@ -60,9 +65,7 @@ import { url } from '../lib/url';
       <div class="prose reveal">
         <h2 id="approach">My approach</h2>
         <p>
-          Every person’s path is different, so I shape our work around you. I offer <strong
-            >compassionate and evidence-based care</strong
-          > that meets you where you are.
+          Every person’s path is different, so I shape our work around you. I offer compassionate and evidence-based care that meets you where you are.
         </p>
         <p>
           I draw on cognitive behavioral therapy, which looks at how our thoughts, feelings, and actions
@@ -85,7 +88,7 @@ import { url } from '../lib/url';
           </li>
         </ul>
         <p>
-          <ExternalLink href={site.links.psychologyToday}>View my verified Psychology Today profile</ExternalLink>
+          <ExternalLink href={site.links.psychologyToday}>View my Psychology Today profile</ExternalLink>
         </p>
         <p class="small muted">
           Licensed Master Social Worker, State of Michigan, license #{site.licenseNumber}
@@ -141,7 +144,7 @@ import { url } from '../lib/url';
             <li>view statements</li>
           </ul>
           <p>
-            <ExternalLink href={site.links.clientPortal} newTab>Go to the Client Portal</ExternalLink>
+            <ExternalLink href={site.links.clientPortal}>Go to the Client Portal</ExternalLink>
           </p>
         </li>
         <li class="card reveal">
@@ -174,7 +177,7 @@ import { url } from '../lib/url';
         <p>
           The Elephant Path offers numerous benefits and protections not available through typical
           insurance-participating practices. I know that paying out of pocket is a change for many people,
-          so I want to explain why I chose this model and how it can serve you.
+          so I want to explore why I chose this model and how it can serve you.
         </p>
       </div>
       <ol class="grid pay-grid" role="list">
@@ -190,8 +193,7 @@ import { url } from '../lib/url';
           <h3><span class="num" aria-hidden="true">2</span> Protected information</h3>
           <p>
             No insurance company or third party sees your information in order to pay for your care. There
-            is no diagnosis to submit and no claim to process. The people involved in your care are you and
-            me.
+            is no diagnosis to submit and no claim to process.
           </p>
         </li>
         <li class="card reveal">
@@ -200,13 +202,13 @@ import { url } from '../lib/url';
             You know the cost before care begins. There’s no waiting weeks for an insurance company to
             process a claim, and no large, unexpected bills. You’ll receive a <a
               href={url('/good-faith-estimate/')}>Good Faith Estimate</a
-            >, and payment is simply made at the time of service.
+            >, and payment is made at the time of service.
           </p>
         </li>
       </ol>
       <div class="prose reveal pay-close">
         <p>
-          Most of all, this model makes room for <strong>transparency and rapport</strong>: an honest,
+          Most of all, this model makes room for transparency and rapport: an honest,
           trusting relationship that is built between the two of us and focused entirely on you.
         </p>
         <p class="small muted">
@@ -226,7 +228,7 @@ import { url } from '../lib/url';
       <div class="prose">
         <h2 id="why-elephants-title" class="reveal">Why elephants?</h2>
         <p class="reveal">
-          The elephant is at the heart of this practice, and it connects closely to my own path.
+          The elephant is at the heart of this practice, and they connect closely to my own path.
         </p>
 
         <h3 class="reveal">A herd that stays close</h3>
@@ -237,7 +239,7 @@ import { url } from '../lib/url';
 
         <h3 class="reveal">Witnessing grief together</h3>
         <p class="reveal">
-          Researchers have observed elephants approaching, touching, and staying near elephants who have
+          Researchers have observed elephants approaching, touching, and staying near other elephants who have
           died, witnessing and supporting one another through grief.<sup
             ><a href="#source-1" id="ref-1">1</a></sup
           > That is the heart of my work: no one should have to walk through loss alone.
@@ -271,20 +273,17 @@ import { url } from '../lib/url';
               and insights from field observations. <cite>Primates</cite>, 61, 119–128. <ExternalLink
                 href="https://link.springer.com/article/10.1007/s10329-019-00766-5">Read the study</ExternalLink
               >
-              <a href="#ref-1" class="back">Back to text<span class="visually-hidden"> (source 1)</span></a>
             </li>
             <li id="source-2">
               Abegglen, L. M., et al. (2015). Potential mechanisms for cancer resistance in elephants and
               comparative cellular response to DNA damage in humans. <cite>JAMA</cite>, 314(17),
               1850–1860. <ExternalLink href="https://doi.org/10.1001/jama.2015.13134">Read the study</ExternalLink
               >
-              <a href="#ref-2" class="back">Back to text<span class="visually-hidden"> (source 2)</span></a>
             </li>
             <li id="source-3">
               Schiffman Lab, Huntsman Cancer Institute, University of Utah Health. <ExternalLink
                 href="https://uofuhealth.utah.edu/huntsman/labs/schiffman/research">p53 studies</ExternalLink
               >
-              <a href="#ref-3" class="back">Back to text<span class="visually-hidden"> (source 3)</span></a>
             </li>
           </ol>
         </div>
@@ -303,8 +302,11 @@ import { url } from '../lib/url';
   .bio-photo {
     width: min(100%, 18rem);
   }
-  .bio-photo :global(.illus-ph) {
-    border-radius: 50%;
+  .bio-photo :global(.headshot),
+  .bio-photo :global(.headshot img) {
+    display: block;
+    width: 100%;
+    height: auto;
   }
   @media (min-width: 50em) {
     .bio {
@@ -368,9 +370,6 @@ import { url } from '../lib/url';
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-  }
-  .back {
-    margin-left: var(--space-xs);
   }
   sup a {
     padding: 0 0.15em;
