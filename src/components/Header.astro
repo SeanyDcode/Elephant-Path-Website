@@ -24,10 +24,11 @@ const pathname = Astro.url.pathname;
       aria-controls="site-menu"
       data-menu-toggle
     >
-      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="22" height="22">
-        <path class="bar bar-1" d="M4 7h16" />
-        <path class="bar bar-2" d="M4 12h16" />
-        <path class="bar bar-3" d="M4 17h16" />
+      <svg class="icon-open" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="22" height="22">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+      <svg class="icon-close" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="22" height="22">
+        <path d="M6 6l12 12M18 6L6 18"></path>
       </svg>
       <span class="menu-label">Menu</span>
     </button>
@@ -44,7 +45,7 @@ const pathname = Astro.url.pathname;
           ))
         }
         <li class="portal">
-          <ExternalLink href={site.links.clientPortal} newTab>Client Portal</ExternalLink>
+          <ExternalLink href={site.links.clientPortal}>Client Portal</ExternalLink>
         </li>
       </ul>
     </nav>
@@ -139,20 +140,18 @@ const pathname = Astro.url.pathname;
     cursor: pointer;
   }
   .menu-toggle svg path {
+    fill: none;
     stroke: currentColor;
     stroke-width: 2;
     stroke-linecap: round;
-    transition: transform 300ms var(--ease), opacity 300ms var(--ease);
-    transform-origin: center;
   }
-  .menu-toggle[aria-expanded='true'] .bar-1 {
-    transform: translateY(5px) rotate(45deg);
+  /* Three lines when closed, an even X when open */
+  .menu-toggle .icon-close,
+  .menu-toggle[aria-expanded='true'] .icon-open {
+    display: none;
   }
-  .menu-toggle[aria-expanded='true'] .bar-2 {
-    opacity: 0;
-  }
-  .menu-toggle[aria-expanded='true'] .bar-3 {
-    transform: translateY(-5px) rotate(-45deg);
+  .menu-toggle[aria-expanded='true'] .icon-close {
+    display: block;
   }
 
   .nav-list {
@@ -191,8 +190,20 @@ const pathname = Astro.url.pathname;
     font-weight: 700;
   }
 
-  /* Small screens: menu button, "Get started" stays visible */
+  /* Small screens: logo, "Get started" and the menu button spread evenly
+     across one row; the menu opens below them */
   @media (max-width: 69.99em) {
+    .header-inner {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      justify-content: space-between;
+    }
+    .site-menu {
+      grid-column: 1 / -1;
+    }
+    .brand {
+      margin-right: 0;
+    }
     :global(.js) .menu-toggle {
       display: inline-flex;
     }
@@ -247,10 +258,25 @@ const pathname = Astro.url.pathname;
     }
   }
 
-  /* Very narrow phones: logo on its own row, both buttons together below */
-  @media (max-width: 23em) {
+  /* Very narrow phones: slightly smaller logo and button so all three
+     still fit on one row */
+  @media (max-width: 24em) {
+    .header-inner {
+      padding-inline: 0.7rem;
+      column-gap: 0.35rem;
+    }
     .brand {
-      flex-basis: 100%;
+      gap: var(--space-2xs);
+    }
+    .brand-mark {
+      width: 34px;
+    }
+    .brand-name {
+      font-size: 0.82rem;
+    }
+    .get-started {
+      font-size: 0.8rem;
+      padding-inline: 0.6em;
     }
   }
 
