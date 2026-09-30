@@ -11,7 +11,6 @@ export const site = {
 
   phoneDisplay: '(248) 795-5517',
   phoneHref: 'tel:+12487955517',
-  smsHref: 'sms:+12487955517',
 
   // Practice email. The owner may move to Google Workspace (with a BAA)
   // before launch, so this is the one place to change it.
@@ -122,8 +121,7 @@ export type FocusAreaId = (typeof focusAreas)[number]['id'];
 export const focusAreaIds = focusAreas.map((a) => a.id) as [string, ...string[]];
 export const focusAreaTitle = (id: string) => focusAreas.find((a) => a.id === id)?.title ?? id;
 
-// Crisis and support lines, verified September 2026 against each service's
-// own website. Re-check before launch.
+// Crisis and support lines, checked September 2026. Re-check before launch.
 export const crisisLines = [
   {
     name: '988 Suicide & Crisis Lifeline',
@@ -144,9 +142,9 @@ export const crisisLines = [
     tel: 'tel:+18664887386',
   },
   {
-    name: 'Common Ground Resource & Crisis Helpline',
-    how: 'Michigan-based support for anyone in distress. Call or text 1-800-231-1127, 24/7.',
-    href: 'https://commongroundhelps.org/get-help/',
-    tel: 'tel:+18002311127',
+    name: 'Oakland Community Health Network (OCHN)',
+    how: 'For adults in Oakland County. Call 1-888-238-0611 or walk in to the Resource and Crisis Center in Pontiac, 24/7.',
+    href: 'https://oaklandchn.org/',
+    tel: 'tel:+18882380611',
   },
 ];
