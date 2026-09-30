@@ -8,11 +8,11 @@ sample: true
 
 Welcome. I’m glad you found your way here.
 
-Each month, I plan to share a short post about the topics I care about most: grief and loss, living with illness, the end of life, caregiving, parenting and the many changes life brings.
+Each month, I plan to share a short post about the topics I care about most: grief and loss, living with illness, the end of life, caregiving, parenting, and the many changes life brings.
 
-My hope is that these posts offer a little comfort, some practical ideas and the reminder that you are not alone. They aren’t a replacement for care, but they may help you feel a bit more prepared for what you’re facing.
+My hope is that these posts offer a little comfort, some practical ideas, and the reminder that you are not alone. They aren’t a replacement for care, but they may help you feel a bit more prepared for what you’re facing.
 
-If there’s a topic you would like me to write about, you can suggest one using the form on the blog page. Please don’t include personal health details.
+If there’s a topic you would like me to write about, you can email me a suggestion from the blog page. Please don’t include personal health details.
 
 In gratitude,
 

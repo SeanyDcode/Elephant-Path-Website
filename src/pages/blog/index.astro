@@ -3,19 +3,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import PostCard from '../../components/PostCard.astro';
 import CategoryFilter from '../../components/CategoryFilter.astro';
-import TopicForm from '../../components/TopicForm.astro';
 import { getPosts } from '../../lib/content';
+import { site } from '../../config/site';
 
 const posts = await getPosts();
+const suggestHref = site.email
+  ? `mailto:${site.email}?subject=${encodeURIComponent('Suggested Blog Topic')}`
+  : null;
 ---
 
 <BaseLayout
   title="Blog"
-  description="Monthly posts from Sandra Dougherty, LMSW, on grief and loss, living with illness, end of life, caregiving, parenting and life transitions."
+  description="Monthly posts from Sandra Dougherty, LMSW, on grief and loss, living with illness, end of life, caregiving, parenting, and life transitions."
 >
   <PageIntro title="Blog">
     <p class="lede">
-      Monthly reflections and practical ideas on grief, illness, caregiving, parenting and change.
+      Monthly reflections and practical ideas on grief, illness, caregiving, parenting, and change.
     </p>
   </PageIntro>
 
@@ -32,9 +35,23 @@ const posts = await getPosts();
     </div>
   </section>
 
-  <section class="section band-white" id="suggest" aria-label="Suggest a topic">
-    <div class="container narrow">
-      <TopicForm />
+  <section class="section section--tight band-white" id="suggest" aria-labelledby="suggest-title">
+    <div class="container narrow prose">
+      <h2 id="suggest-title">Suggest a topic</h2>
+      <p>
+        Is there something you’d like me to write about? I’d love to hear your ideas. Your questions
+        and experiences help shape what I share here, so please don’t hesitate to reach out.
+      </p>
+      <p class="small muted">Please don’t include personal health details in your email.</p>
+      {
+        suggestHref && (
+          <p>
+            <a class="btn btn-primary" href={suggestHref}>
+              Email a Blog Topic Suggestion
+            </a>
+          </p>
+        )
+      }
     </div>
   </section>
 </BaseLayout>
