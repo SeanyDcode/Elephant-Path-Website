@@ -227,6 +227,13 @@ import { url } from '../lib/url';
       </div>
       <div class="prose">
         <h2 id="why-elephants-title" class="reveal">Why elephants?</h2>
+        <div class="elephants-illus">
+          <Illustration
+            src={walkingFamily}
+            alt="Watercolour of an elephant family, with a calf between two adults, walking along a path"
+            sizes="(min-width: 55em) 44rem, 92vw"
+          />
+        </div>
         <p class="reveal">
           The elephant is at the heart of this practice, and they connect closely to my own path.
         </p>
@@ -256,14 +263,6 @@ import { url } from '../lib/url';
           >
         </p>
 
-
-        <div class="elephants-illus">
-          <Illustration
-            src={walkingFamily}
-            alt="Watercolour of an elephant family, with a calf between two adults, walking along a path"
-            sizes="(min-width: 55em) 44rem, 92vw"
-          />
-        </div>
 
         <div class="sources">
           <h3 class="small">Sources</h3>
@@ -354,7 +353,7 @@ import { url } from '../lib/url';
     }
   }
   .elephants-illus {
-    margin-top: var(--space-l);
+    margin-block: var(--space-m) var(--space-l);
   }
   .sources {
     margin-top: var(--space-l);
