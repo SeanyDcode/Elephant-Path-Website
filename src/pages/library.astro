@@ -17,7 +17,8 @@ const books = await getBooks();
 >
   <PageIntro title="Library">
     <p class="lede">
-      Books I recommend, sorted by topic. Reading can be a gentle companion alongside care.
+      Books I recommend, listed by title. Use the topic buttons to narrow the list. Reading can be a
+      gentle companion alongside care.
     </p>
   </PageIntro>
 
@@ -28,15 +29,20 @@ const books = await getBooks();
       <ul class="book-list" id="book-list" role="list">
         {
           books.map((book) => (
-            <li class="book" data-categories={book.data.category}>
+            <li class="book" data-categories={book.data.categories.join(' ')}>
               <h3 class="book-title">
                 {book.data.link ? <ExternalLink href={book.data.link}>{book.data.title}</ExternalLink> : book.data.title}
                 {book.data.sample && <>{' '}<ToConfirm note="SAMPLE" /></>}
               </h3>
               <p class="muted">by {book.data.author}</p>
               <p>{book.data.note}</p>
-              <p>
-                <span class="tag">{focusAreaTitle(book.data.category)}</span>
+              <p class="small muted">ISBN {book.data.isbn}</p>
+              <p class="book-tags">
+                {book.data.categories.length > 0 ? (
+                  book.data.categories.map((c) => <span class="tag">{focusAreaTitle(c)}</span>)
+                ) : (
+                  <span class="tag">General</span>
+                )}
               </p>
             </li>
           ))
@@ -73,6 +79,11 @@ const books = await getBooks();
   }
   .book > * + * {
     margin-top: var(--space-2xs);
+  }
+  .book-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
   }
   .book-title {
     font-size: var(--step-1);
