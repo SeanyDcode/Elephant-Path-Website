@@ -26,8 +26,11 @@ const library = defineCollection({
   schema: z.object({
     title: z.string(),
     author: z.string(),
-    category,
-    note: z.string(), // one line about why it's recommended
+    isbn: z.string(),
+    // Topic buttons this book appears under. Leave empty for a general-interest
+    // book: it shows under "All" with a "General" tag.
+    categories: z.array(category).default([]),
+    note: z.string(), // one sentence about the book
     link: z.url().optional(),
     sample: z.boolean().default(false),
   }),
