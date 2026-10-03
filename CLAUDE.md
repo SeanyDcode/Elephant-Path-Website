@@ -24,10 +24,13 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
 - **Accuracy:** don't invent credentials, modalities, education, experience or
   policies. Mark anything not in the sources with `[TO CONFIRM]` (use the
   `ToConfirm` component). The owner has approved the three legal pages; new
-  legal pages start as drafts (`LegalPage` with `draft`).
+  legal pages start as drafts (`LegalPage` with `draft`). The privacy page
+  (`/privacy/`) is the owner's Notice of Privacy Practices, word for word:
+  never reword it, only replace it with a new version from the owner.
 - **Voice:** first person, warm, plain language (about 8th-grade level), "clients"
   not "patients", "care/support" not "treatment/services", no exclamation points
-  (except the owner's "I'm glad you're here!" on Get started). Always use the
+  (except the owner's "I'm glad you're here!" on the Home welcome heading and
+  on Get started). Always use the
   Oxford comma. Say "electronic health record (EHR)", never EMR. Don't bold
   words inside paragraphs (988/911 in crisis notices are the exception).
 - **Links:** every link to another website uses the `ExternalLink` component,
@@ -40,10 +43,13 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
 - Practice details (phone, email, links, focus areas): `src/config/site.ts`
 - Internal links must use `url()` from `src/lib/url.ts` so they work with the
   temporary `/Elephant-Path-Website` base path.
-- Launch switch (custom domain, removes base path): `CUSTOM_DOMAIN_LIVE` in `astro.config.mjs`.
+- Launch switch (custom domain, removes base path): `CUSTOM_DOMAIN_LIVE` in `site.config.mjs`,
+  shared by `astro.config.mjs` and `scripts/check-a11y.mjs`.
 - Illustration slots: `docs/image-manifest.md`.
 - Blog and library: Markdown content collections in `src/content/`
-  (schema in `src/content.config.ts`). Categories are the focus-area ids.
+  (schema in `src/content.config.ts`). Categories are the focus-area ids (the
+  seven focus areas include "Life-limiting illness", id `life-limiting-illness`).
+  Topic filters show only topics that have items, and none with fewer than two.
 - There are no forms. Clients call, text, or email; blog topics are suggested
   by a mailto link with the subject "Suggested Blog Topic".
 - Illustrations: `src/assets/illustrations/`, shown with the `Illustration` component.

@@ -15,7 +15,11 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  article={{ published: post.data.pubDate, headline: post.data.title }}
+>
   <article class="section">
     <div class="container prose">
       <p><a href={url('/blog/')}>Back to the blog</a></p>
@@ -35,7 +39,7 @@ const { Content } = await render(post);
           </p>
         )
       }
-      <div class="content">
+      <div class="content reveal">
         <Content />
       </div>
       <p class="small muted disclaimer">

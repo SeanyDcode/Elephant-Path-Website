@@ -1,17 +1,21 @@
 ---
 // Filter buttons for a list of items marked with data-categories.
 // Hidden until JavaScript runs; without it, every item simply shows.
+// Pages pass only the topics that have at least one item. With fewer than
+// two such topics there is nothing to filter, so nothing is shown.
 import { focusAreas } from '../config/site';
 
 interface Props {
   list: string; // id of the list element to filter
   noun: [string, string]; // e.g. ['post', 'posts']
-  categories?: string[]; // which focus areas to offer (default: all)
+  categories: string[]; // focus-area ids used by at least one item
 }
 const { list, noun, categories } = Astro.props;
-const options = focusAreas.filter((a) => !categories || categories.includes(a.id));
+const options = focusAreas.filter((a) => categories.includes(a.id));
+const show = options.length >= 2;
 ---
 
+{show && (
 <div class="filter" data-filter={list} data-noun={noun.join('|')} hidden>
   <p class="filter-label" id={`${list}-filter-label`}>Show topics:</p>
   <div class="filter-buttons" role="group" aria-labelledby={`${list}-filter-label`}>
@@ -26,6 +30,7 @@ const options = focusAreas.filter((a) => !categories || categories.includes(a.id
   </div>
   <p class="filter-count" role="status" data-count></p>
 </div>
+)}
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-filter]').forEach((filter) => {

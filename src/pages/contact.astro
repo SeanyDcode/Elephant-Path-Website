@@ -2,41 +2,34 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Steps from '../components/Steps.astro';
-import ExternalLink from '../components/ExternalLink.astro';
 import ToConfirm from '../components/ToConfirm.astro';
 import { site } from '../config/site';
 import hugging from '../assets/illustrations/hugging-elephants.png';
 ---
 
 <BaseLayout
-  title="Get started"
-  description="Request a free 15-minute phone consultation with Sandra Dougherty, LMSW. Telehealth therapy for teens and adults anywhere in Michigan. Call, text, or email, and I’ll reach out by the end of the next business day."
+  title="Free 15-Minute Consultation"
+  fullTitle="Free 15-Minute Consultation | The Elephant Path"
+  description="Request a free 15-minute phone consultation with Sandra Dougherty, LMSW. Call, text, or email to start telehealth therapy anywhere in Michigan."
 >
   <PageIntro
     title="Get started"
     illustration={{
       src: hugging,
-      alt: 'Watercolour of a mother elephant wrapping her trunk around her calf',
+      alt: 'Watercolor of a mother elephant wrapping her trunk around her calf',
     }}
   >
     <p class="lede">
       Reaching out takes courage. I’m glad you’re here! The first step is a free, 15-minute phone
-      consultation, with no cost and no commitment.
+      consultation, with no commitment.
     </p>
   </PageIntro>
 
-  <section class="section section--tight band-sage" aria-labelledby="next">
+  <section class="section section--tight" aria-labelledby="reach">
     <div class="container">
-      <h2 id="next" class="center steps-heading">What happens next</h2>
-      <Steps />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="reach">
-    <div class="container split">
       <div class="panel reach reveal">
         <h2 id="reach">Call, text, or email</h2>
-        <p>Reach out whichever way is easiest for you, and I’ll get back to you by the end of the next business day.</p>
+        <p>Reach out whichever way is easiest for you.</p>
         <ul class="plain-list contact-list">
           <li>{site.clinician}</li>
           <li>
@@ -51,22 +44,13 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
           phone.
         </p>
       </div>
+    </div>
+  </section>
 
-      <aside class="stack" aria-label="More information">
-        <div class="panel">
-          <h2 class="panel-title">Find me online</h2>
-          <p>
-            <ExternalLink href={site.links.psychologyToday}>Psychology Today profile</ExternalLink>
-          </p>
-        </div>
-
-        <div class="panel">
-          <h2 class="panel-title">Already a client?</h2>
-          <p>
-            <ExternalLink href={site.links.clientPortal}>Go to the Client Portal</ExternalLink>
-          </p>
-        </div>
-      </aside>
+  <section class="section section--tight band-sage" aria-labelledby="next">
+    <div class="container">
+      <h2 id="next" class="center steps-heading reveal">What happens next</h2>
+      <Steps />
     </div>
   </section>
 </BaseLayout>
@@ -75,8 +59,8 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
   .steps-heading {
     margin-bottom: var(--space-l);
   }
-  .panel-title {
-    font-size: var(--step-1);
+  .reach {
+    max-width: var(--measure);
   }
   .reach h2 {
     font-size: var(--step-2);

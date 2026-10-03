@@ -6,6 +6,7 @@ import { nav, site } from '../config/site';
 import { url, isCurrent } from '../lib/url';
 
 const pathname = Astro.url.pathname;
+const onGetStarted = isCurrent('/contact/', pathname);
 ---
 
 <header class="site-header">
@@ -15,7 +16,14 @@ const pathname = Astro.url.pathname;
       <span class="brand-name">{site.name}</span>
     </a>
 
-    <a class="btn btn-primary btn-small get-started" href={url('/contact/')}>Get started</a>
+    <!-- "Get started" appears twice so keyboard order matches what you see:
+         before the menu button on phones and tablets, after the links on desktop.
+         Only one is shown at a time. -->
+    <a
+      class="btn btn-primary btn-small get-started get-started--compact"
+      href={url('/contact/')}
+      aria-current={onGetStarted ? 'page' : undefined}>Get started</a
+    >
 
     <button
       class="menu-toggle"
@@ -49,6 +57,12 @@ const pathname = Astro.url.pathname;
         </li>
       </ul>
     </nav>
+
+    <a
+      class="btn btn-primary btn-small get-started get-started--wide"
+      href={url('/contact/')}
+      aria-current={onGetStarted ? 'page' : undefined}>Get started</a
+    >
   </div>
 </header>
 
@@ -228,9 +242,10 @@ const pathname = Astro.url.pathname;
       padding-inline: var(--space-xs);
     }
   }
-  /* Phones: icon-only menu button so the header fits on one row.
-     The word "Menu" stays available to screen readers. */
-  @media (max-width: 30em) {
+  /* Phones and small tablets: icon-only menu button and a smaller logo so
+     the header fits on one row. The word "Menu" stays available to screen
+     readers. */
+  @media (max-width: 36em) {
     .header-inner {
       column-gap: var(--space-xs);
     }
@@ -255,6 +270,13 @@ const pathname = Astro.url.pathname;
     }
     .get-started {
       padding-inline: 0.75em;
+    }
+  }
+
+  /* Above the compact header, the name always stays on one line */
+  @media (min-width: 36.01em) {
+    .brand-name {
+      white-space: nowrap;
     }
   }
 
@@ -285,11 +307,13 @@ const pathname = Astro.url.pathname;
     .header-inner {
       flex-wrap: nowrap;
     }
-    .site-menu {
-      order: 2;
+    .get-started--compact {
+      display: none;
     }
-    .get-started {
-      order: 3;
+  }
+  @media (max-width: 69.99em) {
+    .get-started--wide {
+      display: none;
     }
   }
 </style>

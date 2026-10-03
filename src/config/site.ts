@@ -75,11 +75,11 @@ export const focusAreas = [
     blurb:
       'Room to talk through a diagnosis, treatment and the ways illness changes daily life, for you and for the people close to you.',
     description:
-      'A diagnosis can change your plans, your body, your relationships, and how you see yourself. Whether you are living with an ongoing condition or a terminal illness, I can help you talk through what is happening, cope with treatment and uncertainty, and make room for what matters most to you.',
+      'A diagnosis can change your plans, your body, your relationships, and how you see yourself. Whether you are living with an ongoing condition or a terminal illness, I can help you talk through what is happening and cope with treatment and uncertainty.',
   },
   {
-    id: 'life-limiting-disease',
-    title: 'Life-limiting disease',
+    id: 'life-limiting-illness',
+    title: 'Life-limiting illness',
     blurb:
       'Ongoing support for living with a serious diagnosis over months or years, not only at the end of life.',
     description:
@@ -122,29 +122,47 @@ export const focusAreaIds = focusAreas.map((a) => a.id) as [string, ...string[]]
 export const focusAreaTitle = (id: string) => focusAreas.find((a) => a.id === id)?.title ?? id;
 
 // Crisis and support lines, checked September 2026. Re-check before launch.
-export const crisisLines = [
+// Each line's description is a list of pieces: plain text, or a number with
+// the tel:/sms: link that makes it tap-to-call or tap-to-text.
+type Piece = string | { text: string; href: string };
+
+export const crisisLines: { name: string; href: string; how: Piece[] }[] = [
   {
     name: '988 Suicide & Crisis Lifeline',
-    how: 'Call or text 988, or chat online. Free, confidential, and available 24/7.',
     href: 'https://988lifeline.org/',
-    tel: 'tel:988',
+    how: [
+      'Call or text ',
+      { text: '988', href: 'tel:988' },
+      ', or chat online. Free, confidential, and available 24/7.',
+    ],
   },
   {
     name: 'Crisis Text Line',
-    how: 'Text HOME to 741741 to reach a trained crisis counselor, 24/7.',
     href: 'https://www.crisistextline.org/',
-    tel: 'sms:741741',
+    how: [
+      'Text HOME to ',
+      { text: '741741', href: 'sms:741741' },
+      ' to reach a trained crisis counselor, 24/7.',
+    ],
   },
   {
     name: 'The Trevor Project',
-    how: 'For LGBTQ+ young people under 25. Call 1-866-488-7386 or text START to 678-678, 24/7.',
     href: 'https://www.thetrevorproject.org/get-help/',
-    tel: 'tel:+18664887386',
+    how: [
+      'For LGBTQ+ young people under 25. Call ',
+      { text: '1-866-488-7386', href: 'tel:+18664887386' },
+      ' or text START to ',
+      { text: '678-678', href: 'sms:678678' },
+      ', 24/7.',
+    ],
   },
   {
     name: 'Oakland Community Health Network (OCHN)',
-    how: 'For adults in Oakland County. Call 1-888-238-0611 or walk in to the Resource and Crisis Center in Pontiac, 24/7.',
     href: 'https://oaklandchn.org/',
-    tel: 'tel:+18882380611',
+    how: [
+      'For adults in Oakland County. Call ',
+      { text: '1-888-238-0611', href: 'tel:+18882380611' },
+      ' or walk in to the Resource and Crisis Center in Pontiac, 24/7.',
+    ],
   },
 ];

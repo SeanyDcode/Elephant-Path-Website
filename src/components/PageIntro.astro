@@ -19,7 +19,7 @@ const { title, illustration } = Astro.props;
     </div>
     {
       illustration && (
-        <div class="page-intro__illus">
+        <div class="page-intro__illus reveal">
           <Illustration src={illustration.src} alt={illustration.alt} eager />
         </div>
       )

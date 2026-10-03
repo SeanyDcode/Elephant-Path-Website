@@ -1,6 +1,6 @@
 // Content collections: the blog and the library.
 // Each entry is a Markdown file in src/content/<collection>/.
-// The browser-based editor (Phase 4) will read and write these same files.
+// Content is updated through Claude Code, which edits these files directly.
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';

@@ -7,13 +7,15 @@ import { getPosts } from '../../lib/content';
 import { site } from '../../config/site';
 
 const posts = await getPosts();
+const usedTopics = [...new Set(posts.flatMap((p) => p.data.categories))];
 const suggestHref = site.email
   ? `mailto:${site.email}?subject=${encodeURIComponent('Suggested Blog Topic')}`
   : null;
 ---
 
 <BaseLayout
-  title="Blog"
+  title="Blog: Grief, Caregiving & Life Changes"
+  fullTitle="Blog: Grief, Caregiving & Life Changes | The Elephant Path"
   description="Monthly posts from Sandra Dougherty, LMSW, on grief and loss, living with illness, end of life, caregiving, parenting, and life transitions."
 >
   <PageIntro title="Blog">
@@ -25,7 +27,7 @@ const suggestHref = site.email
   <section class="section section--tight" aria-labelledby="posts">
     <div class="container">
       <h2 id="posts" class="visually-hidden">Posts</h2>
-      <CategoryFilter list="post-list" noun={['post', 'posts']} />
+      <CategoryFilter list="post-list" noun={['post', 'posts']} categories={usedTopics} />
       <ul class="grid list-reset" id="post-list" role="list">
         {posts.map((post) => <PostCard post={post} headingLevel="h3" />)}
       </ul>
@@ -36,7 +38,7 @@ const suggestHref = site.email
   </section>
 
   <section class="section section--tight band-white" id="suggest" aria-labelledby="suggest-title">
-    <div class="container narrow prose">
+    <div class="container narrow prose reveal">
       <h2 id="suggest-title">Suggest a topic</h2>
       <p>
         Is there something you’d like me to write about? I’d love to hear your ideas. Your questions
@@ -47,7 +49,7 @@ const suggestHref = site.email
         suggestHref && (
           <p>
             <a class="btn btn-primary" href={suggestHref}>
-              Email a Blog Topic Suggestion
+              Email a blog topic suggestion
             </a>
           </p>
         )

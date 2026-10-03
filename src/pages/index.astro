@@ -11,9 +11,9 @@ import { url } from '../lib/url';
 ---
 
 <BaseLayout
-  isHome
-  title="The Elephant Path | Telehealth therapy in Michigan"
-  description="Compassionate, private pay telehealth therapy for teens and adults anywhere in Michigan. Grief and loss, illness, end of life, caregiver support, parenting, and life transitions."
+  title="Online Grief Counseling in Michigan"
+  fullTitle="Online Grief Counseling in Michigan | The Elephant Path"
+  description="Telehealth grief counseling and therapy for teens and adults anywhere in Michigan. Support through loss, serious illness, caregiving, and life transitions."
 >
   <!-- Hero -->
   <section class="hero wash" aria-labelledby="hero-title">
@@ -47,24 +47,25 @@ import { url } from '../lib/url';
   <section class="section" aria-labelledby="welcome-title">
     <div class="container welcome">
       <div class="prose reveal">
-        <h2 id="welcome-title">Welcome. I’m glad you’re here.</h2>
+        <h2 id="welcome-title">Welcome. I’m glad you’re here!</h2>
         <p>
-          The Elephant Path was created with one goal: to offer care that is individualized, accessible, and affordable.
+          I created The Elephant Path to support people through grief and loss, serious illness,
+          caregiving, the end of life, parenting, and life transitions.{' '}
+          <a href={url('/services/')}>See how I can help</a>.
         </p>
         <p>
           As an independent private pay practice, I can focus fully on client centered care, without many of the limits that can come with managed care. My hope is that this
-          creates a more personal and transparent experience for every client.
+          creates a more personal experience for every client.
         </p>
         <p>
-          Whatever brought you here, it would be an honor to be part of your journey toward what
-          matters most.
+          Whatever brought you here, it would be an honor to be part of your journey.
         </p>
         <p class="signature">Sandra Dougherty, LMSW</p>
       </div>
       <div class="reveal">
         <Illustration
           src={sideBySide}
-          alt="Watercolour of a mother elephant and her calf walking side by side through wildflowers"
+          alt="Watercolor of a mother elephant and her calf walking side by side through wildflowers"
         />
       </div>
     </div>
@@ -77,7 +78,7 @@ import { url } from '../lib/url';
     <div class="container">
       <div class="section-head center reveal">
         <h2 id="steps-title">Getting started is simple</h2>
-        <p>Reaching out can be the hardest part. Here is what happens next.</p>
+        <p>Here is what happens when you reach out.</p>
       </div>
       <Steps />
       <p class="center steps-cta">

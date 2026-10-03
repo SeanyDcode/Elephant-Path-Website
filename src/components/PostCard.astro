@@ -13,7 +13,7 @@ const { post, headingLevel = 'h3' } = Astro.props;
 const H = headingLevel;
 ---
 
-<li class="card post-card" data-categories={post.data.categories.join(' ')}>
+<li class="card post-card reveal" data-categories={post.data.categories.join(' ')}>
   <p class="small muted"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time></p>
   <H class="post-title">
     <a href={url(`/blog/${post.id}/`)}>{post.data.title}</a>

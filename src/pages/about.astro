@@ -12,13 +12,14 @@ import { url } from '../lib/url';
 ---
 
 <BaseLayout
-  title="About"
-  description="Meet Sandra Dougherty, LMSW, a Michigan telehealth therapist with 18 years of experience in grief, illness, end of life, and caregiver support. Learn how the practice works and why it is private pay."
+  title="About Sandra Dougherty, LMSW"
+  fullTitle="About Sandra Dougherty, LMSW | Michigan Grief Therapist"
+  description="Meet Sandra Dougherty, LMSW, a Michigan telehealth therapist with 18 years in oncology, hospice, and grief care, and learn why the practice is private pay."
 >
   <PageIntro title="About The Elephant Path">
     <p class="lede">
-      The Elephant Path is a private pay telehealth practice for teens and adults across Michigan. It
-      was created to offer care that is individualized, accessible, and affordable.
+      The Elephant Path is a private pay telehealth practice for teens and adults across Michigan. This
+      page shares who I am, how the practice works, and why I chose private pay.
     </p>
   </PageIntro>
 
@@ -39,8 +40,8 @@ import { url } from '../lib/url';
       <div class="prose reveal">
         <h2 id="meet-sandra">Meet Sandra Dougherty, LMSW</h2>
         <p>
-          I’m Sandra, a Licensed Master Social Worker with 18 years of experience walking alongside
-          people through some of life’s hardest seasons.
+          I’m Sandra, a Licensed Master Social Worker with 18 years of experience supporting people
+          through loss, illness, and change.
         </p>
         <p>
           My path began as a medical social worker in oncology and hospice, supporting people living with cancer and serious illness, and the families who
@@ -50,11 +51,8 @@ import { url } from '../lib/url';
         <p>
           From there I moved to serving my community in outpatient mental health. Today I support
           individuals and families experiencing grief and loss, chronic and terminal illness,
-          life-limiting illness, death and dying, caregiving, parenting, anxiety, and life transitions. I founded The Elephant Path to offer this care in a more
-          personal and transparent way.
-        </p>
-        <p>
-          I work with teens and adults of all ages, individually and with their families.
+          life-limiting illness, death and dying, caregiving, parenting, anxiety, and life transitions. I founded The Elephant Path to offer this care in a
+          simpler, more direct way.
         </p>
       </div>
     </div>
@@ -113,7 +111,7 @@ import { url } from '../lib/url';
     <div class="container">
       <div class="section-head reveal">
         <h2 id="how-it-works">How the practice works</h2>
-        <p>I’ve kept things simple, so you can focus on what matters.</p>
+        <p>I’ve kept things simple.</p>
       </div>
       <ul class="grid how-grid" role="list">
         <li class="card reveal">
@@ -177,7 +175,7 @@ import { url } from '../lib/url';
         <p>
           The Elephant Path offers numerous benefits and protections not available through typical
           insurance-participating practices. I know that paying out of pocket is a change for many people,
-          so I want to explore why I chose this model and how it can serve you.
+          so I want to share why I chose this model and how it can serve you.
         </p>
       </div>
       <ol class="grid pay-grid" role="list">
@@ -227,64 +225,67 @@ import { url } from '../lib/url';
       </div>
       <div class="prose">
         <h2 id="why-elephants-title" class="reveal">Why elephants?</h2>
-        <div class="elephants-illus">
+        <div class="elephants-illus reveal">
           <Illustration
             src={walkingFamily}
-            alt="Watercolour of an elephant family, with a calf between two adults, walking along a path"
+            alt="Watercolor of an elephant family, with a calf between two adults, walking along a path"
             sizes="(min-width: 55em) 44rem, 92vw"
           />
         </div>
-        <p class="reveal">
-          The elephant is at the heart of this practice, and they connect closely to my own path.
-        </p>
+        <!-- The text fades in as one block -->
+        <div class="prose reveal">
+          <p>
+            Elephants are at the heart of this practice, and they connect closely to my own path.
+          </p>
 
-        <h3 class="reveal">A herd that stays close</h3>
-        <p class="reveal">
-          Elephants live in close-knit family groups and form deep, lasting bonds. They care for one
-          another’s young and move through the world together.
-        </p>
+          <h3>A herd that stays close</h3>
+          <p>
+            Elephants live in close-knit family groups and form deep, lasting bonds. They care for one
+            another’s young and move through the world together.
+          </p>
 
-        <h3 class="reveal">Witnessing grief together</h3>
-        <p class="reveal">
-          Researchers have observed elephants approaching, touching, and staying near other elephants who have
-          died, witnessing and supporting one another through grief.<sup
-            ><a href="#source-1" id="ref-1">1</a></sup
-          > That is the heart of my work: no one should have to walk through loss alone.
-        </p>
+          <h3>Witnessing grief together</h3>
+          <p>
+            Researchers have observed elephants approaching, touching, and staying near other elephants who have
+            died, witnessing and supporting one another through grief.<sup
+              ><a href="#source-1" id="ref-1" aria-label="Source 1">1</a></sup
+            > That is what guides my work: no one should have to walk through loss alone.
+          </p>
 
-        <h3 class="reveal">Elephants and cancer research</h3>
-        <p class="reveal">
-          Elephants get cancer far less often than you might expect for such large, long-lived animals. In 2015,
-          researchers found that elephants carry at least 20 copies of TP53, a gene that helps stop
-          tumors from forming. Humans have just one.<sup><a href="#source-2" id="ref-2">2</a></sup>
-          Scientists, including pediatric doctors, are now studying how the elephant version of
-          this gene might one day help treat cancer, especially in children.<sup
-            ><a href="#source-3" id="ref-3">3</a></sup
-          >
-        </p>
+          <h3>Elephants and cancer research</h3>
+          <p>
+            Elephants get cancer far less often than you might expect for such large, long-lived animals. In 2015,
+            researchers found that elephants carry at least 20 copies of TP53, a gene that helps stop
+            tumors from forming. Humans have just one.<sup
+              ><a href="#source-2" id="ref-2" aria-label="Source 2">2</a></sup
+            >{' '}Scientists, including pediatric doctors, are now studying how the elephant version of
+            this gene might one day help treat cancer, especially in children.<sup
+              ><a href="#source-3" id="ref-3" aria-label="Source 3">3</a></sup
+            >
+          </p>
 
-
-        <div class="sources">
-          <h3 class="small">Sources</h3>
-          <ol>
-            <li id="source-1">
-              Goldenberg, S. Z., &amp; Wittemyer, G. (2020). Elephant behavior toward the dead: A review
-              and insights from field observations. <cite>Primates</cite>, 61, 119–128. <ExternalLink
-                href="https://link.springer.com/article/10.1007/s10329-019-00766-5">Read the study</ExternalLink
-              >
-            </li>
-            <li id="source-2">
-              Abegglen, L. M., et al. (2015). Potential mechanisms for cancer resistance in elephants and
-              comparative cellular response to DNA damage in humans. <cite>JAMA</cite>, 314(17),
-              1850–1860. <ExternalLink href="https://doi.org/10.1001/jama.2015.13134">Read the study</ExternalLink
-              >
-            </li>
-            <li id="source-3">
-              Schiffman Lab, Huntsman Cancer Institute, University of Utah Health. <ExternalLink
-                href="https://uofuhealth.utah.edu/huntsman/labs/schiffman/research">p53 studies</ExternalLink
-              >
-            </li>
-          </ol>
+          <div class="sources">
+            <h3 class="small">Sources</h3>
+            <ol>
+              <li id="source-1">
+                Goldenberg, S. Z., &amp; Wittemyer, G. (2020). Elephant behavior toward the dead: A review
+                and insights from field observations. <cite>Primates</cite>, 61, 119–128. <ExternalLink
+                  href="https://link.springer.com/article/10.1007/s10329-019-00766-5">Read the study</ExternalLink
+                >
+              </li>
+              <li id="source-2">
+                Abegglen, L. M., et al. (2015). Potential mechanisms for cancer resistance in elephants and
+                comparative cellular response to DNA damage in humans. <cite>JAMA</cite>, 314(17),
+                1850–1860. <ExternalLink href="https://doi.org/10.1001/jama.2015.13134">Read the study</ExternalLink
+                >
+              </li>
+              <li id="source-3">
+                Schiffman Lab, Huntsman Cancer Institute, University of Utah Health. <ExternalLink
+                  href="https://uofuhealth.utah.edu/huntsman/labs/schiffman/research">p53 studies</ExternalLink
+                >
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>

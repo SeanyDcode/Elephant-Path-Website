@@ -27,12 +27,12 @@
     vector-effect: non-scaling-stroke;
   }
   @media (prefers-reduced-motion: no-preference) {
-    :global(.js) .winding-line {
+    :global(.reveal-ready) .winding-line {
       stroke-dasharray: 1;
       stroke-dashoffset: 1;
       transition: stroke-dashoffset 1.6s var(--ease);
     }
-    :global(.js) .winding-fly {
+    :global(.reveal-ready) .winding-fly {
       opacity: 0;
       transition: opacity 500ms var(--ease) 1.4s;
     }
