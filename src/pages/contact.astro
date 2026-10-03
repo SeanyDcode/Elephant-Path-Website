@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Steps from '../components/Steps.astro';
-import ExternalLink from '../components/ExternalLink.astro';
 import ToConfirm from '../components/ToConfirm.astro';
 import { site } from '../config/site';
 import hugging from '../assets/illustrations/hugging-elephants.png';
@@ -25,15 +24,8 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
     </p>
   </PageIntro>
 
-  <section class="section section--tight band-sage" aria-labelledby="next">
+  <section class="section section--tight" aria-labelledby="reach">
     <div class="container">
-      <h2 id="next" class="center steps-heading">What happens next</h2>
-      <Steps />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="reach">
-    <div class="container split">
       <div class="panel reach reveal">
         <h2 id="reach">Call, text, or email</h2>
         <p>Reach out whichever way is easiest for you, and I’ll get back to you by the end of the next business day.</p>
@@ -51,22 +43,13 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
           phone.
         </p>
       </div>
+    </div>
+  </section>
 
-      <aside class="stack" aria-label="More information">
-        <div class="panel">
-          <h2 class="panel-title">Find me online</h2>
-          <p>
-            <ExternalLink href={site.links.psychologyToday}>Psychology Today profile</ExternalLink>
-          </p>
-        </div>
-
-        <div class="panel">
-          <h2 class="panel-title">Already a client?</h2>
-          <p>
-            <ExternalLink href={site.links.clientPortal}>Go to the Client Portal</ExternalLink>
-          </p>
-        </div>
-      </aside>
+  <section class="section section--tight band-sage" aria-labelledby="next">
+    <div class="container">
+      <h2 id="next" class="center steps-heading">What happens next</h2>
+      <Steps />
     </div>
   </section>
 </BaseLayout>
@@ -75,8 +58,8 @@ import hugging from '../assets/illustrations/hugging-elephants.png';
   .steps-heading {
     margin-bottom: var(--space-l);
   }
-  .panel-title {
-    font-size: var(--step-1);
+  .reach {
+    max-width: var(--measure);
   }
   .reach h2 {
     font-size: var(--step-2);
