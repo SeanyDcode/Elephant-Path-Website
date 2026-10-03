@@ -11,7 +11,7 @@ const H = headingLevel;
 ---
 
 <div class="crisis-box">
-  <H class="crisis-title" id="crisis-lines">If you need help right now</H>
+  <H class="crisis-title" id="crisis-lines">Emergency resources</H>
   <p>
     I’m not able to offer emergency support. If you are in danger or need immediate medical help,
     call <a href="tel:911"><strong>911</strong></a>. In addition, these free, confidential lines are
@@ -24,7 +24,11 @@ const H = headingLevel;
           <p class="line-name">
             <ExternalLink href={line.href}>{line.name}</ExternalLink>
           </p>
-          <p>{line.how}</p>
+          <p>
+            {line.how.map((piece) =>
+              typeof piece === 'string' ? piece : <a href={piece.href}>{piece.text}</a>
+            )}
+          </p>
         </li>
       ))
     }
