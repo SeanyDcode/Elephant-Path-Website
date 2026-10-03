@@ -27,7 +27,10 @@ const { title, description, updated, draft = true } = Astro.props;
       }
       {updated && <p class="muted small">Last updated: {updated}</p>}
       {draft && !updated && <p class="muted small">Last updated: <ToConfirm note="TO CONFIRM: date" /></p>}
-      <slot />
+      <!-- The policy text fades in as one block -->
+      <div class="prose reveal">
+        <slot />
+      </div>
     </div>
   </article>
 </BaseLayout>

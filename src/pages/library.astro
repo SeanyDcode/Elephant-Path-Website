@@ -31,7 +31,7 @@ const usedTopics = [...new Set(books.flatMap((b) => b.data.categories))];
       <ul class="book-list" id="book-list" role="list">
         {
           books.map((book) => (
-            <li class="book" data-categories={book.data.categories.join(' ')}>
+            <li class="book reveal" data-categories={book.data.categories.join(' ')}>
               <h3 class="book-title">
                 {book.data.link ? <ExternalLink href={book.data.link}>{book.data.title}</ExternalLink> : book.data.title}
                 {book.data.sample && <>{' '}<ToConfirm note="SAMPLE" /></>}
