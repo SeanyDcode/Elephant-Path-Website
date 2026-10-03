@@ -71,6 +71,13 @@ const usedTopics = [...new Set(books.flatMap((b) => b.data.categories))];
     gap: var(--space-m);
     max-width: 48rem;
   }
+  /* Two columns on wide screens */
+  @media (min-width: 60em) {
+    .book-list {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: none;
+    }
+  }
   .book {
     background: var(--surface);
     border-radius: var(--radius-m);

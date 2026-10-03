@@ -9,7 +9,7 @@ const steps = [
   { title: 'Request a consultation', text: 'Call, text, or email me.' },
   { title: 'I’ll call you', text: 'I’ll reach out by the end of the next business day.' },
   {
-    title: 'Your free 15-minute consultation',
+    title: 'Your free 15‑minute consultation',
     text: 'We’ll talk about what you’re looking for and whether we’re a good fit.',
   },
 ];
@@ -35,7 +35,13 @@ const steps = [
     padding: 0;
     display: grid;
     gap: var(--space-m);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    grid-template-columns: 1fr;
+  }
+  /* One column, or all three side by side: never two plus one */
+  @media (min-width: 52em) {
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   .step {
     background: var(--bg);

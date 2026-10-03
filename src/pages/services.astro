@@ -44,7 +44,7 @@ import { url } from '../lib/url';
         <h2 id="focus">How I can help</h2>
         <p>These are the areas I focus on most.</p>
       </div>
-      <ul class="grid focus-grid" role="list">
+      <ul class="focus-grid" role="list">
         {
           focusAreas.map((area) => (
             <li class="card reveal" id={area.id}>
@@ -126,9 +126,33 @@ import { url } from '../lib/url';
 </BaseLayout>
 
 <style>
+  /* Seven cards in even rows: one column on phones, two on tablets (the
+     last card spans both), four then three on wide screens (last row
+     centered). No card sits alone at the left. */
   .focus-grid {
     list-style: none;
     padding: 0;
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40em) {
+    .focus-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .focus-grid > li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 64em) {
+    .focus-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .focus-grid > li {
+      flex: 0 0 calc((100% - 3 * var(--space-m)) / 4);
+    }
   }
   .focus-grid > li {
     scroll-margin-top: var(--space-l);
