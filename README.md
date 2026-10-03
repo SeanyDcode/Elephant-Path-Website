@@ -35,11 +35,12 @@ The plan for the whole site is in [`build-brief.md`](build-brief.md).
 | What | Where |
 |---|---|
 | Pages (Home, About, and so on) | `src/pages/` (each file is one page) |
+| Notice of Privacy Practices | `src/pages/privacy.astro` (the owner's document, word for word) |
 | Blog posts | `src/content/blog/` (one Markdown file per post) |
 | Library books | `src/content/library/` (one file per book) |
 | Phone, email, links, fees, focus areas, crisis lines, menu | `src/config/site.ts`, one place for all of them |
 | Colours, fonts, spacing | `src/styles/tokens.css` |
-| General look (buttons, cards, forms) | `src/styles/global.css` |
+| General look (buttons, cards, panels) | `src/styles/global.css` |
 | Header, footer and other building blocks | `src/components/` |
 | Page frame shared by every page | `src/layouts/BaseLayout.astro` |
 | Logo files | `src/assets/brand/` |
@@ -93,7 +94,7 @@ each checkpoint.
 
 ## At launch (Phase 6)
 
-Set `CUSTOM_DOMAIN_LIVE = true` in `astro.config.mjs`, add `public/CNAME`,
+Set `CUSTOM_DOMAIN_LIVE = true` in `site.config.mjs`, add `public/CNAME`,
 connect the domain in Cloudflare and GitHub, and remove the temporary
 "hide from search engines" setting (it switches off automatically with the flag).
 Step-by-step instructions will be provided then.
