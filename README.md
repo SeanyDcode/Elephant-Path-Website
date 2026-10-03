@@ -5,7 +5,6 @@ practice serving clients across Michigan.
 
 - **Prototype (while we build):** https://seanydcode.github.io/Elephant-Path-Website/
 - **Final address (after launch):** https://walktheelephantpath.com
-- **Style tile (look and feel overview):** https://seanydcode.github.io/Elephant-Path-Website/style-tile/
 
 The plan for the whole site is in [`build-brief.md`](build-brief.md).
 
@@ -50,9 +49,9 @@ The plan for the whole site is in [`build-brief.md`](build-brief.md).
 | Automatic publishing and checks | `.github/workflows/` |
 | Helper scripts (logo cropping, checks) | `scripts/` |
 
-A simple browser-based editor for writing blog posts and adding library books
-will be set up in Phase 4. Until then, posts and books are plain text files in
-`src/content/`.
+Blog posts and library books are plain text files in `src/content/`. Content
+is updated through Claude Code: describe the change, and it edits these files
+and opens a pull request for you to review.
 
 ### Notes marked [TO CONFIRM]
 

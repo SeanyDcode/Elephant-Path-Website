@@ -9,7 +9,7 @@ Prepared for Claude Code. Read this whole document before starting. Build in the
 - **Business:** The Elephant Path, PLLC, a private pay counseling practice.
 - **Clinician:** Sandra Dougherty, LMSW (Michigan license #6801089986).
 - **Location:** Clarkston, MI 48348. Telehealth only; no street address is shown.
-- **Phone:** (248) 831-0523.
+- **Phone:** (248) 795-5517.
 - **Hours:** Monday through Thursday, 9am to 5pm.
 - **Tagline (from the owner's notes):** "Mental wellness for the modern world." Supporting line: "Simple. Accessible. Individualized care."
 - **Delivery:** Telehealth only. Serves clients anywhere in **Michigan**. Clients must be physically in Michigan during each session.
@@ -387,7 +387,7 @@ Contrast rules:
 - [ ] Bio details: education, experience, approach and modalities, personal note
 - [ ] The personal "why elephants" story
 - [x] TherapyNotes client portal URL
-- [x] Phone: (248) 831-0523
+- [x] Phone: (248) 795-5517
 - [ ] Doxy.me room link (only if it should be shown on the site)
 - [ ] How appointment reminders are sent, if clients should be told
 - [ ] Practice email (ideally Google Workspace with a BAA) and phone
