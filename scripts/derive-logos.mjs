@@ -48,4 +48,15 @@ await squareIcon(32, 0.02, `${PUBLIC}/favicon-32.png`);
 await squareIcon(180, 0.08, `${PUBLIC}/apple-touch-icon.png`);
 await squareIcon(512, 0.08, `${PUBLIC}/icon-512.png`);
 
+// Link preview image (shown when the site is shared): the full logo
+// centred on the cream page background, 1200 x 630.
+const ogLogo = await sharp(SRC)
+  .trim({ threshold: 1 })
+  .resize({ height: 520, fit: 'inside' })
+  .toBuffer();
+await sharp({ create: { width: 1200, height: 630, channels: 4, background: '#F8F7F3' } })
+  .composite([{ input: ogLogo, gravity: 'center' }])
+  .png()
+  .toFile(`${PUBLIC}/og-image.png`);
+
 console.log('Logo variants written to', OUT, 'and', PUBLIC);
