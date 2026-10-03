@@ -10,6 +10,10 @@
 * {
   margin: 0;
 }
+/* The hidden attribute always wins, even over display rules like .card's flex */
+[hidden] {
+  display: none !important;
+}
 img,
 svg,
 picture {
@@ -403,18 +407,26 @@ fieldset {
   background: radial-gradient(closest-side, #f4ecc4, transparent);
 }
 
-/* ---------- Motion: gentle rise as content enters view ---------- */
+/* ---------- Motion: gentle rise as content enters view ----------
+   Content is hidden only once the reveal script is running (it adds
+   .reveal-ready to <html>), so if the script never runs, nothing is hidden. */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal {
+  .reveal-ready .reveal {
     opacity: 0;
     transform: translateY(14px);
     transition:
       opacity var(--dur) var(--ease),
       transform var(--dur) var(--ease);
   }
-  .js .reveal.is-visible {
+  .reveal-ready .reveal.is-visible {
     opacity: 1;
     transform: none;
+  }
+}
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 @media (prefers-reduced-motion: reduce) {

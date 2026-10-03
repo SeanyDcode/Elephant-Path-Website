@@ -9,6 +9,7 @@ import { focusAreaTitle } from '../config/site';
 import { getBooks } from '../lib/content';
 
 const books = await getBooks();
+const usedTopics = [...new Set(books.flatMap((b) => b.data.categories))];
 ---
 
 <BaseLayout
@@ -25,7 +26,7 @@ const books = await getBooks();
   <section class="section section--tight" aria-labelledby="books">
     <div class="container">
       <h2 id="books" class="visually-hidden">Books</h2>
-      <CategoryFilter list="book-list" noun={['book', 'books']} />
+      <CategoryFilter list="book-list" noun={['book', 'books']} categories={usedTopics} />
       <ul class="book-list" id="book-list" role="list">
         {
           books.map((book) => (

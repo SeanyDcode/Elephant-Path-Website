@@ -7,6 +7,7 @@ import { getPosts } from '../../lib/content';
 import { site } from '../../config/site';
 
 const posts = await getPosts();
+const usedTopics = [...new Set(posts.flatMap((p) => p.data.categories))];
 const suggestHref = site.email
   ? `mailto:${site.email}?subject=${encodeURIComponent('Suggested Blog Topic')}`
   : null;
@@ -25,7 +26,7 @@ const suggestHref = site.email
   <section class="section section--tight" aria-labelledby="posts">
     <div class="container">
       <h2 id="posts" class="visually-hidden">Posts</h2>
-      <CategoryFilter list="post-list" noun={['post', 'posts']} />
+      <CategoryFilter list="post-list" noun={['post', 'posts']} categories={usedTopics} />
       <ul class="grid list-reset" id="post-list" role="list">
         {posts.map((post) => <PostCard post={post} headingLevel="h3" />)}
       </ul>
