@@ -19,7 +19,7 @@ const fullTitle = isHome ? title : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 // Keep search engines away from the prototype address. Remove at launch
-// by setting CUSTOM_DOMAIN_LIVE in astro.config.mjs.
+// by setting CUSTOM_DOMAIN_LIVE in site.config.mjs.
 const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
 ---
 
@@ -74,6 +74,8 @@ const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
           },
           { rootMargin: '0px 0px -10% 0px' }
         );
+        // Only now is it safe to hide content until it scrolls into view.
+        document.documentElement.classList.add('reveal-ready');
         items.forEach((el) => io.observe(el));
       }
     </script>
