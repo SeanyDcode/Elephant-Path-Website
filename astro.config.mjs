@@ -2,16 +2,12 @@
 import { defineConfig } from 'astro/config';
 import { satteri } from '@astrojs/markdown-satteri';
 import { externalLinks } from './src/lib/markdown-external-links.mjs';
+import { SITE, BASE_PATH } from './site.config.mjs';
 
-// While the site is a prototype it lives at
-// https://seanydcode.github.io/Elephant-Path-Website/
-// At launch (Phase 6), set CUSTOM_DOMAIN_LIVE to true. That switches the
-// address to https://walktheelephantpath.com and removes the temporary base path.
-const CUSTOM_DOMAIN_LIVE = false;
-
+// The launch switch lives in site.config.mjs.
 export default defineConfig({
-  site: CUSTOM_DOMAIN_LIVE ? 'https://walktheelephantpath.com' : 'https://seanydcode.github.io',
-  base: CUSTOM_DOMAIN_LIVE ? '/' : '/Elephant-Path-Website',
+  site: SITE,
+  base: BASE_PATH || '/',
   trailingSlash: 'ignore',
   markdown: {
     processor: satteri({ hastPlugins: [externalLinks] }),

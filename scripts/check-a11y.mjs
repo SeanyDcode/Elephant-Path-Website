@@ -14,9 +14,9 @@ import { AxeBuilder } from '@axe-core/playwright';
 import { createServer } from 'node:http';
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, relative, sep } from 'node:path';
+import { BASE_PATH as BASE } from '../site.config.mjs';
 
 const PORT = 4329;
-const BASE = '/Elephant-Path-Website';
 const ORIGIN = `http://localhost:${PORT}`;
 
 async function findPages(dir) {
@@ -176,13 +176,18 @@ try {
       const listId = await filter.first().getAttribute('data-filter');
       const items = formPage.locator(`#${listId} [data-categories]`);
       const total = await items.count();
-      const first = await items.first().getAttribute('data-categories');
-      const topic = first?.split(' ')[0];
+      // Pick a topic from any item that has one.
+      const topic = await items.evaluateAll(
+        (els) => els.map((e) => e.dataset.categories.split(' ').filter(Boolean)[0]).find(Boolean) ?? null
+      );
       if (topic) {
         await filter.locator(`button[data-value="${topic}"]`).click();
         const pressed = await filter.locator(`button[data-value="${topic}"]`).getAttribute('aria-pressed');
         if (pressed !== 'true') report('[filter] chosen topic button is not marked pressed');
-        const shown = await items.evaluateAll((els) => els.filter((e) => !e.hidden).length);
+        // Count what is actually on screen (computed display), not the hidden flag.
+        const shown = await items.evaluateAll(
+          (els) => els.filter((e) => getComputedStyle(e).display !== 'none').length
+        );
         const expected = await items.evaluateAll(
           (els, t) => els.filter((e) => e.dataset.categories.split(' ').includes(t)).length,
           topic
