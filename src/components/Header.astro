@@ -242,9 +242,10 @@ const onGetStarted = isCurrent('/contact/', pathname);
       padding-inline: var(--space-xs);
     }
   }
-  /* Phones: icon-only menu button so the header fits on one row.
-     The word "Menu" stays available to screen readers. */
-  @media (max-width: 30em) {
+  /* Phones and small tablets: icon-only menu button and a smaller logo so
+     the header fits on one row. The word "Menu" stays available to screen
+     readers. */
+  @media (max-width: 36em) {
     .header-inner {
       column-gap: var(--space-xs);
     }
@@ -269,6 +270,13 @@ const onGetStarted = isCurrent('/contact/', pathname);
     }
     .get-started {
       padding-inline: 0.75em;
+    }
+  }
+
+  /* Above the compact header, the name always stays on one line */
+  @media (min-width: 36.01em) {
+    .brand-name {
+      white-space: nowrap;
     }
   }
 
