@@ -11,7 +11,7 @@ export default defineConfig({
   base: BASE_PATH || '/',
   trailingSlash: 'ignore',
   // Pages marked no-index (the 404 page) stay out of the sitemap.
-  integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) && !page.includes('/style-tile') })],
+  integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) })],
   markdown: {
     processor: satteri({ hastPlugins: [externalLinks] }),
   },
