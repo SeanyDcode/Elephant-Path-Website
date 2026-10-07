@@ -32,7 +32,6 @@ export const nav = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about/' },
   { label: 'Services & Fees', href: '/services/' },
-  { label: 'Blog', href: '/blog/' },
   { label: 'Library', href: '/library/' },
 ];
 
@@ -55,6 +54,7 @@ export const alsoSupport = [
   'Divorce',
   'First responders',
   'Older adults',
+  'Parenting',
   'Anxiety',
 ];
 
@@ -83,7 +83,7 @@ export const focusAreas = [
     blurb:
       'Ongoing support for living with a serious diagnosis over months or years, not only at the end of life.',
     description:
-      'Some illnesses shorten life but are lived with over months or years. This kind of diagnosis brings its own questions: how to plan, how to keep living fully, and how to hold hope and hard news at the same time. I offer ongoing support for the whole journey, not only its final stage.',
+      'Some illnesses shorten life but are lived over months or years. This kind of diagnosis brings its own questions: how to plan, how to keep living fully, and how to hold hope and hard news at the same time. I offer ongoing support for the whole journey, not only its final stage.',
   },
   {
     id: 'end-of-life',
@@ -91,7 +91,7 @@ export const focusAreas = [
     blurb:
       'Gentle support for people nearing the end of life, and for the families who are with them.',
     description:
-      'Nearing the end of life can bring fear, reflection, unfinished business, and moments of deep connection. I offer gentle support to people facing the end of life and to the families who are with them, drawing on my years of work in hospice.',
+      'Nearing the end of life can bring fear, reflection, unfinished business, and moments of deep connection. I offer gentle support to people facing the end of life and to the families who love them, drawing on my years of work in hospice.',
   },
   {
     id: 'caregiver-support',
@@ -103,6 +103,9 @@ export const focusAreas = [
   },
   {
     id: 'parenting',
+    // Listed under "I also support" on Services rather than as a card, but
+    // still a Library and Blog topic.
+    supportOnly: true,
     title: 'Parenting',
     blurb: 'Support with the everyday moments, and the harder ones, of raising children and teens.',
     description:
