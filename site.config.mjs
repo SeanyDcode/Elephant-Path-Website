@@ -4,7 +4,7 @@
 // https://seanydcode.github.io/Elephant-Path-Website/
 // At launch, set CUSTOM_DOMAIN_LIVE to true. That switches the address to
 // https://walktheelephantpath.com and removes the temporary base path.
-export const CUSTOM_DOMAIN_LIVE = false;
+export const CUSTOM_DOMAIN_LIVE = true;
 
 export const SITE = CUSTOM_DOMAIN_LIVE
   ? 'https://walktheelephantpath.com'

@@ -54,8 +54,10 @@ delete those first.
 
 ## 4. (Claude Code) Switch the site to the new address
 
-Claude Code sets `CUSTOM_DOMAIN_LIVE` to `true` in `site.config.mjs`, adds
-`public/CNAME`, and opens a pull request. After you merge it:
+Claude Code sets `CUSTOM_DOMAIN_LIVE` to `true` in `site.config.mjs` and opens a
+pull request. Merge it **right after** step 3's "Save", so the site and the
+address switch over together. (No `CNAME` file is needed: the site is published
+by GitHub Actions, and GitHub ignores that file in this setup.) After you merge it:
 
 - the "hide from search engines" tag is removed;
 - the sitemap, robots.txt, link preview image, and business details for Google

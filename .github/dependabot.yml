@@ -1,0 +1,12 @@
+# Checks weekly for updates to the site's packages and GitHub Actions, and
+# opens a pull request for each. The Checks workflow tests every one.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
