@@ -3,8 +3,7 @@
 The website for **The Elephant Path, PLLC**, a private pay telehealth counseling
 practice serving clients across Michigan.
 
-- **Prototype (while we build):** https://seanydcode.github.io/Elephant-Path-Website/
-- **Final address (after launch):** https://walktheelephantpath.com
+- **Live site:** https://walktheelephantpath.com
 
 The plan for the whole site is in [`build-brief.md`](build-brief.md).
 
@@ -92,9 +91,11 @@ each checkpoint.
 - Fonts are stored in the site itself (no calls to Google). There are no ad
   pixels or trackers.
 
-## At launch (Phase 6)
+## The live address
 
-Set `CUSTOM_DOMAIN_LIVE = true` in `site.config.mjs`, add `public/CNAME`,
-connect the domain in Cloudflare and GitHub, and remove the temporary
-"hide from search engines" setting (it switches off automatically with the flag).
-Step-by-step instructions will be provided then.
+The site is served at https://walktheelephantpath.com. Cloudflare handles the
+domain's DNS (set to "DNS only"), and the domain is set in the repository's
+**Settings → Pages**. `CUSTOM_DOMAIN_LIVE` in `site.config.mjs` is `true`, which
+serves the site from the domain root and lets search engines index it. No
+`CNAME` file is needed because the site is published by GitHub Actions. The
+full setup is written down in `docs/launch-day.md`.
