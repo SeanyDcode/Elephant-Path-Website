@@ -23,7 +23,6 @@ import { url } from '../lib/url';
       I offer compassionate and evidence-based care for people facing loss, illness, and change, with
       clear fees and no surprises.
     </p>
-    <p><a href="#fees">Skip to fees</a></p>
   </PageIntro>
 
   <!-- Who I work with -->
@@ -47,7 +46,7 @@ import { url } from '../lib/url';
       </div>
       <ul class="focus-grid" role="list">
         {
-          focusAreas.map((area) => (
+          focusAreas.filter((area) => !area.supportOnly).map((area) => (
             <li class="card reveal" id={area.id}>
               <h3>
                 {area.title}
@@ -59,7 +58,7 @@ import { url } from '../lib/url';
       </ul>
 
       <div class="also reveal">
-        <h3>I also support people with</h3>
+        <h3>I also support</h3>
         <ul class="also-list" role="list">
           {alsoSupport.map((item) => <li class="tag">{item}</li>)}
         </ul>
@@ -127,9 +126,9 @@ import { url } from '../lib/url';
 </BaseLayout>
 
 <style>
-  /* Seven cards in even rows: one column on phones, two on tablets (the
-     last card spans both), four then three on wide screens (last row
-     centered). No card sits alone at the left. */
+  /* Focus-area cards in even rows: one column on phones, two on tablets
+     (an odd last card spans both), three on wide screens. No card sits
+     alone at the left. */
   .focus-grid {
     list-style: none;
     padding: 0;
@@ -152,7 +151,7 @@ import { url } from '../lib/url';
       justify-content: center;
     }
     .focus-grid > li {
-      flex: 0 0 calc((100% - 3 * var(--space-m)) / 4);
+      flex: 0 0 calc((100% - 2 * var(--space-m)) / 3);
     }
   }
   .focus-grid > li {
