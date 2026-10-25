@@ -7,7 +7,7 @@ categories: []
 
 Many traditional practices bill insurance and rely on office staff to manage your care. The Elephant Path takes a more direct approach.
 
-- **Clear, upfront pricing.** Before care begins, you and I will talk through the cost of services and create a care agreement together. You’ll receive a written Good Faith Estimate and have the chance to ask questions. Payment is due within 24 hours of each appointment, so there are no surprise bills weeks later.
+- **Clear, upfront pricing.** Before care begins, you and I will talk through the cost of services and create a care agreement together. You’ll receive a written Good Faith Estimate and have the chance to ask questions. Payment is due at the time of service for each appointment, so there are no surprise bills weeks later.
 - **Greater privacy.** Without insurance billing, your clinical information doesn’t need to be shared with an insurance company for claims or reviews. There are no front desk staff or billers handling your information, and your records are kept confidential in accordance with privacy laws.
 - **A sliding fee scale.** Your financial circumstances shouldn’t keep you from getting support. A sliding fee scale is available to make care accessible to more people.
 - **Care built around you.** You and I decide together on your treatment approach, how often we meet, and the cost of your care. These decisions are based on your needs and goals, and they can change as you do.
