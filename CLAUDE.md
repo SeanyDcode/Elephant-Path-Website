@@ -51,10 +51,9 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
   seven focus areas include "Life-limiting illness", id `life-limiting-illness`)
   plus the extra topics in `extraTopics` (`mindfulness`), which have no Services card.
   Topic filters show only topics that have items, and none with fewer than two.
-- The Blog is hidden for launch: its pages live in `src/pages/_blog/` (Astro
-  skips folders starting with `_`) and it's out of the menu (`nav` in
-  `src/config/site.ts`). To bring it back, rename the folder to `blog` and
-  re-add `{ label: 'Blog', href: '/blog/' }` to `nav`.
+- Blog posts are the owner's own writing: keep their wording, and raise any
+  conflict with other pages (fees, policies) rather than rewording it. The
+  intro at the top of the Blog page is also the owner's text.
 - On Services, Parenting is listed under "I also support" (`supportOnly` in
   `focusAreas`), not as a card; it remains a Library topic.
 - There are no forms. Clients call, text, or email; blog topics are suggested
