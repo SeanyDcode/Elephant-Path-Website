@@ -48,7 +48,8 @@ guessing. Build in the phases in section 12 and stop at each checkpoint.
 - Illustration slots: `docs/image-manifest.md`.
 - Blog and library: Markdown content collections in `src/content/`
   (schema in `src/content.config.ts`). Categories are the focus-area ids (the
-  seven focus areas include "Life-limiting illness", id `life-limiting-illness`).
+  seven focus areas include "Life-limiting illness", id `life-limiting-illness`)
+  plus the extra topics in `extraTopics` (`mindfulness`), which have no Services card.
   Topic filters show only topics that have items, and none with fewer than two.
 - The Blog is hidden for launch: its pages live in `src/pages/_blog/` (Astro
   skips folders starting with `_`) and it's out of the menu (`nav` in

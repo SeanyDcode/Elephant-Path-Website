@@ -3,7 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ToConfirm from '../../components/ToConfirm.astro';
 import { getPosts, formatDate } from '../../lib/content';
-import { focusAreaTitle } from '../../config/site';
+import { topicTitle } from '../../config/site';
 import { url } from '../../lib/url';
 
 export async function getStaticPaths() {
@@ -33,7 +33,7 @@ const { Content } = await render(post);
           <p class="post-tags">
             {post.data.categories.map((c) => (
               <a class="tag" href={url(`/blog/?category=${c}`)}>
-                {focusAreaTitle(c)}
+                {topicTitle(c)}
               </a>
             ))}
           </p>

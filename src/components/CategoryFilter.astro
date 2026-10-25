@@ -3,15 +3,15 @@
 // Hidden until JavaScript runs; without it, every item simply shows.
 // Pages pass only the topics that have at least one item. With fewer than
 // two such topics there is nothing to filter, so nothing is shown.
-import { focusAreas } from '../config/site';
+import { topics } from '../config/site';
 
 interface Props {
   list: string; // id of the list element to filter
   noun: [string, string]; // e.g. ['post', 'posts']
-  categories: string[]; // focus-area ids used by at least one item
+  categories: string[]; // topic ids used by at least one item
 }
 const { list, noun, categories } = Astro.props;
-const options = focusAreas.filter((a) => categories.includes(a.id));
+const options = topics.filter((t) => categories.includes(t.id));
 const show = options.length >= 2;
 ---
 

@@ -4,9 +4,9 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { focusAreaIds } from './config/site';
+import { topicIds } from './config/site';
 
-const category = z.enum(focusAreaIds);
+const category = z.enum(topicIds);
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),

@@ -22,6 +22,7 @@ export const site = {
     clientPortal: 'https://www.therapyportal.com/p/sandradougherty/',
     psychologyToday:
       'https://www.psychologytoday.com/us/therapists/sandra-dougherty-clarkston-mi/1849683',
+    linkedIn: 'https://www.linkedin.com/in/sandra-dougherty-theelephantpath/',
     noSurprises: 'https://www.cms.gov/nosurprises',
     // Only set this if the owner wants the Doxy.me room link shown on the site.
     doxyMeRoom: null as string | null,
@@ -120,9 +121,15 @@ export const focusAreas = [
   },
 ];
 
+// Extra Library and Blog topics that aren't focus areas (no card on Services).
+export const extraTopics = [{ id: 'mindfulness', title: 'Mindfulness' }];
+
+// Every topic a book or post can be filed under: the focus areas, then the extras.
+export const topics: { id: string; title: string }[] = [...focusAreas, ...extraTopics];
+
 export type FocusAreaId = (typeof focusAreas)[number]['id'];
-export const focusAreaIds = focusAreas.map((a) => a.id) as [string, ...string[]];
-export const focusAreaTitle = (id: string) => focusAreas.find((a) => a.id === id)?.title ?? id;
+export const topicIds = topics.map((t) => t.id) as [string, ...string[]];
+export const topicTitle = (id: string) => topics.find((t) => t.id === id)?.title ?? id;
 
 // Crisis and support lines, checked September 2026. Re-check before launch.
 // Each line's description is a list of pieces: plain text, or a number with
