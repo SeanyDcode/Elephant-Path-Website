@@ -5,7 +5,7 @@ import CategoryFilter from '../components/CategoryFilter.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import ToConfirm from '../components/ToConfirm.astro';
 import CrisisLines from '../components/CrisisLines.astro';
-import { focusAreaTitle } from '../config/site';
+import { topicTitle } from '../config/site';
 import { getBooks } from '../lib/content';
 
 const books = await getBooks();
@@ -41,7 +41,7 @@ const usedTopics = [...new Set(books.flatMap((b) => b.data.categories))];
               <p class="small muted">ISBN {book.data.isbn}</p>
               <p class="book-tags">
                 {book.data.categories.length > 0 ? (
-                  book.data.categories.map((c) => <span class="tag">{focusAreaTitle(c)}</span>)
+                  book.data.categories.map((c) => <span class="tag">{topicTitle(c)}</span>)
                 ) : (
                   <span class="tag">General</span>
                 )}
