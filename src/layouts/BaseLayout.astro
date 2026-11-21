@@ -125,5 +125,13 @@ const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
         items.forEach((el) => io.observe(el));
       }
     </script>
+
+    <!-- Cloudflare Web Analytics (cookieless, no tracking of individuals) -->
+    <script
+      is:inline
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "52e34076cd2d4657b0459ad8aa1eb3cd"}'></script>
+    <!-- End Cloudflare Web Analytics -->
   </body>
 </html>
