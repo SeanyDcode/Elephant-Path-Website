@@ -5,7 +5,7 @@ import '@fontsource-variable/nunito-sans';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site } from '../config/site';
+import { site, focusAreas, alsoSupport } from '../config/site';
 import { url } from '../lib/url';
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   noindex?: boolean;
   // Blog posts: shared as articles, with their publish date and extra
   // structured data.
-  article?: { published: Date; headline: string };
+  article?: { published: Date; modified?: Date; headline: string };
 }
 const { title, description, isHome = false, noindex = false, article } = Astro.props;
 
@@ -24,35 +24,103 @@ const fullTitle = Astro.props.fullTitle ?? (isHome ? title : `${title} | ${site.
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const abs = (path: string) => new URL(url(path), Astro.site).href;
 const ogImage = abs('/og-image.png');
+const isHomePage = Astro.url.pathname === url('/');
 
-// Business details for search engines (schema.org). Nothing visible changes.
+// Details for search engines (schema.org). Nothing visible changes.
+// Everything here is already stated on the site or in the build brief.
+// The practice, its clinician and the website are linked to one another by
+// their "@id", so Google can tell they belong together.
+const practiceId = `${abs('/')}#practice`;
+const clinicianId = `${abs('/about/')}#sandra`;
+const websiteId = `${abs('/')}#website`;
+
+// The topics the practice supports: the focus areas, then "I also support".
+const topicsSupported = [
+  ...new Set(['Grief counseling', ...focusAreas.map((area) => area.title), ...alsoSupport]),
+];
+
 const business = {
-  '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
+  '@id': practiceId,
   name: site.legalName,
+  alternateName: site.name,
+  description:
+    'Private pay telehealth counseling for teens and adults anywhere in Michigan, with a focus on grief and loss, serious illness, end-of-life care, caregiver support, and life transitions.',
   url: abs('/'),
   logo: abs('/icon-512.png'),
   image: ogImage,
   telephone: site.phoneHref.replace('tel:', ''),
   ...(site.email ? { email: site.email } : {}),
+  // Town only. The practice is telehealth, so no street address is given.
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Clarkston',
+    addressRegion: 'MI',
+    postalCode: '48348',
+    addressCountry: 'US',
+  },
   areaServed: { '@type': 'State', name: 'Michigan' },
   priceRange: '$70–$140',
+  paymentAccepted: 'Credit card, HSA card',
+  currenciesAccepted: 'USD',
+  knowsAbout: topicsSupported,
   sameAs: [site.links.psychologyToday, site.links.linkedIn],
-  founder: {
-    '@type': 'Person',
-    name: 'Sandra Dougherty',
-    jobTitle: 'Licensed Master Social Worker – Clinical',
+  founder: { '@id': clinicianId },
+  employee: { '@id': clinicianId },
+};
+const clinician = {
+  '@type': 'Person',
+  '@id': clinicianId,
+  name: 'Sandra Dougherty',
+  honorificSuffix: 'LMSW',
+  jobTitle: 'Licensed Master Social Worker – Clinical',
+  url: abs('/about/'),
+  worksFor: { '@id': practiceId },
+  knowsAbout: topicsSupported,
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Michigan' },
+    { '@type': 'CollegeOrUniversity', name: 'University of Michigan–Flint' },
+  ],
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'license',
+    name: 'Licensed Master Social Worker – Clinical',
+    recognizedBy: { '@type': 'GovernmentOrganization', name: 'State of Michigan' },
   },
+  sameAs: [site.links.psychologyToday, site.links.linkedIn],
+};
+// The site's name, which Google can show above its search results.
+// Google reads this from the home page only.
+const website = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: abs('/'),
+  name: site.name,
+  alternateName: site.legalName,
+  publisher: { '@id': practiceId },
 };
 const blogPosting = article && {
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: article.headline,
+  description,
   datePublished: article.published.toISOString(),
+  dateModified: (article.modified ?? article.published).toISOString(),
   url: canonical.href,
+  mainEntityOfPage: canonical.href,
   image: ogImage,
-  author: { '@type': 'Person', name: 'Sandra Dougherty' },
-  publisher: { '@type': 'Organization', name: site.legalName, logo: abs('/icon-512.png') },
+  inLanguage: 'en-US',
+  author: { '@type': 'Person', '@id': clinicianId, name: 'Sandra Dougherty', url: abs('/about/') },
+  publisher: { '@id': practiceId },
+  isPartOf: { '@id': websiteId },
+};
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    business,
+    clinician,
+    ...(isHomePage ? [website] : []),
+    ...(blogPosting ? [blogPosting] : []),
+  ],
 };
 
 // Keep search engines away from the prototype address. Remove at launch
@@ -67,7 +135,9 @@ const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {/* A page kept out of search (the 404 page) shouldn't name itself the
+        main copy of anything, so it gets no canonical link. */}
+    {!noindex && <link rel="canonical" href={canonical} />}
     {(noindex || isPrototype) && <meta name="robots" content="noindex, nofollow" />}
 
     <link rel="icon" type="image/png" sizes="32x32" href={url('/favicon-32.png')} />
@@ -84,10 +154,11 @@ const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="The Elephant Path" />
     {article && <meta property="article:published_time" content={article.published.toISOString()} />}
+    {article?.modified && <meta property="article:modified_time" content={article.modified.toISOString()} />}
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(business)} />
-    {blogPosting && <script type="application/ld+json" set:html={JSON.stringify(blogPosting)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
 
     <script is:inline>
       document.documentElement.classList.add('js');
