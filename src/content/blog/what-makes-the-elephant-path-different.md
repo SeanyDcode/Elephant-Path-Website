@@ -1,6 +1,6 @@
 ---
 title: What Makes The Elephant Path Different?
-description: Clear, upfront pricing, greater privacy, and care built around you. Learn how direct-pay telehealth works, and whether it’s right for you.
+description: Clear, upfront pricing, greater privacy, a sliding fee scale, and care built around you. Here is how direct-pay telehealth works, and how to know if it’s right for you.
 pubDate: 2026-10-25
 categories: []
 ---
