@@ -61,7 +61,7 @@ const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -71,6 +71,8 @@ const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
     {(noindex || isPrototype) && <meta name="robots" content="noindex, nofollow" />}
 
     <link rel="icon" type="image/png" sizes="32x32" href={url('/favicon-32.png')} />
+    {/* A larger icon for Google, which shows it beside the site name in results */}
+    <link rel="icon" type="image/png" sizes="512x512" href={url('/icon-512.png')} />
     <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} />
     <meta name="theme-color" content="#F8F7F3" />
 
@@ -82,7 +84,10 @@ const isPrototype = !Astro.site?.hostname.endsWith('walktheelephantpath.com');
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="The Elephant Path" />
+    <meta
+      property="og:image:alt"
+      content="Watercolor elephant and butterfly beside a winding path, the logo of The Elephant Path"
+    />
     {article && <meta property="article:published_time" content={article.published.toISOString()} />}
     <meta name="twitter:card" content="summary_large_image" />
 
