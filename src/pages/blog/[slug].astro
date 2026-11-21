@@ -18,7 +18,7 @@ const { Content } = await render(post);
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
-  article={{ published: post.data.pubDate, modified: post.data.updatedDate, headline: post.data.title }}
+  article={{ published: post.data.pubDate, headline: post.data.title }}
 >
   <article class="section">
     <div class="container prose">
